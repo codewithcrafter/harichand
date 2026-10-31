@@ -1,33 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>
-    (function () {
-      var isGithub = window.location.hostname.endsWith('github.io');
-      var repo = window.location.pathname.split('/')[1] || 'harichandsteel';
-      var baseHref = isGithub ? '/' + repo + '/' : '/';
-      document.write('<base href="' + baseHref + '">');
-    })();
-  </script>
+  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <script>
-    (function () {
-      var isGithub = window.location.hostname.endsWith('github.io');
-      var repo = window.location.pathname.split('/')[1] || 'harichandsteel';
-      var baseHref = isGithub ? '/' + repo + '/' : '/';
-      document.write('<base href="' + baseHref + '">');
-    })();
-  </script>
+  
   <title>Admin Dashboard | Harichand Steel CMS</title>
   <meta name="robots" content="noindex, nofollow">
-  <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/images/favicon-32.jpeg">
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/all.min.css">
-  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="/css/all.min.css">
+  <link rel="stylesheet" href="/admin/css/admin.css">
   <!-- Quill WYSIWYG Editor CDN -->
   <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
   <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
@@ -40,7 +26,7 @@
   <!-- ==================== SIDEBAR ==================== -->
   <aside class="admin-sidebar" id="adminSidebar">
     <div class="sidebar-brand">
-      <img src="../images/logo.jpeg" alt="Harichand Steel Logo" onerror="this.src='../images/logo.jpeg'">
+      <img src="/images/logo.jpeg" alt="Harichand Steel Logo" onerror="this.src='/images/logo.jpeg'">
       <div class="sidebar-brand-text">
         <h2>HARICHAND</h2>
         <span>CMS DASHBOARD</span>
@@ -81,7 +67,7 @@
         <span>Backup & Data</span>
       </button>
 
-      <a href="./" class="admin-nav-item" target="_blank" rel="noopener">
+      <a href="/" class="admin-nav-item" target="_blank" rel="noopener">
         <i class="fas fa-external-link-alt"></i>
         <span>View Website</span>
       </a>
@@ -132,7 +118,7 @@
           <i class="fas fa-pen-nib"></i>
           <span>Add Article</span>
         </button>
-        <a href="product/" target="_blank" class="admin-btn admin-btn-outline" title="Preview Public Products Page">
+        <a href="/product/" target="_blank" class="admin-btn admin-btn-outline" title="Preview Public Products Page">
           <i class="fas fa-eye"></i>
         </a>
         <button type="button" class="admin-btn admin-btn-outline" id="topbarLogoutBtn" title="Logout of Admin Panel" style="display: inline-flex; align-items: center; gap: 6px; color: #f87171; border-color: rgba(239, 68, 68, 0.35); font-weight: 600;">
@@ -233,7 +219,7 @@
                 <button type="button" class="admin-btn admin-btn-outline" style="justify-content: center;" id="dashBtnBackup">
                   <i class="fas fa-download"></i> Download Full Backup
                 </button>
-                <a href="product/" target="_blank" class="admin-btn admin-btn-outline" style="justify-content: center;">
+                <a href="/product/" target="_blank" class="admin-btn admin-btn-outline" style="justify-content: center;">
                   <i class="fas fa-globe"></i> Open Catalog in New Tab
                 </a>
               </div>
@@ -746,7 +732,7 @@
   <div class="toast-container" id="toastContainer"></div>
 
   <!-- Scripts -->
-  <script src="js/cms-data.js"></script>
-  <script src="js/admin.js"></script>
+  <script src="/js/cms-data.js"></script>
+  <script src="/admin/js/admin.js"></script>
 </body>
 </html>

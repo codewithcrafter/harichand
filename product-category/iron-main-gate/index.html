@@ -4,25 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <script>
-    (function () {
-      var hostname = window.location.hostname;
-      var pathname = window.location.pathname;
-      var isGithub = hostname.endsWith('github.io');
-      var repo = pathname.split('/')[1] || 'harichandsteel';
-      var baseHref = isGithub ? '/' + repo + '/' : '/';
-      document.write('<base href="' + baseHref + '">');
-
-      // Instant client-side redirect: strip .html on GitHub Pages & static hosts
-      if (pathname.endsWith('.html') || pathname.endsWith('.htm')) {
-        var clean = pathname.replace(/\.html?$/i, '');
-        var target = (clean.endsWith('/index') || clean === '/index' || clean === '/' + repo + '/index' || clean === '/' + repo)
-          ? baseHref
-          : clean + '/';
-        window.location.replace(target + window.location.search + window.location.hash);
-      }
-    })();
-  </script>
+  
   <title>Product - HARICHAND STEEL</title>
   <meta name="description"
     content="Browse our full product catalogue: Aluminium profile gates, stainless steel main gates, steel doors, double door gates, and luxury entrance solutions.">
@@ -35,9 +17,9 @@
   {"@context":"https://schema.org/","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"name":"Home","@id":"https://harichandsteel.com"}},{"@type":"ListItem","position":2,"item":{"name":"Product","@id":"https://harichandsteel.com/product"}}]}
   </script>
   <!-- Favicons -->
-  <link rel="icon" href="images/favicon-32.jpeg" sizes="32x32">
-  <link rel="icon" href="images/favicon-32.jpeg" sizes="32x32">
-  <link rel="apple-touch-icon" href="images/favicon-32.jpeg">
+  <link rel="icon" href="/images/favicon-32.jpeg" sizes="32x32">
+  <link rel="icon" href="/images/favicon-32.jpeg" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/favicon-32.jpeg">
 
   <!-- Google Fonts: Oswald & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,10 +29,10 @@
     rel="stylesheet">
 
   <!-- Font Awesome CDN -->
-  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="/css/all.min.css">
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
@@ -95,8 +77,8 @@
     <div class="container">
       <div class="nav-wrapper">
         <!-- Logo -->
-        <a href="./" class="brand-logo" aria-label="Harichand Steel Home">
-          <img src="images/logo.jpeg" alt="HARICHAND STEEL"
+        <a href="/" class="brand-logo" aria-label="Harichand Steel Home">
+          <img src="/images/logo.jpeg" alt="HARICHAND STEEL"
             onerror="this.src='https://harichandsteel.com/wp-content/uploads/2024/07/cropped-HS-SIGN-1-69x49.jpeg'">
           <div class="brand-text">
             <span class="brand-title">HARICHAND STEEL</span>
@@ -108,34 +90,34 @@
         <nav class="main-nav" id="mainNav">
           <ul class="nav-menu">
             <li class="nav-item">
-              <a href="./" class="nav-link ">Home</a>
+              <a href="/" class="nav-link ">Home</a>
             </li>
             <li class="nav-item">
-              <a href="our-products/" class="nav-link ">Our Products</a>
+              <a href="/our-products/" class="nav-link ">Our Products</a>
             </li>
             <li class="nav-item">
-              <a href="about-us/" class="nav-link ">About us</a>
+              <a href="/about-us/" class="nav-link ">About us</a>
             </li>
             <li class="nav-item">
-              <a href="contact/" class="nav-link ">Contact</a>
+              <a href="/contact/" class="nav-link ">Contact</a>
             </li>
             <li class="nav-item">
-              <a href="news/" class="nav-link ">News</a>
+              <a href="/news/" class="nav-link ">News</a>
             </li>
             <li class="nav-item has-dropdown">
-              <a href="product/" class="nav-link active">
+              <a href="/product/" class="nav-link active">
                 Product <i class="fas fa-chevron-down arrow"></i>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="product-category/aluminum-profile-gate/" class="dropdown-link"><i
+                <li><a href="/product-category/aluminum-profile-gate/" class="dropdown-link"><i
                       class="fas fa-angle-right"></i> Aluminum Profile Gate</a></li>
-                <li><a href="product-category/iron-main-gate/" class="dropdown-link"><i class="fas fa-angle-right"></i> Iron
+                <li><a href="/product-category/iron-main-gate/" class="dropdown-link"><i class="fas fa-angle-right"></i> Iron
                     Main Gate</a></li>
-                <li><a href="product-category/steel-main-gate/" class="dropdown-link"><i class="fas fa-angle-right"></i>
+                <li><a href="/product-category/steel-main-gate/" class="dropdown-link"><i class="fas fa-angle-right"></i>
                     Steel Main Gate</a></li>
-                <li><a href="product-category/steel-door/" class="dropdown-link"><i class="fas fa-angle-right"></i> Steel
+                <li><a href="/product-category/steel-door/" class="dropdown-link"><i class="fas fa-angle-right"></i> Steel
                     Door</a></li>
-                <li><a href="product-category/powder-coated-gates/" class="dropdown-link"><i class="fas fa-angle-right"></i>
+                <li><a href="/product-category/powder-coated-gates/" class="dropdown-link"><i class="fas fa-angle-right"></i>
                     Powder Coated Gates</a></li>
               </ul>
             </li>
@@ -163,7 +145,7 @@
   <div class="page-header-banner">
     <div class="container">
       <nav class="breadcrumb-nav" id="catalogueBreadcrumbs">
-        <a href="./">Home</a>
+        <a href="/">Home</a>
         <span class="sep"><i class="fas fa-chevron-right"></i></span>
         <span>Product</span>
       </nav>
@@ -196,14 +178,14 @@
           <article class="product-card" data-category="aluminum-profile-gate">
             <div class="product-thumb">
               <span class="product-badge">Original Build</span>
-              <a href="product/aluminium-door-profile-gate/">
-                <img src="images/prod-1.png" alt="Aluminium Door Profile Gate"
+              <a href="/product/aluminium-door-profile-gate/">
+                <img src="/images/prod-1.png" alt="Aluminium Door Profile Gate"
                   onerror="this.src='https://harichandsteel.com/wp-content/uploads/2026/02/ChatGPT-Image-Feb-24-2026-02_47_54-PM-300x300.png'">
               </a>
             </div>
             <div class="product-body">
               <span class="product-category-link">Aluminum Profile Gate</span>
-              <h3 class="product-title"><a href="product/aluminium-door-profile-gate/">Aluminium Door Profile Gate</a>
+              <h3 class="product-title"><a href="/product/aluminium-door-profile-gate/">Aluminium Door Profile Gate</a>
               </h3>
               <div class="product-specs">
                 <span class="spec-pill"><i class="fas fa-shield-alt"></i> SS Grade</span>
@@ -211,7 +193,7 @@
                 <span class="spec-pill"><i class="fas fa-lock"></i> Smart Lock Ready</span>
               </div>
               <div class="product-card-ctas">
-                <a href="product/aluminium-door-profile-gate/" class="btn btn-outline-dark btn-sm btn-view-details">View
+                <a href="/product/aluminium-door-profile-gate/" class="btn btn-outline-dark btn-sm btn-view-details">View
                   Details</a>
                 <button type="button" class="btn btn-whatsapp btn-sm trigger-inquiry-modal"
                   data-product="Aluminium Door Profile Gate"><i class="fab fa-whatsapp"></i> Enquire</button>
@@ -221,15 +203,15 @@
           <article class="product-card" data-category="aluminum-profile-gate">
             <div class="product-thumb">
               <span class="product-badge">Original Build</span>
-              <a href="product/aluminium-profile-gate-for-home/">
-                <img src="images/Aluminium-Profile-Main-Gate_2851615169991_product-jpeg-300x300.jpg"
+              <a href="/product/aluminium-profile-gate-for-home/">
+                <img src="/images/Aluminium-Profile-Main-Gate_2851615169991_product-jpeg-300x300.jpg"
                   alt="Aluminium Profile Gate For Home"
                   onerror="this.src='https://harichandsteel.com/wp-content/uploads/2024/05/Aluminium-Profile-Main-Gate_2851615169991_product-jpeg-300x300.jpg'">
               </a>
             </div>
             <div class="product-body">
               <span class="product-category-link">Aluminum Profile Gate</span>
-              <h3 class="product-title"><a href="product/aluminium-profile-gate-for-home/">Aluminium Profile Gate For
+              <h3 class="product-title"><a href="/product/aluminium-profile-gate-for-home/">Aluminium Profile Gate For
                   Home</a></h3>
               <div class="product-specs">
                 <span class="spec-pill"><i class="fas fa-shield-alt"></i> SS Grade</span>
@@ -237,7 +219,7 @@
                 <span class="spec-pill"><i class="fas fa-lock"></i> Smart Lock Ready</span>
               </div>
               <div class="product-card-ctas">
-                <a href="product/aluminium-profile-gate-for-home/"
+                <a href="/product/aluminium-profile-gate-for-home/"
                   class="btn btn-outline-dark btn-sm btn-view-details">View Details</a>
                 <button type="button" class="btn btn-whatsapp btn-sm trigger-inquiry-modal"
                   data-product="Aluminium Profile Gate For Home"><i class="fab fa-whatsapp"></i> Enquire</button>
@@ -247,14 +229,14 @@
           <article class="product-card" data-category="aluminum-profile-gate">
             <div class="product-thumb">
               <span class="product-badge">Original Build</span>
-              <a href="product/aluminium-profile-main-gate/">
-                <img src="images/ChatGPT-Image-Feb-23-2026-12_37_41-PM-300x300.png" alt="Aluminium Profile Main Gate"
+              <a href="/product/aluminium-profile-main-gate/">
+                <img src="/images/ChatGPT-Image-Feb-23-2026-12_37_41-PM-300x300.png" alt="Aluminium Profile Main Gate"
                   onerror="this.src='https://harichandsteel.com/wp-content/uploads/2026/02/ChatGPT-Image-Feb-23-2026-12_37_41-PM-300x300.png'">
               </a>
             </div>
             <div class="product-body">
               <span class="product-category-link">Aluminum Profile Gate</span>
-              <h3 class="product-title"><a href="product/aluminium-profile-main-gate/">Aluminium Profile Main Gate</a>
+              <h3 class="product-title"><a href="/product/aluminium-profile-main-gate/">Aluminium Profile Main Gate</a>
               </h3>
               <div class="product-specs">
                 <span class="spec-pill"><i class="fas fa-shield-alt"></i> SS Grade</span>
@@ -262,7 +244,7 @@
                 <span class="spec-pill"><i class="fas fa-lock"></i> Smart Lock Ready</span>
               </div>
               <div class="product-card-ctas">
-                <a href="product/aluminium-profile-main-gate/" class="btn btn-outline-dark btn-sm btn-view-details">View
+                <a href="/product/aluminium-profile-main-gate/" class="btn btn-outline-dark btn-sm btn-view-details">View
                   Details</a>
                 <button type="button" class="btn btn-whatsapp btn-sm trigger-inquiry-modal"
                   data-product="Aluminium Profile Main Gate"><i class="fab fa-whatsapp"></i> Enquire</button>
@@ -272,15 +254,15 @@
           <article class="product-card" data-category="aluminum-profile-gate">
             <div class="product-thumb">
               <span class="product-badge">Original Build</span>
-              <a href="product/aluminium-sliding-main-entrance-gate/">
-                <img src="images/WhatsApp-Image-2026-02-23-at-12.55.26-PM-300x300.jpeg"
+              <a href="/product/aluminium-sliding-main-entrance-gate/">
+                <img src="/images/WhatsApp-Image-2026-02-23-at-12.55.26-PM-300x300.jpeg"
                   alt="Aluminium Sliding Main Entrance Gate"
                   onerror="this.src='https://harichandsteel.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-23-at-12.55.26-PM-300x300.jpeg'">
               </a>
             </div>
             <div class="product-body">
               <span class="product-category-link">Aluminum Profile Gate</span>
-              <h3 class="product-title"><a href="product/aluminium-sliding-main-entrance-gate/">Aluminium Sliding Main
+              <h3 class="product-title"><a href="/product/aluminium-sliding-main-entrance-gate/">Aluminium Sliding Main
                   Entrance Gate</a></h3>
               <div class="product-specs">
                 <span class="spec-pill"><i class="fas fa-shield-alt"></i> SS Grade</span>
@@ -288,7 +270,7 @@
                 <span class="spec-pill"><i class="fas fa-lock"></i> Smart Lock Ready</span>
               </div>
               <div class="product-card-ctas">
-                <a href="product/aluminium-sliding-main-entrance-gate/"
+                <a href="/product/aluminium-sliding-main-entrance-gate/"
                   class="btn btn-outline-dark btn-sm btn-view-details">View Details</a>
                 <button type="button" class="btn btn-whatsapp btn-sm trigger-inquiry-modal"
                   data-product="Aluminium Sliding Main Entrance Gate"><i class="fab fa-whatsapp"></i> Enquire</button>
@@ -298,14 +280,14 @@
           <article class="product-card" data-category="aluminum-profile-gate">
             <div class="product-thumb">
               <span class="product-badge">Original Build</span>
-              <a href="product/aluminum-profile-gate-with-rose-gold-handle/">
-                <img src="images/prod-2.jpeg" alt="Aluminum Profile Gate With Rose Gold Handle"
+              <a href="/product/aluminum-profile-gate-with-rose-gold-handle/">
+                <img src="/images/prod-2.jpeg" alt="Aluminum Profile Gate With Rose Gold Handle"
                   onerror="this.src='https://harichandsteel.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-23-at-1.26.00-PM-300x300.jpeg'">
               </a>
             </div>
             <div class="product-body">
               <span class="product-category-link">Aluminum Profile Gate</span>
-              <h3 class="product-title"><a href="product/aluminum-profile-gate-with-rose-gold-handle/">Aluminum Profile
+              <h3 class="product-title"><a href="/product/aluminum-profile-gate-with-rose-gold-handle/">Aluminum Profile
                   Gate With Rose Gold Handle</a></h3>
               <div class="product-specs">
                 <span class="spec-pill"><i class="fas fa-shield-alt"></i> SS Grade</span>
@@ -313,7 +295,7 @@
                 <span class="spec-pill"><i class="fas fa-lock"></i> Smart Lock Ready</span>
               </div>
               <div class="product-card-ctas">
-                <a href="product/aluminum-profile-gate-with-rose-gold-handle/"
+                <a href="/product/aluminum-profile-gate-with-rose-gold-handle/"
                   class="btn btn-outline-dark btn-sm btn-view-details">View Details</a>
                 <button type="button" class="btn btn-whatsapp btn-sm trigger-inquiry-modal"
                   data-product="Aluminum Profile Gate With Rose Gold Handle"><i class="fab fa-whatsapp"></i>
@@ -324,14 +306,14 @@
           <article class="product-card" data-category="aluminum-profile-gate">
             <div class="product-thumb">
               <span class="product-badge">Original Build</span>
-              <a href="product/aluminum-profile-gate-with-steel-frame/">
-                <img src="images/prod-3.jpeg" alt="Aluminum Profile Gate With Steel Frame"
+              <a href="/product/aluminum-profile-gate-with-steel-frame/">
+                <img src="/images/prod-3.jpeg" alt="Aluminum Profile Gate With Steel Frame"
                   onerror="this.src='https://harichandsteel.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-23-at-1.22.39-PM-300x300.jpeg'">
               </a>
             </div>
             <div class="product-body">
               <span class="product-category-link">Aluminum Profile Gate</span>
-              <h3 class="product-title"><a href="product/aluminum-profile-gate-with-steel-frame/">Aluminum Profile Gate
+              <h3 class="product-title"><a href="/product/aluminum-profile-gate-with-steel-frame/">Aluminum Profile Gate
                   With Steel Frame</a></h3>
               <div class="product-specs">
                 <span class="spec-pill"><i class="fas fa-shield-alt"></i> SS Grade</span>
@@ -339,7 +321,7 @@
                 <span class="spec-pill"><i class="fas fa-lock"></i> Smart Lock Ready</span>
               </div>
               <div class="product-card-ctas">
-                <a href="product/aluminum-profile-gate-with-steel-frame/"
+                <a href="/product/aluminum-profile-gate-with-steel-frame/"
                   class="btn btn-outline-dark btn-sm btn-view-details">View Details</a>
                 <button type="button" class="btn btn-whatsapp btn-sm trigger-inquiry-modal"
                   data-product="Aluminum Profile Gate With Steel Frame"><i class="fab fa-whatsapp"></i> Enquire</button>
@@ -349,15 +331,15 @@
           <article class="product-card" data-category="aluminum-profile-gate">
             <div class="product-thumb">
               <span class="product-badge">Original Build</span>
-              <a href="product/aluminum-profile-swing-gate-for-home/">
-                <img src="images/WhatsApp-Image-2026-02-23-at-1.07.57-PM-300x300.jpeg"
+              <a href="/product/aluminum-profile-swing-gate-for-home/">
+                <img src="/images/WhatsApp-Image-2026-02-23-at-1.07.57-PM-300x300.jpeg"
                   alt="Aluminum Profile Swing Gate for Home"
                   onerror="this.src='https://harichandsteel.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-23-at-1.07.57-PM-300x300.jpeg'">
               </a>
             </div>
             <div class="product-body">
               <span class="product-category-link">Aluminum Profile Gate</span>
-              <h3 class="product-title"><a href="product/aluminum-profile-swing-gate-for-home/">Aluminum Profile Swing
+              <h3 class="product-title"><a href="/product/aluminum-profile-swing-gate-for-home/">Aluminum Profile Swing
                   Gate for Home</a></h3>
               <div class="product-specs">
                 <span class="spec-pill"><i class="fas fa-shield-alt"></i> SS Grade</span>
@@ -365,7 +347,7 @@
                 <span class="spec-pill"><i class="fas fa-lock"></i> Smart Lock Ready</span>
               </div>
               <div class="product-card-ctas">
-                <a href="product/aluminum-profile-swing-gate-for-home/"
+                <a href="/product/aluminum-profile-swing-gate-for-home/"
                   class="btn btn-outline-dark btn-sm btn-view-details">View Details</a>
                 <button type="button" class="btn btn-whatsapp btn-sm trigger-inquiry-modal"
                   data-product="Aluminum Profile Swing Gate for Home"><i class="fab fa-whatsapp"></i> Enquire</button>
@@ -375,21 +357,21 @@
           <article class="product-card" data-category="steel-main-gate">
             <div class="product-thumb">
               <span class="product-badge">Original Build</span>
-              <a href="product/double-door-steel-gate/">
-                <img src="images/ChatGPT-Image-Feb-23-2026-04_42_39-PM-300x300.png" alt="Double Door Steel Gate"
+              <a href="/product/double-door-steel-gate/">
+                <img src="/images/ChatGPT-Image-Feb-23-2026-04_42_39-PM-300x300.png" alt="Double Door Steel Gate"
                   onerror="this.src='https://harichandsteel.com/wp-content/uploads/2026/02/ChatGPT-Image-Feb-23-2026-04_42_39-PM-300x300.png'">
               </a>
             </div>
             <div class="product-body">
               <span class="product-category-link">Steel Main Gate</span>
-              <h3 class="product-title"><a href="product/double-door-steel-gate/">Double Door Steel Gate</a></h3>
+              <h3 class="product-title"><a href="/product/double-door-steel-gate/">Double Door Steel Gate</a></h3>
               <div class="product-specs">
                 <span class="spec-pill"><i class="fas fa-shield-alt"></i> SS Grade</span>
                 <span class="spec-pill"><i class="fas fa-ruler-combined"></i> Custom Sizing</span>
                 <span class="spec-pill"><i class="fas fa-lock"></i> Smart Lock Ready</span>
               </div>
               <div class="product-card-ctas">
-                <a href="product/double-door-steel-gate/" class="btn btn-outline-dark btn-sm btn-view-details">View
+                <a href="/product/double-door-steel-gate/" class="btn btn-outline-dark btn-sm btn-view-details">View
                   Details</a>
                 <button type="button" class="btn btn-whatsapp btn-sm trigger-inquiry-modal"
                   data-product="Double Door Steel Gate"><i class="fab fa-whatsapp"></i> Enquire</button>
@@ -399,14 +381,14 @@
           <article class="product-card" data-category="steel-door">
             <div class="product-thumb">
               <span class="product-badge">Original Build</span>
-              <a href="product/entrance-steel-door-for-home/">
-                <img src="images/ChatGPT-Image-Feb-23-2026-04_22_55-PM-300x300.png" alt="Entrance Steel Door For Home"
+              <a href="/product/entrance-steel-door-for-home/">
+                <img src="/images/ChatGPT-Image-Feb-23-2026-04_22_55-PM-300x300.png" alt="Entrance Steel Door For Home"
                   onerror="this.src='https://harichandsteel.com/wp-content/uploads/2026/02/ChatGPT-Image-Feb-23-2026-04_22_55-PM-300x300.png'">
               </a>
             </div>
             <div class="product-body">
               <span class="product-category-link">Steel Door</span>
-              <h3 class="product-title"><a href="product/entrance-steel-door-for-home/">Entrance Steel Door For Home</a>
+              <h3 class="product-title"><a href="/product/entrance-steel-door-for-home/">Entrance Steel Door For Home</a>
               </h3>
               <div class="product-specs">
                 <span class="spec-pill"><i class="fas fa-shield-alt"></i> SS Grade</span>
@@ -414,7 +396,7 @@
                 <span class="spec-pill"><i class="fas fa-lock"></i> Smart Lock Ready</span>
               </div>
               <div class="product-card-ctas">
-                <a href="product/entrance-steel-door-for-home/"
+                <a href="/product/entrance-steel-door-for-home/"
                   class="btn btn-outline-dark btn-sm btn-view-details">View Details</a>
                 <button type="button" class="btn btn-whatsapp btn-sm trigger-inquiry-modal"
                   data-product="Entrance Steel Door For Home"><i class="fab fa-whatsapp"></i> Enquire</button>
@@ -424,14 +406,14 @@
           <article class="product-card" data-category="iron-main-gate">
             <div class="product-thumb">
               <span class="product-badge">Hand Forged</span>
-              <a href="product/wrought-iron-luxury-main-gate/">
-                <img src="images/Main-Entrance-Gate_2850083224362_stainless-steel-window-grills-576x1024.jpg"
-                  alt="Wrought Iron Luxury Main Gate" onerror="this.src='images/prod-1.png'">
+              <a href="/product/wrought-iron-luxury-main-gate/">
+                <img src="/images/Main-Entrance-Gate_2850083224362_stainless-steel-window-grills-576x1024.jpg"
+                  alt="Wrought Iron Luxury Main Gate" onerror="this.src='/images/prod-1.png'">
               </a>
             </div>
             <div class="product-body">
               <span class="product-category-link">Iron Main Gate</span>
-              <h3 class="product-title"><a href="product/wrought-iron-luxury-main-gate/">Wrought Iron Luxury Main
+              <h3 class="product-title"><a href="/product/wrought-iron-luxury-main-gate/">Wrought Iron Luxury Main
                   Gate</a></h3>
               <div class="product-specs">
                 <span class="spec-pill"><i class="fas fa-hammer"></i> Solid Iron Stock</span>
@@ -439,7 +421,7 @@
                 <span class="spec-pill"><i class="fas fa-shield-alt"></i> Red Oxide Barrier</span>
               </div>
               <div class="product-card-ctas">
-                <a href="product/wrought-iron-luxury-main-gate/"
+                <a href="/product/wrought-iron-luxury-main-gate/"
                   class="btn btn-outline-dark btn-sm btn-view-details">View Details</a>
                 <button type="button" class="btn btn-whatsapp btn-sm trigger-inquiry-modal"
                   data-product="Wrought Iron Luxury Main Gate"><i class="fab fa-whatsapp"></i> Enquire</button>
@@ -449,14 +431,14 @@
           <article class="product-card" data-category="iron-main-gate">
             <div class="product-thumb">
               <span class="product-badge">Heavy Duty</span>
-              <a href="product/modern-cast-iron-sliding-gate/">
-                <img src="images/20231103_094312-scaled.jpg" alt="Modern Cast Iron Sliding Gate"
-                  onerror="this.src='images/prod-1.png'">
+              <a href="/product/modern-cast-iron-sliding-gate/">
+                <img src="/images/20231103_094312-scaled.jpg" alt="Modern Cast Iron Sliding Gate"
+                  onerror="this.src='/images/prod-1.png'">
               </a>
             </div>
             <div class="product-body">
               <span class="product-category-link">Iron Main Gate</span>
-              <h3 class="product-title"><a href="product/modern-cast-iron-sliding-gate/">Modern Cast Iron Sliding
+              <h3 class="product-title"><a href="/product/modern-cast-iron-sliding-gate/">Modern Cast Iron Sliding
                   Gate</a></h3>
               <div class="product-specs">
                 <span class="spec-pill"><i class="fas fa-cog"></i> Motor Ready</span>
@@ -464,7 +446,7 @@
                 <span class="spec-pill"><i class="fas fa-shield-alt"></i> Heavy Iron Channel</span>
               </div>
               <div class="product-card-ctas">
-                <a href="product/modern-cast-iron-sliding-gate/"
+                <a href="/product/modern-cast-iron-sliding-gate/"
                   class="btn btn-outline-dark btn-sm btn-view-details">View Details</a>
                 <button type="button" class="btn btn-whatsapp btn-sm trigger-inquiry-modal"
                   data-product="Modern Cast Iron Sliding Gate"><i class="fab fa-whatsapp"></i> Enquire</button>
@@ -474,14 +456,14 @@
           <article class="product-card" data-category="iron-main-gate">
             <div class="product-thumb">
               <span class="product-badge">Artisanal Build</span>
-              <a href="product/decorative-wrought-iron-double-gate/">
-                <img src="images/download-5.jpg" alt="Decorative Wrought Iron Double Gate"
-                  onerror="this.src='images/prod-1.png'">
+              <a href="/product/decorative-wrought-iron-double-gate/">
+                <img src="/images/download-5.jpg" alt="Decorative Wrought Iron Double Gate"
+                  onerror="this.src='/images/prod-1.png'">
               </a>
             </div>
             <div class="product-body">
               <span class="product-category-link">Iron Main Gate</span>
-              <h3 class="product-title"><a href="product/decorative-wrought-iron-double-gate/">Decorative Wrought Iron
+              <h3 class="product-title"><a href="/product/decorative-wrought-iron-double-gate/">Decorative Wrought Iron
                   Double Gate</a></h3>
               <div class="product-specs">
                 <span class="spec-pill"><i class="fas fa-drafting-compass"></i> Floral Scrollwork</span>
@@ -489,7 +471,7 @@
                 <span class="spec-pill"><i class="fas fa-lock"></i> Smart Lock Ready</span>
               </div>
               <div class="product-card-ctas">
-                <a href="product/decorative-wrought-iron-double-gate/"
+                <a href="/product/decorative-wrought-iron-double-gate/"
                   class="btn btn-outline-dark btn-sm btn-view-details">View Details</a>
                 <button type="button" class="btn btn-whatsapp btn-sm trigger-inquiry-modal"
                   data-product="Decorative Wrought Iron Double Gate"><i class="fab fa-whatsapp"></i> Enquire</button>
@@ -499,14 +481,14 @@
           <article class="product-card" data-category="powder-coated-gates">
             <div class="product-thumb">
               <span class="product-badge">Scratch Proof</span>
-              <a href="product/matte-black-powder-coated-modern-gate/">
-                <img src="images/golden-brown-profile-gate-1024x461.jpg" alt="Matte Black Powder Coated Modern Gate"
-                  onerror="this.src='images/prod-1.png'">
+              <a href="/product/matte-black-powder-coated-modern-gate/">
+                <img src="/images/golden-brown-profile-gate-1024x461.jpg" alt="Matte Black Powder Coated Modern Gate"
+                  onerror="this.src='/images/prod-1.png'">
               </a>
             </div>
             <div class="product-body">
               <span class="product-category-link">Powder Coated Gates</span>
-              <h3 class="product-title"><a href="product/matte-black-powder-coated-modern-gate/">Matte Black Powder
+              <h3 class="product-title"><a href="/product/matte-black-powder-coated-modern-gate/">Matte Black Powder
                   Coated Modern Gate</a></h3>
               <div class="product-specs">
                 <span class="spec-pill"><i class="fas fa-paint-roller"></i> 80µ Electrostatic</span>
@@ -514,7 +496,7 @@
                 <span class="spec-pill"><i class="fas fa-tint-slash"></i> 10-Yr Corrosion Guard</span>
               </div>
               <div class="product-card-ctas">
-                <a href="product/matte-black-powder-coated-modern-gate/"
+                <a href="/product/matte-black-powder-coated-modern-gate/"
                   class="btn btn-outline-dark btn-sm btn-view-details">View Details</a>
                 <button type="button" class="btn btn-whatsapp btn-sm trigger-inquiry-modal"
                   data-product="Matte Black Powder Coated Modern Gate"><i class="fab fa-whatsapp"></i> Enquire</button>
@@ -524,14 +506,14 @@
           <article class="product-card" data-category="powder-coated-gates">
             <div class="product-thumb">
               <span class="product-badge">Luxury Finish</span>
-              <a href="product/antique-bronze-powder-coated-steel-gate/">
-                <img src="images/20231029_141009-1024x768.jpg" alt="Antique Bronze Powder Coated Steel Gate"
-                  onerror="this.src='images/prod-1.png'">
+              <a href="/product/antique-bronze-powder-coated-steel-gate/">
+                <img src="/images/20231029_141009-1024x768.jpg" alt="Antique Bronze Powder Coated Steel Gate"
+                  onerror="this.src='/images/prod-1.png'">
               </a>
             </div>
             <div class="product-body">
               <span class="product-category-link">Powder Coated Gates</span>
-              <h3 class="product-title"><a href="product/antique-bronze-powder-coated-steel-gate/">Antique Bronze Powder
+              <h3 class="product-title"><a href="/product/antique-bronze-powder-coated-steel-gate/">Antique Bronze Powder
                   Coated Steel Gate</a></h3>
               <div class="product-specs">
                 <span class="spec-pill"><i class="fas fa-gem"></i> Antique Bronze Metallic</span>
@@ -539,7 +521,7 @@
                 <span class="spec-pill"><i class="fas fa-lock"></i> Smart Lock Ready</span>
               </div>
               <div class="product-card-ctas">
-                <a href="product/antique-bronze-powder-coated-steel-gate/"
+                <a href="/product/antique-bronze-powder-coated-steel-gate/"
                   class="btn btn-outline-dark btn-sm btn-view-details">View Details</a>
                 <button type="button" class="btn btn-whatsapp btn-sm trigger-inquiry-modal"
                   data-product="Antique Bronze Powder Coated Steel Gate"><i class="fab fa-whatsapp"></i>
@@ -550,14 +532,14 @@
           <article class="product-card" data-category="powder-coated-gates">
             <div class="product-thumb">
               <span class="product-badge">Wood Texture</span>
-              <a href="product/wood-grain-powder-coated-profile-gate/">
-                <img src="images/aluminuim-profile-box-1-1-1024x576.jpg" alt="Wood-Grain Powder Coated Profile Gate"
-                  onerror="this.src='images/prod-1.png'">
+              <a href="/product/wood-grain-powder-coated-profile-gate/">
+                <img src="/images/aluminuim-profile-box-1-1-1024x576.jpg" alt="Wood-Grain Powder Coated Profile Gate"
+                  onerror="this.src='/images/prod-1.png'">
               </a>
             </div>
             <div class="product-body">
               <span class="product-category-link">Powder Coated Gates</span>
-              <h3 class="product-title"><a href="product/wood-grain-powder-coated-profile-gate/">Wood-Grain Powder
+              <h3 class="product-title"><a href="/product/wood-grain-powder-coated-profile-gate/">Wood-Grain Powder
                   Coated Profile Gate</a></h3>
               <div class="product-specs">
                 <span class="spec-pill"><i class="fas fa-tree"></i> Timber Sublimation</span>
@@ -565,7 +547,7 @@
                 <span class="spec-pill"><i class="fas fa-feather-alt"></i> Ultralight Alloy</span>
               </div>
               <div class="product-card-ctas">
-                <a href="product/wood-grain-powder-coated-profile-gate/"
+                <a href="/product/wood-grain-powder-coated-profile-gate/"
                   class="btn btn-outline-dark btn-sm btn-view-details">View Details</a>
                 <button type="button" class="btn btn-whatsapp btn-sm trigger-inquiry-modal"
                   data-product="Wood-Grain Powder Coated Profile Gate"><i class="fab fa-whatsapp"></i> Enquire</button>
@@ -575,14 +557,14 @@
           <article class="product-card" data-category="steel-main-gate">
             <div class="product-thumb">
               <span class="product-badge">CNC Laser</span>
-              <a href="product/ss304-modern-laser-cut-steel-gate/">
-                <img src="images/20230723_115650-768x1024.jpg" alt="SS304 Modern Laser Cut Steel Gate"
-                  onerror="this.src='images/prod-1.png'">
+              <a href="/product/ss304-modern-laser-cut-steel-gate/">
+                <img src="/images/20230723_115650-768x1024.jpg" alt="SS304 Modern Laser Cut Steel Gate"
+                  onerror="this.src='/images/prod-1.png'">
               </a>
             </div>
             <div class="product-body">
               <span class="product-category-link">Steel Main Gate</span>
-              <h3 class="product-title"><a href="product/ss304-modern-laser-cut-steel-gate/">SS304 Modern Laser Cut
+              <h3 class="product-title"><a href="/product/ss304-modern-laser-cut-steel-gate/">SS304 Modern Laser Cut
                   Steel Gate</a></h3>
               <div class="product-specs">
                 <span class="spec-pill"><i class="fas fa-shield-alt"></i> 100% SS304</span>
@@ -590,7 +572,7 @@
                 <span class="spec-pill"><i class="fas fa-star"></i> Mirror Polish</span>
               </div>
               <div class="product-card-ctas">
-                <a href="product/ss304-modern-laser-cut-steel-gate/"
+                <a href="/product/ss304-modern-laser-cut-steel-gate/"
                   class="btn btn-outline-dark btn-sm btn-view-details">View Details</a>
                 <button type="button" class="btn btn-whatsapp btn-sm trigger-inquiry-modal"
                   data-product="SS304 Modern Laser Cut Steel Gate"><i class="fab fa-whatsapp"></i> Enquire</button>
@@ -600,14 +582,14 @@
           <article class="product-card" data-category="steel-door">
             <div class="product-thumb">
               <span class="product-badge">Impact Rated</span>
-              <a href="product/heavy-security-exterior-steel-door/">
-                <img src="images/Interior-Door_24388653330_product-jpeg-768x1024.jpg"
-                  alt="Heavy Security Exterior Steel Door" onerror="this.src='images/prod-1.png'">
+              <a href="/product/heavy-security-exterior-steel-door/">
+                <img src="/images/Interior-Door_24388653330_product-jpeg-768x1024.jpg"
+                  alt="Heavy Security Exterior Steel Door" onerror="this.src='/images/prod-1.png'">
               </a>
             </div>
             <div class="product-body">
               <span class="product-category-link">Steel Door</span>
-              <h3 class="product-title"><a href="product/heavy-security-exterior-steel-door/">Heavy Security Exterior
+              <h3 class="product-title"><a href="/product/heavy-security-exterior-steel-door/">Heavy Security Exterior
                   Steel Door</a></h3>
               <div class="product-specs">
                 <span class="spec-pill"><i class="fas fa-door-closed"></i> Double Galvanized</span>
@@ -615,7 +597,7 @@
                 <span class="spec-pill"><i class="fas fa-volume-mute"></i> Sound Insulated</span>
               </div>
               <div class="product-card-ctas">
-                <a href="product/heavy-security-exterior-steel-door/"
+                <a href="/product/heavy-security-exterior-steel-door/"
                   class="btn btn-outline-dark btn-sm btn-view-details">View Details</a>
                 <button type="button" class="btn btn-whatsapp btn-sm trigger-inquiry-modal"
                   data-product="Heavy Security Exterior Steel Door"><i class="fab fa-whatsapp"></i> Enquire</button>
@@ -631,7 +613,7 @@
           </nav>
         </div>
         <div class="load-more-box" style="display: none;">
-          <a href="product/" class="btn btn-primary btn-lg">
+          <a href="/product/" class="btn btn-primary btn-lg">
             <i class="fas fa-sync-alt"></i> Load More Products
           </a>
         </div>
@@ -682,8 +664,8 @@
         <div class="footer-grid">
           <!-- Col 1: Brand & Contact -->
           <div class="footer-col">
-            <a href="./" class="brand-logo" style="margin-bottom: 18px;">
-              <img src="images/logo.jpeg" alt="HARICHAND STEEL"
+            <a href="/" class="brand-logo" style="margin-bottom: 18px;">
+              <img src="/images/logo.jpeg" alt="HARICHAND STEEL"
                 onerror="this.src='https://harichandsteel.com/wp-content/uploads/2024/07/cropped-HS-SIGN-1-69x49.jpeg'">
               <div class="brand-text">
                 <span class="brand-title">HARICHAND STEEL</span>
@@ -716,14 +698,14 @@
           <div class="footer-col">
             <h4>OUR PRODUCTS</h4>
             <div class="footer-links-list">
-              <a href="product-category/aluminum-profile-gate/"><i class="fas fa-chevron-right"></i> Aluminum Profile
+              <a href="/product-category/aluminum-profile-gate/"><i class="fas fa-chevron-right"></i> Aluminum Profile
                 Gate</a>
-              <a href="product-category/iron-main-gate/"><i class="fas fa-chevron-right"></i> Iron Main Gate</a>
-              <a href="product-category/steel-main-gate/"><i class="fas fa-chevron-right"></i> Steel Main Gate</a>
-              <a href="product-category/steel-door/"><i class="fas fa-chevron-right"></i> Steel Door</a>
-              <a href="product-category/powder-coated-gates/"><i class="fas fa-chevron-right"></i> Powder Coated
+              <a href="/product-category/iron-main-gate/"><i class="fas fa-chevron-right"></i> Iron Main Gate</a>
+              <a href="/product-category/steel-main-gate/"><i class="fas fa-chevron-right"></i> Steel Main Gate</a>
+              <a href="/product-category/steel-door/"><i class="fas fa-chevron-right"></i> Steel Door</a>
+              <a href="/product-category/powder-coated-gates/"><i class="fas fa-chevron-right"></i> Powder Coated
                 Gates</a>
-              <a href="product/"><i class="fas fa-chevron-right"></i> All Products</a>
+              <a href="/product/"><i class="fas fa-chevron-right"></i> All Products</a>
             </div>
           </div>
 
@@ -731,12 +713,12 @@
           <div class="footer-col">
             <h4>About Us</h4>
             <div class="footer-links-list">
-              <a href="about-us/"><i class="fas fa-chevron-right"></i> About Us</a>
-              <a href="about-us/"><i class="fas fa-chevron-right"></i> OUR MOTO</a>
-              <a href="about-us/"><i class="fas fa-chevron-right"></i> WHY US</a>
-              <a href="about-us/"><i class="fas fa-chevron-right"></i> OUR TEAM</a>
-              <a href="news/"><i class="fas fa-chevron-right"></i> News & Insights</a>
-              <a href="contact/"><i class="fas fa-chevron-right"></i> Contact Us</a>
+              <a href="/about-us/"><i class="fas fa-chevron-right"></i> About Us</a>
+              <a href="/about-us/"><i class="fas fa-chevron-right"></i> OUR MOTO</a>
+              <a href="/about-us/"><i class="fas fa-chevron-right"></i> WHY US</a>
+              <a href="/about-us/"><i class="fas fa-chevron-right"></i> OUR TEAM</a>
+              <a href="/news/"><i class="fas fa-chevron-right"></i> News & Insights</a>
+              <a href="/contact/"><i class="fas fa-chevron-right"></i> Contact Us</a>
             </div>
           </div>
 
@@ -768,7 +750,7 @@
     <!-- Bottom Copyright Bar -->
     <div class="footer-bottom">
       <div class="container">
-        <p>Copyright &copy; 2026 HARICHAND STEEL. All rights reserved. &bull; <a href="admin/"
+        <p>Copyright &copy; 2026 HARICHAND STEEL. All rights reserved. &bull; <a href="/admin/"
             style="color: rgba(255,255,255,0.45); text-decoration: none;"><i class="fas fa-lock"></i> Admin CMS</a></p>
         <p>Redesigned in pure HTML5, CSS3, & JavaScript | Zero Dependencies</p>
       </div>
@@ -836,8 +818,8 @@
     </div>
   </div>
 
-  <script src="js/cms-data.js"></script>
-  <script src="js/main.js"></script>
+  <script src="/js/cms-data.js"></script>
+  <script src="/js/main.js"></script>
 </body>
 
 </html>

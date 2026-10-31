@@ -6,7 +6,7 @@ category: "powder-coated-gates"
 categoryName: "Powder Coated Gates"
 badge: "Wood Texture"
 price: "On Request"
-image: "images/aluminuim-profile-box-1-1-1024x576.jpg"
+image: "/images/aluminuim-profile-box-1-1-1024x576.jpg"
 featured: true
 createdAt: "2026-01-18"
 updatedAt: "2026-10-31"
@@ -23,7 +23,7 @@ Innovative heat-sublimated wood grain powder coating providing natural timber wa
 - **Product Category:** [Powder Coated Gates](/product-category/powder-coated-gates/)
 - **Quality Grade Badge:** Wood Texture
 - **Price Range:** On Request
-- **Primary Image:** ![](images/aluminuim-profile-box-1-1-1024x576.jpg)
+- **Primary Image:** ![](/images/aluminuim-profile-box-1-1-1024x576.jpg)
 - **Catalogue URL:** [/product/wood-grain-powder-coated-profile-gate](/product/wood-grain-powder-coated-profile-gate)
 
 ## Key Specifications & Engineering

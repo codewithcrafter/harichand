@@ -5,7 +5,7 @@ slug: "test-automated-gate-guide-2026"
 tag: "Design Guide"
 author: "Harichand Senior Engineer"
 date: "October 29, 2026"
-image: "images/about-3.jpg"
+image: "/images/about-3.jpg"
 excerpt: "Comprehensive engineering breakdown of heavy duty stainless steel gates."
 published: true
 updatedAt: "2026-10-31"
@@ -14,7 +14,7 @@ updatedAt: "2026-10-31"
 
 *Published on: **October 29, 2026** | Author: **Harichand Senior Engineer** | Category: **Design Guide***
 
-![](images/about-3.jpg)
+![](/images/about-3.jpg)
 
 > **Summary:** Comprehensive engineering breakdown of heavy duty stainless steel gates.
 

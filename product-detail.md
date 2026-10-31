@@ -154,7 +154,7 @@ Have custom architectural blueprints or tricky slope/elevation constraints? Call
 ### Explore Other Designs In This Category
 
           
-          [View Full Catalogue &rarr;](product/)
+          [View Full Catalogue &rarr;](/product/)
         
 
         

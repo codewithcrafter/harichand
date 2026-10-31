@@ -5,7 +5,7 @@ slug: "steel-gate-design"
 tag: "Design Guide"
 author: "Harichand Steel Team"
 date: "January 19, 2026"
-image: "images/about-3.jpg"
+image: "/images/about-3.jpg"
 excerpt: "Explore the most popular steel gate designs for modern homes, villas, and commercial properties, including laser-cut CNC patterns, SS304 durability, and motorized options."
 published: true
 updatedAt: "2026-10-31"
@@ -14,7 +14,7 @@ updatedAt: "2026-10-31"
 
 *Published on: **January 19, 2026** | Author: **Harichand Steel Team** | Category: **Design Guide***
 
-![](images/about-3.jpg)
+![](/images/about-3.jpg)
 
 > **Summary:** Explore the most popular steel gate designs for modern homes, villas, and commercial properties, including laser-cut CNC patterns, SS304 durability, and motorized options.
 

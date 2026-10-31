@@ -6,7 +6,7 @@
     "categoryName": "Aluminum Profile Gate",
     "badge": "New Arrival",
     "price": "On Request",
-    "image": "images/prod-1.png",
+    "image": "/images/prod-1.png",
     "description": "dfgfdg",
     "specs": [
       "dfgfdg"
@@ -26,7 +26,7 @@
     "category": "aluminum-profile-gate",
     "badge": "DB Test",
     "price": "₹5,000/sqft",
-    "image": "images/prod-1.png",
+    "image": "/images/prod-1.png",
     "description": "Testing Supabase connector",
     "specs": [
       "Test Spec 1",
@@ -54,7 +54,7 @@
     "category": "aluminum-profile-gate",
     "badge": "DB Test",
     "price": "₹5,000/sqft",
-    "image": "images/prod-1.png",
+    "image": "/images/prod-1.png",
     "description": "Testing Supabase connector",
     "specs": [
       "Test Spec 1",
@@ -77,7 +77,7 @@
     "category": "aluminum-profile-gate",
     "categoryName": "Aluminum Profile Gate",
     "badge": "Top Rated",
-    "image": "images/prod-1.png",
+    "image": "/images/prod-1.png",
     "description": "Premium aluminium door profile gate designed for high security, weather resistance, and sleek modern architecture.",
     "specs": [
       "SS304 Grade Hardware",
@@ -106,7 +106,7 @@
     "category": "aluminum-profile-gate",
     "categoryName": "Aluminum Profile Gate",
     "badge": "Modern",
-    "image": "images/Aluminium-Profile-Main-Gate_2851615169991_product-jpeg-300x300.jpg",
+    "image": "/images/Aluminium-Profile-Main-Gate_2851615169991_product-jpeg-300x300.jpg",
     "description": "Architectural aluminium slat gate suitable for contemporary residential driveways and villas.",
     "specs": [
       "Rust Proof Alloy",
@@ -135,7 +135,7 @@
     "category": "aluminum-profile-gate",
     "categoryName": "Aluminum Profile Gate",
     "badge": "Popular",
-    "image": "images/ChatGPT-Image-Feb-23-2026-12_37_41-PM-300x300.png",
+    "image": "/images/ChatGPT-Image-Feb-23-2026-12_37_41-PM-300x300.png",
     "description": "Full-width main entrance gate featuring heavy-gauge aluminium profiles and integrated safety locks.",
     "specs": [
       "Heavy Extrusion Slat",
@@ -164,7 +164,7 @@
     "category": "aluminum-profile-gate",
     "categoryName": "Aluminum Profile Gate",
     "badge": "Motorized",
-    "image": "images/WhatsApp-Image-2026-02-23-at-12.55.26-PM-300x300.jpeg",
+    "image": "/images/WhatsApp-Image-2026-02-23-at-12.55.26-PM-300x300.jpeg",
     "description": "Smooth gliding bottom-track sliding gate engineered for silent, effortless motorized movement.",
     "specs": [
       "Italian Motor Compatible",
@@ -193,7 +193,7 @@
     "category": "aluminum-profile-gate",
     "categoryName": "Aluminum Profile Gate",
     "badge": "Rose Gold Pull",
-    "image": "images/prod-2.jpeg",
+    "image": "/images/prod-2.jpeg",
     "description": "Luxury entrance gate featuring bespoke rose-gold vertical pull handles and matte black aluminium slats.",
     "specs": [
       "Rose Gold PVD Coating",
@@ -222,7 +222,7 @@
     "category": "aluminum-profile-gate",
     "categoryName": "Aluminum Profile Gate",
     "badge": "Reinforced",
-    "image": "images/prod-3.jpeg",
+    "image": "/images/prod-3.jpeg",
     "description": "Hybrid construction combining the strength of an internal steel framework with the rust-proof aesthetics of aluminium cladding.",
     "specs": [
       "Steel Reinforced Sub-frame",
@@ -251,7 +251,7 @@
     "category": "aluminum-profile-gate",
     "categoryName": "Aluminum Profile Gate",
     "badge": "Classic Swing",
-    "image": "images/WhatsApp-Image-2026-02-23-at-1.07.57-PM-300x300.jpeg",
+    "image": "/images/WhatsApp-Image-2026-02-23-at-1.07.57-PM-300x300.jpeg",
     "description": "Dual-leaf swing gate suitable for residential driveways, equipped with heavy-duty ball-bearing hinges.",
     "specs": [
       "Heavy Duty Pivot Hinges",
@@ -280,7 +280,7 @@
     "category": "steel-main-gate",
     "categoryName": "Steel Main Gate",
     "badge": "SS304",
-    "image": "images/ChatGPT-Image-Feb-23-2026-04_42_39-PM-300x300.png",
+    "image": "/images/ChatGPT-Image-Feb-23-2026-04_42_39-PM-300x300.png",
     "description": "Grand stainless steel entrance gate with decorative CNC vertical panels and mirror stainless finish.",
     "specs": [
       "100% SS304 Stainless Steel",
@@ -309,7 +309,7 @@
     "category": "steel-door",
     "categoryName": "Steel Door",
     "badge": "High Security",
-    "image": "images/ChatGPT-Image-Feb-23-2026-04_22_55-PM-300x300.png",
+    "image": "/images/ChatGPT-Image-Feb-23-2026-04_22_55-PM-300x300.png",
     "description": "Heavy-duty security steel door designed for bungalows and apartments with multi-point perimeter locks.",
     "specs": [
       "Internal Steel Ribbing",
@@ -338,7 +338,7 @@
     "category": "iron-main-gate",
     "categoryName": "Iron Main Gate",
     "badge": "Hand Forged",
-    "image": "images/Main-Entrance-Gate_2850083224362_stainless-steel-window-grills-576x1024.jpg",
+    "image": "/images/Main-Entrance-Gate_2850083224362_stainless-steel-window-grills-576x1024.jpg",
     "description": "Classic heavy wrought iron entrance gate with hand-forged scrollwork, spearhead finials, and multi-stage rust-resistant primer.",
     "specs": [
       "Heavy Solid Iron Stock",
@@ -367,7 +367,7 @@
     "category": "iron-main-gate",
     "categoryName": "Iron Main Gate",
     "badge": "Heavy Duty",
-    "image": "images/20231103_094312-scaled.jpg",
+    "image": "/images/20231103_094312-scaled.jpg",
     "description": "Industrial strength decorative iron sliding gate designed for wide bungalow entrances, high security estates, and villa perimeters.",
     "specs": [
       "Reinforced Iron Channel Frame",
@@ -396,7 +396,7 @@
     "category": "iron-main-gate",
     "categoryName": "Iron Main Gate",
     "badge": "Artisanal Build",
-    "image": "images/download-5.jpg",
+    "image": "/images/download-5.jpg",
     "description": "Timeless dual-swing wrought iron gate with intricate center crest medallion, heavy-duty pivot bushings, and motorized opener bracket.",
     "specs": [
       "Traditional Forged Iron",
@@ -425,7 +425,7 @@
     "category": "powder-coated-gates",
     "categoryName": "Powder Coated Gates",
     "badge": "Scratch Proof",
-    "image": "images/golden-brown-profile-gate-1024x461.jpg",
+    "image": "/images/golden-brown-profile-gate-1024x461.jpg",
     "description": "Sleek architectural steel gate coated with 80-micron electrostatically applied matte black thermoset powder.",
     "specs": [
       "80 Micron Electrostatic Coat",
@@ -454,7 +454,7 @@
     "category": "powder-coated-gates",
     "categoryName": "Powder Coated Gates",
     "badge": "Luxury Finish",
-    "image": "images/20231029_141009-1024x768.jpg",
+    "image": "/images/20231029_141009-1024x768.jpg",
     "description": "Premium metallic antique bronze textured powder coating over galvanized rust-resistant steel frame with motorized dual swing.",
     "specs": [
       "10-Year Coating Guarantee",
@@ -483,7 +483,7 @@
     "category": "powder-coated-gates",
     "categoryName": "Powder Coated Gates",
     "badge": "Wood Texture",
-    "image": "images/aluminuim-profile-box-1-1-1024x576.jpg",
+    "image": "/images/aluminuim-profile-box-1-1-1024x576.jpg",
     "description": "Innovative heat-sublimated wood grain powder coating providing natural timber warm aesthetics with zero rot and zero maintenance.",
     "specs": [
       "Sublimation Wood Finish",
@@ -512,7 +512,7 @@
     "category": "steel-main-gate",
     "categoryName": "Steel Main Gate",
     "badge": "CNC Laser",
-    "image": "images/20230723_115650-768x1024.jpg",
+    "image": "/images/20230723_115650-768x1024.jpg",
     "description": "Architectural grade SS304 stainless steel entrance gate with geometric laser cut privacy grilles and mirror polish accents.",
     "specs": [
       "100% Certified SS304",
@@ -541,7 +541,7 @@
     "category": "steel-door",
     "categoryName": "Steel Door",
     "badge": "Impact Rated",
-    "image": "images/Interior-Door_24388653330_product-jpeg-768x1024.jpg",
+    "image": "/images/Interior-Door_24388653330_product-jpeg-768x1024.jpg",
     "description": "Double-walled reinforced steel perimeter door with multi-point biometric deadbolt locking system and weatherstrip insulation.",
     "specs": [
       "Double Galvanized Steel Skin",

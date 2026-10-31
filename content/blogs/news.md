@@ -5,7 +5,7 @@ slug: "news"
 tag: "Design Guide"
 author: "Harichand Steel Team"
 date: "October 27, 2026"
-image: "images/about-3.jpg"
+image: "/images/about-3.jpg"
 excerpt: "sdsd"
 published: true
 updatedAt: "2026-10-31"
@@ -14,7 +14,7 @@ updatedAt: "2026-10-31"
 
 *Published on: **October 27, 2026** | Author: **Harichand Steel Team** | Category: **Design Guide***
 
-![](images/about-3.jpg)
+![](/images/about-3.jpg)
 
 > **Summary:** sdsd
 

@@ -16,14 +16,14 @@ updatedAt: "2026-10-31"
               
               
 ### [Latest Steel Gate Design (2025) – Ultimate Modern
-                  Guide](steel-gate-design/)
+                  Guide](/steel-gate-design/)
 
               
 Explore the most popular steel gate designs for modern homes, villas, and
                 commercial properties, including laser-cut CNC patterns, SS304 durability, and motorized options.
 
               
-                [Read Article &rarr;](steel-gate-design/)
+                [Read Article &rarr;](/steel-gate-design/)
                 [** Ask
                   Expert](https://wa.me/919870433868?text=Enquiry%20regarding%20Latest%20Steel%20Gate%20Design%20(2025)%20%E2%80%93%20Ultimate%20Modern%20Guide)
               
@@ -37,7 +37,7 @@ Explore the most popular steel gate designs for modern homes, villas, and
               
               
 ### [Best Steel Gate Manufacturer
-                  In Delhi – Complete Buyer's Guide](best-steel-gate-manufacturer-in-delhi/)
+                  In Delhi – Complete Buyer's Guide](/best-steel-gate-manufacturer-in-delhi/)
 
               
 Why Harichand Steel is recognized as Delhi's #1 steel gate manufacturer. Insights
@@ -45,7 +45,7 @@ Why Harichand Steel is recognized as Delhi's #1 steel gate manufacturer. Insight
 
               
                 [Read Article
-                  &rarr;](best-steel-gate-manufacturer-in-delhi/)
+                  &rarr;](/best-steel-gate-manufacturer-in-delhi/)
                 [** Ask
                   Expert](https://wa.me/919870433868?text=Enquiry%20regarding%20Best%20Steel%20Gate%20Manufacturer%20In%20Delhi%20%E2%80%93%20Complete%20Buyer's%20Guide)
               
@@ -59,7 +59,7 @@ Why Harichand Steel is recognized as Delhi's #1 steel gate manufacturer. Insight
               
               
 ### [Aluminium Profile
-                  Gate Manufacturer in Janakpuri – Innovation & Strength](aluminium-profile-gate-manufacturer-in-janakpuri/)
+                  Gate Manufacturer in Janakpuri – Innovation & Strength](/aluminium-profile-gate-manufacturer-in-janakpuri/)
 
               
 How aluminium profile gates have revolutionized residential entrances in Janakpuri
@@ -67,7 +67,7 @@ How aluminium profile gates have revolutionized residential entrances in Janakpu
 
               
                 [Read
-                  Article &rarr;](aluminium-profile-gate-manufacturer-in-janakpuri/)
+                  Article &rarr;](/aluminium-profile-gate-manufacturer-in-janakpuri/)
                 [** Ask
                   Expert](https://wa.me/919870433868?text=Enquiry%20regarding%20Aluminium%20Profile%20Gate%20Manufacturer%20in%20Janakpuri%20%E2%80%93%20Innovation%20%26%20Strength)
               
@@ -81,14 +81,14 @@ How aluminium profile gates have revolutionized residential entrances in Janakpu
               
               
 ### [Aluminum Profile Gate Manufacturer in
-                  Prithviraj Road](news/#prithviraj-road)
+                  Prithviraj Road](/news/#prithviraj-road)
 
               
 High-end bespoke architectural gate installations tailored for premium residences
                 and diplomatic areas across Central Delhi and Prithviraj Road.
 
               
-                [Read Article &rarr;](news/#prithviraj-road)
+                [Read Article &rarr;](/news/#prithviraj-road)
                 [** Ask
                   Expert](https://wa.me/919870433868?text=Enquiry%20regarding%20Aluminum%20Profile%20Gate%20Manufacturer%20in%20Prithviraj%20Road)
               

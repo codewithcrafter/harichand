@@ -6,7 +6,7 @@ category: "steel-main-gate"
 categoryName: "Steel Main Gate"
 badge: "SS304"
 price: "On Request"
-image: "images/ChatGPT-Image-Feb-23-2026-04_42_39-PM-300x300.png"
+image: "/images/ChatGPT-Image-Feb-23-2026-04_42_39-PM-300x300.png"
 featured: false
 createdAt: "2026-01-20"
 updatedAt: "2026-10-31"
@@ -23,7 +23,7 @@ Grand stainless steel entrance gate with decorative CNC vertical panels and mirr
 - **Product Category:** [Steel Main Gate](/product-category/steel-main-gate/)
 - **Quality Grade Badge:** SS304
 - **Price Range:** On Request
-- **Primary Image:** ![](images/ChatGPT-Image-Feb-23-2026-04_42_39-PM-300x300.png)
+- **Primary Image:** ![](/images/ChatGPT-Image-Feb-23-2026-04_42_39-PM-300x300.png)
 - **Catalogue URL:** [/product/double-door-steel-gate](/product/double-door-steel-gate)
 
 ## Key Specifications & Engineering

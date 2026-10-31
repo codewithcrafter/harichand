@@ -19,7 +19,7 @@ Legal & Data Protection
 ## Who we are
 
             
-Our website address is: [https://harichandsteel.com](./). We are Harichand
+Our website address is: [https://harichandsteel.com](/). We are Harichand
               Steel, established in 2004, located at 27B, Street, New Jankipuri, Anup Nagar, Uttam Nagar, Bindapur, New
               Delhi, Delhi, 110059.
 

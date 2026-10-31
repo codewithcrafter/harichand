@@ -87,7 +87,7 @@ State-of-the-art welding, CNC profiling, and automated gate motor integrations.
               ](tel:+919870433868)
               [
                 ** Visit Workshop
-              ](contact/)
+              ](/contact/)
             
           
 
@@ -131,7 +131,7 @@ Delhi NCR
 SS304 main gates with modern laser-cut
               CNC designs and sturdy hinges.
 
-            [Explore Steel Gates &rarr;](product-category/steel-main-gate/)
+            [Explore Steel Gates &rarr;](/product-category/steel-main-gate/)
           
 
           
@@ -143,7 +143,7 @@ SS304 main gates with modern laser-cut
 Window security grills, boundary wall
               railings, and decorative patterns.
 
-            [View Grill Designs &rarr;](steel-gate-design/)
+            [View Grill Designs &rarr;](/steel-gate-design/)
           
 
           
@@ -156,7 +156,7 @@ Indoor & outdoor spiral or straight steel
               stairs with safety railings.
 
             [View
-              Staircases &rarr;](our-products/)
+              Staircases &rarr;](/our-products/)
           
 
           
@@ -168,7 +168,7 @@ Indoor & outdoor spiral or straight steel
 Lightweight, rust-free profile gates with
               wood-finish or rose-gold accents.
 
-            [View Profile Gates &rarr;](product-category/aluminum-profile-gate/)
+            [View Profile Gates &rarr;](/product-category/aluminum-profile-gate/)
           
 
           
@@ -181,7 +181,7 @@ Motorized and manual heavy-duty security
               shutters for shops and warehouses.
 
             [Get Shutter
-              Quote &rarr;](contact/)
+              Quote &rarr;](/contact/)
           
         
       
@@ -207,15 +207,15 @@ A glimpse of gates fabricated and successfully handed over to clients in Janakpu
             Aluminium Profile Gates
           
           
-            ![Aluminum Profile Gate Manufacturer In Janakpuri](images/about-2.jpg)
+            ![Aluminum Profile Gate Manufacturer In Janakpuri](/images/about-2.jpg)
             Golden Brown Finish
           
           
-            ![best steel gate manufacturer in Delhi](images/about-3.jpg)
+            ![best steel gate manufacturer in Delhi](/images/about-3.jpg)
             SS304 Main Gate
           
           
-            ![Harichand Steel Gates](images/about-4.jpg)
+            ![Harichand Steel Gates](/images/about-4.jpg)
             Custom Steel Entrance
           
         

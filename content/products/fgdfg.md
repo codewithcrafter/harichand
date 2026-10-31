@@ -6,7 +6,7 @@ category: "aluminum-profile-gate"
 categoryName: "Aluminum Profile Gate"
 badge: "New Arrival"
 price: "On Request"
-image: "images/prod-1.png"
+image: "/images/prod-1.png"
 featured: false
 createdAt: "2026-10-27"
 updatedAt: "2026-10-31"
@@ -21,7 +21,7 @@ dfgfdg
 - **Product Category:** [Aluminum Profile Gate](/product-category/aluminum-profile-gate/)
 - **Quality Grade Badge:** New Arrival
 - **Price Range:** On Request
-- **Primary Image:** ![](images/prod-1.png)
+- **Primary Image:** ![](/images/prod-1.png)
 - **Catalogue URL:** [/product/fgdfg](/product/fgdfg)
 
 ## Key Specifications & Engineering

@@ -6,7 +6,7 @@ category: "powder-coated-gates"
 categoryName: "Powder Coated Gates"
 badge: "Scratch Proof"
 price: "On Request"
-image: "images/golden-brown-profile-gate-1024x461.jpg"
+image: "/images/golden-brown-profile-gate-1024x461.jpg"
 featured: true
 createdAt: "2026-02-14"
 updatedAt: "2026-10-31"
@@ -23,7 +23,7 @@ Sleek architectural steel gate coated with 80-micron electrostatically applied m
 - **Product Category:** [Powder Coated Gates](/product-category/powder-coated-gates/)
 - **Quality Grade Badge:** Scratch Proof
 - **Price Range:** On Request
-- **Primary Image:** ![](images/golden-brown-profile-gate-1024x461.jpg)
+- **Primary Image:** ![](/images/golden-brown-profile-gate-1024x461.jpg)
 - **Catalogue URL:** [/product/matte-black-powder-coated-modern-gate](/product/matte-black-powder-coated-modern-gate)
 
 ## Key Specifications & Engineering

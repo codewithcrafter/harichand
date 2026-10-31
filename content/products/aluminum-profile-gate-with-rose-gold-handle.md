@@ -6,7 +6,7 @@ category: "aluminum-profile-gate"
 categoryName: "Aluminum Profile Gate"
 badge: "Rose Gold Pull"
 price: "On Request"
-image: "images/prod-2.jpeg"
+image: "/images/prod-2.jpeg"
 featured: true
 createdAt: "2026-02-10"
 updatedAt: "2026-10-31"
@@ -23,7 +23,7 @@ Luxury entrance gate featuring bespoke rose-gold vertical pull handles and matte
 - **Product Category:** [Aluminum Profile Gate](/product-category/aluminum-profile-gate/)
 - **Quality Grade Badge:** Rose Gold Pull
 - **Price Range:** On Request
-- **Primary Image:** ![](images/prod-2.jpeg)
+- **Primary Image:** ![](/images/prod-2.jpeg)
 - **Catalogue URL:** [/product/aluminum-profile-gate-with-rose-gold-handle](/product/aluminum-profile-gate-with-rose-gold-handle)
 
 ## Key Specifications & Engineering

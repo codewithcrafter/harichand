@@ -6,7 +6,7 @@ category: "steel-door"
 categoryName: "Steel Door"
 badge: "Impact Rated"
 price: "On Request"
-image: "images/Interior-Door_24388653330_product-jpeg-768x1024.jpg"
+image: "/images/Interior-Door_24388653330_product-jpeg-768x1024.jpg"
 featured: false
 createdAt: "2026-01-12"
 updatedAt: "2026-10-31"
@@ -23,7 +23,7 @@ Double-walled reinforced steel perimeter door with multi-point biometric deadbol
 - **Product Category:** [Steel Door](/product-category/steel-door/)
 - **Quality Grade Badge:** Impact Rated
 - **Price Range:** On Request
-- **Primary Image:** ![](images/Interior-Door_24388653330_product-jpeg-768x1024.jpg)
+- **Primary Image:** ![](/images/Interior-Door_24388653330_product-jpeg-768x1024.jpg)
 - **Catalogue URL:** [/product/heavy-security-exterior-steel-door](/product/heavy-security-exterior-steel-door)
 
 ## Key Specifications & Engineering

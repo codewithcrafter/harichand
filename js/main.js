@@ -4,7 +4,23 @@
  * Integrated with Harichand Steel CMS Engine
  */
 
-const BASE_PATH = (typeof document !== 'undefined' && document.querySelector('base') && document.querySelector('base').getAttribute('href')) || '/';
+function getAppUrl(subPath) {
+  const clean = String(subPath || '').replace(/^\/+/, '');
+  const base = (typeof document !== 'undefined' && document.querySelector('base') && document.querySelector('base').getAttribute('href')) || '/';
+  if (!base || base === '/') return '/' + clean;
+  return base.endsWith('/') ? base + clean : base + '/' + clean;
+}
+
+function getImageUrl(imgPath) {
+  if (!imgPath) return '/images/prod-1.png';
+  if (imgPath.startsWith('http://') || imgPath.startsWith('https://') || imgPath.startsWith('//') || imgPath.startsWith('data:')) {
+    return imgPath;
+  }
+  const clean = String(imgPath).replace(/^\.?\/+/, '');
+  return '/' + clean;
+}
+
+const BASE_PATH = getAppUrl('');
 
 document.addEventListener('DOMContentLoaded', () => {
   initHeroSlider();
@@ -517,9 +533,9 @@ function initProductFilter() {
         if (pushHistory && window.history && window.history.pushState) {
           let cleanUrl;
           if (currentFilter && currentFilter !== 'all') {
-            cleanUrl = currentPage > 1 ? `${BASE_PATH}product-category/${currentFilter}/page/${currentPage}/` : `${BASE_PATH}product-category/${currentFilter}/`;
+            cleanUrl = currentPage > 1 ? getAppUrl(`product-category/${currentFilter}/page/${currentPage}/`) : getAppUrl(`product-category/${currentFilter}/`);
           } else {
-            cleanUrl = currentPage > 1 ? `${BASE_PATH}product/page/${currentPage}/` : `${BASE_PATH}product/`;
+            cleanUrl = currentPage > 1 ? getAppUrl(`product/page/${currentPage}/`) : getAppUrl('product/');
           }
           try {
             const currentFullPath = window.location.pathname + window.location.search;
@@ -831,15 +847,15 @@ function renderProductCards(grid, products) {
     const safeCat = escapeHtmlSafe(prod.category || 'aluminum-profile-gate');
     const safeCatName = escapeHtmlSafe(prod.categoryName || prod.category_display || 'Aluminum Profile Gate');
     const prodSlug = prod.slug || slugify(prod.title || prod.name || prod.id);
-    const detailUrl = `${BASE_PATH}product/${prodSlug}/`;
-    const safeImg = escapeHtmlSafe(prod.image || 'images/prod-1.png');
+    const detailUrl = getAppUrl(`product/${prodSlug}/`);
+    const safeImg = escapeHtmlSafe(getImageUrl(prod.image));
 
     return `
       <article class="product-card" data-category="${safeCat}">
         <div class="product-thumb">
           <span class="product-badge">${escapeHtmlSafe(badge)}</span>
           <a href="${detailUrl}">
-            <img src="${safeImg}" alt="${safeTitle}" onerror="this.src='images/prod-1.png'">
+            <img src="${safeImg}" alt="${safeTitle}" onerror="this.src='/images/prod-1.png'">
           </a>
         </div>
         <div class="product-body">

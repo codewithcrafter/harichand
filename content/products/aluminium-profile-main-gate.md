@@ -6,7 +6,7 @@ category: "aluminum-profile-gate"
 categoryName: "Aluminum Profile Gate"
 badge: "Popular"
 price: "On Request"
-image: "images/ChatGPT-Image-Feb-23-2026-12_37_41-PM-300x300.png"
+image: "/images/ChatGPT-Image-Feb-23-2026-12_37_41-PM-300x300.png"
 featured: false
 createdAt: "2026-02-18"
 updatedAt: "2026-10-31"
@@ -23,7 +23,7 @@ Full-width main entrance gate featuring heavy-gauge aluminium profiles and integ
 - **Product Category:** [Aluminum Profile Gate](/product-category/aluminum-profile-gate/)
 - **Quality Grade Badge:** Popular
 - **Price Range:** On Request
-- **Primary Image:** ![](images/ChatGPT-Image-Feb-23-2026-12_37_41-PM-300x300.png)
+- **Primary Image:** ![](/images/ChatGPT-Image-Feb-23-2026-12_37_41-PM-300x300.png)
 - **Catalogue URL:** [/product/aluminium-profile-main-gate](/product/aluminium-profile-main-gate)
 
 ## Key Specifications & Engineering

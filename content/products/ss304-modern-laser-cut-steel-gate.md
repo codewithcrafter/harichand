@@ -6,7 +6,7 @@ category: "steel-main-gate"
 categoryName: "Steel Main Gate"
 badge: "CNC Laser"
 price: "On Request"
-image: "images/20230723_115650-768x1024.jpg"
+image: "/images/20230723_115650-768x1024.jpg"
 featured: false
 createdAt: "2026-01-22"
 updatedAt: "2026-10-31"
@@ -23,7 +23,7 @@ Architectural grade SS304 stainless steel entrance gate with geometric laser cut
 - **Product Category:** [Steel Main Gate](/product-category/steel-main-gate/)
 - **Quality Grade Badge:** CNC Laser
 - **Price Range:** On Request
-- **Primary Image:** ![](images/20230723_115650-768x1024.jpg)
+- **Primary Image:** ![](/images/20230723_115650-768x1024.jpg)
 - **Catalogue URL:** [/product/ss304-modern-laser-cut-steel-gate](/product/ss304-modern-laser-cut-steel-gate)
 
 ## Key Specifications & Engineering

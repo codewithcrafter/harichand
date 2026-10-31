@@ -1,9 +1,19 @@
 {
   "version": 2,
+  "cleanUrls": true,
+  "trailingSlash": true,
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "/server.js"
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/admin/login",
+      "destination": "/admin/login.html"
+    },
+    {
+      "source": "/admin/login/",
+      "destination": "/admin/login.html"
     },
     {
       "source": "/admin",
@@ -12,6 +22,42 @@
     {
       "source": "/admin/",
       "destination": "/admin/index.html"
+    },
+    {
+      "source": "/admin/:subpath*",
+      "destination": "/admin/index.html"
+    },
+    {
+      "source": "/product-category",
+      "destination": "/product-category/index.html"
+    },
+    {
+      "source": "/product-category/",
+      "destination": "/product-category/index.html"
+    },
+    {
+      "source": "/product-category/:category/page/:num",
+      "destination": "/product/index.html"
+    },
+    {
+      "source": "/product-category/:category/page/:num/",
+      "destination": "/product/index.html"
+    },
+    {
+      "source": "/product/page/:num",
+      "destination": "/product/index.html"
+    },
+    {
+      "source": "/product/page/:num/",
+      "destination": "/product/index.html"
+    },
+    {
+      "source": "/product/:slug",
+      "destination": "/product-detail/index.html"
+    },
+    {
+      "source": "/product/:slug/",
+      "destination": "/product-detail/index.html"
     }
   ]
 }

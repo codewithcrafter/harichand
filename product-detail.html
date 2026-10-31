@@ -4,32 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <script>
-    (function () {
-      var hostname = window.location.hostname;
-      var pathname = window.location.pathname;
-      var isGithub = hostname.endsWith('github.io');
-      var repo = pathname.split('/')[1] || 'harichandsteel';
-      var baseHref = isGithub ? '/' + repo + '/' : '/';
-      document.write('<base href="' + baseHref + '">');
-
-      // Instant client-side redirect: strip .html on GitHub Pages & static hosts
-      if (pathname.endsWith('.html') || pathname.endsWith('.htm')) {
-        var clean = pathname.replace(/\.html?$/i, '');
-        var target = (clean.endsWith('/index') || clean === '/index' || clean === '/' + repo + '/index' || clean === '/' + repo)
-          ? baseHref
-          : clean + '/';
-        window.location.replace(target + window.location.search + window.location.hash);
-      }
-    })();
-  </script>
+  
   <title>Product Details - HARICHAND STEEL</title>
   <meta name="description"
     content="View high-resolution photos, architectural drawings, technical specifications, frame gauges, and custom sizing options for luxury aluminium profile and steel entrance gates by Harichand Steel.">
 
   <!-- Favicons -->
-  <link rel="icon" href="images/favicon-32.jpeg" sizes="32x32">
-  <link rel="apple-touch-icon" href="images/favicon-32.jpeg">
+  <link rel="icon" href="/images/favicon-32.jpeg" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/favicon-32.jpeg">
 
   <!-- Google Fonts: Oswald & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,10 +21,10 @@
     rel="stylesheet">
 
   <!-- Font Awesome CDN -->
-  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="/css/all.min.css">
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
@@ -88,8 +70,8 @@
     <div class="container">
       <div class="nav-wrapper">
         <!-- Logo -->
-        <a href="./" class="brand-logo" aria-label="Harichand Steel Home">
-          <img src="images/logo.jpeg" alt="HARICHAND STEEL"
+        <a href="/" class="brand-logo" aria-label="Harichand Steel Home">
+          <img src="/images/logo.jpeg" alt="HARICHAND STEEL"
             onerror="this.src='https://harichandsteel.com/wp-content/uploads/2024/07/cropped-HS-SIGN-1-69x49.jpeg'">
           <div class="brand-text">
             <span class="brand-title">HARICHAND STEEL</span>
@@ -101,34 +83,34 @@
         <nav class="main-nav" id="mainNav">
           <ul class="nav-menu">
             <li class="nav-item">
-              <a href="./" class="nav-link">Home</a>
+              <a href="/" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
-              <a href="our-products/" class="nav-link">Our Products</a>
+              <a href="/our-products/" class="nav-link">Our Products</a>
             </li>
             <li class="nav-item">
-              <a href="about-us/" class="nav-link">About us</a>
+              <a href="/about-us/" class="nav-link">About us</a>
             </li>
             <li class="nav-item">
-              <a href="contact/" class="nav-link">Contact</a>
+              <a href="/contact/" class="nav-link">Contact</a>
             </li>
             <li class="nav-item">
-              <a href="news/" class="nav-link">News</a>
+              <a href="/news/" class="nav-link">News</a>
             </li>
             <li class="nav-item has-dropdown">
-              <a href="product/" class="nav-link active">
+              <a href="/product/" class="nav-link active">
                 Product <i class="fas fa-chevron-down arrow"></i>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="product-category/aluminum-profile-gate/" class="dropdown-link"><i
+                <li><a href="/product-category/aluminum-profile-gate/" class="dropdown-link"><i
                       class="fas fa-angle-right"></i> Aluminum Profile Gate</a></li>
-                <li><a href="product-category/iron-main-gate/" class="dropdown-link"><i class="fas fa-angle-right"></i> Iron
+                <li><a href="/product-category/iron-main-gate/" class="dropdown-link"><i class="fas fa-angle-right"></i> Iron
                     Main Gate</a></li>
-                <li><a href="product-category/steel-main-gate/" class="dropdown-link"><i class="fas fa-angle-right"></i>
+                <li><a href="/product-category/steel-main-gate/" class="dropdown-link"><i class="fas fa-angle-right"></i>
                     Steel Main Gate</a></li>
-                <li><a href="product-category/steel-door/" class="dropdown-link"><i class="fas fa-angle-right"></i> Steel
+                <li><a href="/product-category/steel-door/" class="dropdown-link"><i class="fas fa-angle-right"></i> Steel
                     Door</a></li>
-                <li><a href="product-category/powder-coated-gates/" class="dropdown-link"><i class="fas fa-angle-right"></i>
+                <li><a href="/product-category/powder-coated-gates/" class="dropdown-link"><i class="fas fa-angle-right"></i>
                     Powder Coated Gates</a></li>
               </ul>
             </li>
@@ -160,11 +142,11 @@
   <div class="page-header-banner product-detail-banner">
     <div class="container">
       <nav class="breadcrumb-nav" id="productBreadcrumbs" aria-label="Breadcrumb Navigation">
-        <a href="./">Home</a>
+        <a href="/">Home</a>
         <span class="sep"><i class="fas fa-chevron-right"></i></span>
-        <a href="product/">Product</a>
+        <a href="/product/">Product</a>
         <span class="sep"><i class="fas fa-chevron-right"></i></span>
-        <a href="product/" id="breadcrumbCategoryLink">Category</a>
+        <a href="/product/" id="breadcrumbCategoryLink">Category</a>
         <span class="sep"><i class="fas fa-chevron-right"></i></span>
         <span id="breadcrumbProductName">Gate Model</span>
       </nav>
@@ -187,7 +169,7 @@
           <div class="product-gallery-box">
             <div class="main-image-viewport">
               <span class="product-badge" id="detailBadge">Original Build</span>
-              <img id="detailMainImg" src="images/prod-1.png" alt="Product Image" class="product-featured-img">
+              <img id="detailMainImg" src="/images/prod-1.png" alt="Product Image" class="product-featured-img">
             </div>
 
             <!-- Interactive Thumbnail Row -->
@@ -325,7 +307,7 @@
             <div class="section-subtitle">Complementary Options</div>
             <h3 style="font-size: 1.6rem; margin: 0;">Explore Other Designs In This Category</h3>
           </div>
-          <a href="product/" class="btn btn-outline-dark btn-sm">View Full Catalogue &rarr;</a>
+          <a href="/product/" class="btn btn-outline-dark btn-sm">View Full Catalogue &rarr;</a>
         </div>
 
         <div class="product-cards-grid" id="relatedProductsGrid">
@@ -384,8 +366,8 @@
         <div class="footer-grid">
           <!-- Col 1: Brand & Contact -->
           <div class="footer-col">
-            <a href="./" class="brand-logo" style="margin-bottom: 18px;">
-              <img src="images/logo.jpeg" alt="HARICHAND STEEL"
+            <a href="/" class="brand-logo" style="margin-bottom: 18px;">
+              <img src="/images/logo.jpeg" alt="HARICHAND STEEL"
                 onerror="this.src='https://harichandsteel.com/wp-content/uploads/2024/07/cropped-HS-SIGN-1-69x49.jpeg'">
               <div class="brand-text">
                 <span class="brand-title">HARICHAND STEEL</span>
@@ -417,12 +399,12 @@
           <div class="footer-col">
             <h4 class="footer-title">Navigation</h4>
             <ul class="footer-links">
-              <li><a href="./"><i class="fas fa-angle-right"></i> Home</a></li>
-              <li><a href="our-products/"><i class="fas fa-angle-right"></i> Our Products</a></li>
-              <li><a href="about-us/"><i class="fas fa-angle-right"></i> About Us</a></li>
-              <li><a href="product/"><i class="fas fa-angle-right"></i> Gate Catalogue</a></li>
-              <li><a href="news/"><i class="fas fa-angle-right"></i> News & Articles</a></li>
-              <li><a href="contact/"><i class="fas fa-angle-right"></i> Contact Us</a></li>
+              <li><a href="/"><i class="fas fa-angle-right"></i> Home</a></li>
+              <li><a href="/our-products/"><i class="fas fa-angle-right"></i> Our Products</a></li>
+              <li><a href="/about-us/"><i class="fas fa-angle-right"></i> About Us</a></li>
+              <li><a href="/product/"><i class="fas fa-angle-right"></i> Gate Catalogue</a></li>
+              <li><a href="/news/"><i class="fas fa-angle-right"></i> News & Articles</a></li>
+              <li><a href="/contact/"><i class="fas fa-angle-right"></i> Contact Us</a></li>
             </ul>
           </div>
 
@@ -430,13 +412,13 @@
           <div class="footer-col">
             <h4 class="footer-title">Product Categories</h4>
             <ul class="footer-links">
-              <li><a href="product-category/aluminum-profile-gate/"><i class="fas fa-angle-right"></i> Aluminium Profile
+              <li><a href="/product-category/aluminum-profile-gate/"><i class="fas fa-angle-right"></i> Aluminium Profile
                   Gates</a></li>
-              <li><a href="product-category/iron-main-gate/"><i class="fas fa-angle-right"></i> Iron Main Gates</a></li>
-              <li><a href="product-category/steel-main-gate/"><i class="fas fa-angle-right"></i> Stainless Steel Gates</a>
+              <li><a href="/product-category/iron-main-gate/"><i class="fas fa-angle-right"></i> Iron Main Gates</a></li>
+              <li><a href="/product-category/steel-main-gate/"><i class="fas fa-angle-right"></i> Stainless Steel Gates</a>
               </li>
-              <li><a href="product-category/steel-door/"><i class="fas fa-angle-right"></i> Security Steel Doors</a></li>
-              <li><a href="product-category/powder-coated-gates/"><i class="fas fa-angle-right"></i> Powder Coated Gates</a>
+              <li><a href="/product-category/steel-door/"><i class="fas fa-angle-right"></i> Security Steel Doors</a></li>
+              <li><a href="/product-category/powder-coated-gates/"><i class="fas fa-angle-right"></i> Powder Coated Gates</a>
               </li>
             </ul>
           </div>
@@ -525,8 +507,8 @@
     </div>
   </div>
 
-  <script src="js/cms-data.js"></script>
-  <script src="js/main.js"></script>
+  <script src="/js/cms-data.js"></script>
+  <script src="/js/main.js"></script>
 
   <!-- ========================================================================
        DYNAMIC PRODUCT DETAIL HYDRATION SCRIPT
@@ -603,7 +585,8 @@
       const badgeElem = document.getElementById('detailBadge');
       const thumbnailsStrip = document.getElementById('detailThumbnails');
 
-      const primaryImgSrc = product.image || 'images/prod-1.png';
+      function normImg(img) { if (!img) return '/images/prod-1.png'; if (img.startsWith('http') || img.startsWith('//') || img.startsWith('data:')) return img; return '/' + img.replace(/^\.?\/+/, ''); }
+      const primaryImgSrc = normImg(product.image);
       if (mainImg) {
         mainImg.src = primaryImgSrc;
         mainImg.alt = product.title;
@@ -615,16 +598,16 @@
       // Create curated thumbnail array: primary product image + category showcase images
       const sampleThumbnails = [
         primaryImgSrc,
-        'images/prod-1.png',
-        'images/Aluminium-Profile-Main-Gate_2851615169991_product-jpeg-300x300.jpg',
-        'images/ChatGPT-Image-Feb-23-2026-12_37_41-PM-300x300.png',
-        'images/ChatGPT-Image-Feb-24-2026-03_36_06-PM-300x300.png'
+        '/images/prod-1.png',
+        '/images/Aluminium-Profile-Main-Gate_2851615169991_product-jpeg-300x300.jpg',
+        '/images/ChatGPT-Image-Feb-23-2026-12_37_41-PM-300x300.png',
+        '/images/ChatGPT-Image-Feb-24-2026-02_47_54-PM-300x300.png'
       ].filter((v, i, a) => a.indexOf(v) === i).slice(0, 4);
 
       if (thumbnailsStrip) {
         thumbnailsStrip.innerHTML = sampleThumbnails.map((src, idx) => `
           <button type="button" class="thumb-btn ${idx === 0 ? 'active' : ''}" data-src="${src}" aria-label="View Angle ${idx + 1}">
-            <img src="${src}" alt="Thumbnail ${idx + 1}" onerror="this.src='images/prod-1.png'">
+            <img src="${src}" alt="Thumbnail ${idx + 1}" onerror="this.src='/images/prod-1.png'">
           </button>
         `).join('');
 
@@ -706,7 +689,7 @@
         relatedGrid.innerHTML = fallbackRelated.map(rp => {
           const rSlug = rp.slug || slugify(rp.title || rp.id);
           const rUrl = `product/${rSlug}/`;
-          const rImg = rp.image || 'images/prod-1.png';
+          const rImg = normImg(rp.image);
           const rTitle = escapeHtml(rp.title);
           const rBadge = escapeHtml(rp.badge || 'Premium Build');
 
@@ -715,7 +698,7 @@
               <div class="product-thumb">
                 <span class="product-badge">${rBadge}</span>
                 <a href="${rUrl}">
-                  <img src="${rImg}" alt="${rTitle}" onerror="this.src='images/prod-1.png'">
+                  <img src="${rImg}" alt="${rTitle}" onerror="this.src='/images/prod-1.png'">
                 </a>
               </div>
               <div class="product-body">

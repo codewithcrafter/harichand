@@ -6,7 +6,7 @@ category: "aluminum-profile-gate"
 categoryName: "Aluminum Profile Gate"
 badge: "Top Rated"
 price: "On Request"
-image: "images/prod-1.png"
+image: "/images/prod-1.png"
 featured: true
 createdAt: "2026-02-24"
 updatedAt: "2026-10-31"
@@ -23,7 +23,7 @@ Premium aluminium door profile gate designed for high security, weather resistan
 - **Product Category:** [Aluminum Profile Gate](/product-category/aluminum-profile-gate/)
 - **Quality Grade Badge:** Top Rated
 - **Price Range:** On Request
-- **Primary Image:** ![](images/prod-1.png)
+- **Primary Image:** ![](/images/prod-1.png)
 - **Catalogue URL:** [/product/aluminium-door-profile-gate](/product/aluminium-door-profile-gate)
 
 ## Key Specifications & Engineering

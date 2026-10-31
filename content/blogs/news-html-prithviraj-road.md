@@ -5,7 +5,7 @@ slug: "news-html-prithviraj-road"
 tag: "Luxury Projects"
 author: "Harichand Steel Team"
 date: "November 6, 2024"
-image: "images/hero-slide-2.jpg"
+image: "/images/hero-slide-2.jpg"
 excerpt: "High-end bespoke architectural gate installations tailored for premium residences and diplomatic areas across Central Delhi and Prithviraj Road."
 published: true
 updatedAt: "2026-10-31"
@@ -14,7 +14,7 @@ updatedAt: "2026-10-31"
 
 *Published on: **November 6, 2024** | Author: **Harichand Steel Team** | Category: **Luxury Projects***
 
-![](images/hero-slide-2.jpg)
+![](/images/hero-slide-2.jpg)
 
 > **Summary:** High-end bespoke architectural gate installations tailored for premium residences and diplomatic areas across Central Delhi and Prithviraj Road.
 

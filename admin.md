@@ -17,4 +17,4 @@ Redirecting to Harichand Steel Admin CMS...
 ## HARICHAND STEEL CMS
 
     
-Redirecting to Admin Dashboard... [Click here if not redirected automatically](admin/)
+Redirecting to Admin Dashboard... [Click here if not redirected automatically](/admin/)

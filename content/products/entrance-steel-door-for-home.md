@@ -6,7 +6,7 @@ category: "steel-door"
 categoryName: "Steel Door"
 badge: "High Security"
 price: "On Request"
-image: "images/ChatGPT-Image-Feb-23-2026-04_22_55-PM-300x300.png"
+image: "/images/ChatGPT-Image-Feb-23-2026-04_22_55-PM-300x300.png"
 featured: false
 createdAt: "2026-01-15"
 updatedAt: "2026-10-31"
@@ -23,7 +23,7 @@ Heavy-duty security steel door designed for bungalows and apartments with multi-
 - **Product Category:** [Steel Door](/product-category/steel-door/)
 - **Quality Grade Badge:** High Security
 - **Price Range:** On Request
-- **Primary Image:** ![](images/ChatGPT-Image-Feb-23-2026-04_22_55-PM-300x300.png)
+- **Primary Image:** ![](/images/ChatGPT-Image-Feb-23-2026-04_22_55-PM-300x300.png)
 - **Catalogue URL:** [/product/entrance-steel-door-for-home](/product/entrance-steel-door-for-home)
 
 ## Key Specifications & Engineering

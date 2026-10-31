@@ -1,30 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>
-    (function () {
-      var hostname = window.location.hostname;
-      var pathname = window.location.pathname;
-      var isGithub = hostname.endsWith('github.io');
-      var repo = pathname.split('/')[1] || 'harichandsteel';
-      var baseHref = isGithub ? '/' + repo + '/' : '/';
-      document.write('<base href="' + baseHref + '">');
-
-      // Instant client-side redirect: strip .html on GitHub Pages & static hosts
-      if (pathname.endsWith('.html') || pathname.endsWith('.htm')) {
-        var clean = pathname.replace(/\.html?$/i, '');
-        var target = (clean.endsWith('/index') || clean === '/index' || clean === '/' + repo + '/index' || clean === '/' + repo)
-          ? baseHref
-          : clean + '/';
-        window.location.replace(target + window.location.search + window.location.hash);
-      }
-    })();
-  </script>
+  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Page Not Found | HARICHAND STEEL</title>
-  <link rel="stylesheet" href="css/all.min.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
   <script>
     // GitHub Pages SPA redirect handler
     (function () {
@@ -57,10 +39,10 @@
       The gate design or page you are looking for might have been moved, updated, or is temporarily unavailable.
     </p>
     <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
-      <a href="./" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: #d32f2f; color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600;">
+      <a href="/" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: #d32f2f; color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600;">
         <i class="fas fa-home"></i> Return to Homepage
       </a>
-      <a href="product/" class="btn btn-outline-light" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border: 1px solid rgba(255,255,255,0.3); color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600;">
+      <a href="/product/" class="btn btn-outline-light" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border: 1px solid rgba(255,255,255,0.3); color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600;">
         <i class="fas fa-boxes-stacked"></i> Explore Products
       </a>
       <a href="https://wa.me/919870433868" class="btn btn-whatsapp" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: #25D366; color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600;">

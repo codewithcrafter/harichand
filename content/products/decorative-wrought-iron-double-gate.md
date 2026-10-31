@@ -6,7 +6,7 @@ category: "iron-main-gate"
 categoryName: "Iron Main Gate"
 badge: "Artisanal Build"
 price: "On Request"
-image: "images/download-5.jpg"
+image: "/images/download-5.jpg"
 featured: false
 createdAt: "2026-01-25"
 updatedAt: "2026-10-31"
@@ -23,7 +23,7 @@ Timeless dual-swing wrought iron gate with intricate center crest medallion, hea
 - **Product Category:** [Iron Main Gate](/product-category/iron-main-gate/)
 - **Quality Grade Badge:** Artisanal Build
 - **Price Range:** On Request
-- **Primary Image:** ![](images/download-5.jpg)
+- **Primary Image:** ![](/images/download-5.jpg)
 - **Catalogue URL:** [/product/decorative-wrought-iron-double-gate](/product/decorative-wrought-iron-double-gate)
 
 ## Key Specifications & Engineering

@@ -6,7 +6,7 @@ category: "iron-main-gate"
 categoryName: "Iron Main Gate"
 badge: "Heavy Duty"
 price: "On Request"
-image: "images/20231103_094312-scaled.jpg"
+image: "/images/20231103_094312-scaled.jpg"
 featured: false
 createdAt: "2026-02-08"
 updatedAt: "2026-10-31"
@@ -23,7 +23,7 @@ Industrial strength decorative iron sliding gate designed for wide bungalow entr
 - **Product Category:** [Iron Main Gate](/product-category/iron-main-gate/)
 - **Quality Grade Badge:** Heavy Duty
 - **Price Range:** On Request
-- **Primary Image:** ![](images/20231103_094312-scaled.jpg)
+- **Primary Image:** ![](/images/20231103_094312-scaled.jpg)
 - **Catalogue URL:** [/product/modern-cast-iron-sliding-gate](/product/modern-cast-iron-sliding-gate)
 
 ## Key Specifications & Engineering

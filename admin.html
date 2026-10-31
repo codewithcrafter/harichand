@@ -1,25 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>
-    (function () {
-      var hostname = window.location.hostname;
-      var pathname = window.location.pathname;
-      var isGithub = hostname.endsWith('github.io');
-      var repo = pathname.split('/')[1] || 'harichandsteel';
-      var baseHref = isGithub ? '/' + repo + '/' : '/';
-      document.write('<base href="' + baseHref + '">');
-
-      // Instant client-side redirect: strip .html on GitHub Pages & static hosts
-      if (pathname.endsWith('.html') || pathname.endsWith('.htm')) {
-        var clean = pathname.replace(/\.html?$/i, '');
-        var target = (clean.endsWith('/index') || clean === '/index' || clean === '/' + repo + '/index' || clean === '/' + repo)
-          ? baseHref
-          : clean + '/';
-        window.location.replace(target + window.location.search + window.location.hash);
-      }
-    })();
-  </script>
+  
   <meta charset="UTF-8">
   <meta http-equiv="refresh" content="0; url=admin/">
   <title>Redirecting to Harichand Steel Admin CMS...</title>
@@ -28,7 +10,7 @@
 <body style="font-family: system-ui, -apple-system, sans-serif; background: #090c10; color: #fff; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;">
   <div style="text-align: center;">
     <h2 style="color: #d32f2f; margin-bottom: 8px; font-size: 1.6rem; letter-spacing: 0.05em;">HARICHAND STEEL CMS</h2>
-    <p style="color: #94a3b8; font-size: 0.95rem;">Redirecting to Admin Dashboard... <a href="admin/" style="color: #f59e0b; text-decoration: underline;">Click here if not redirected automatically</a></p>
+    <p style="color: #94a3b8; font-size: 0.95rem;">Redirecting to Admin Dashboard... <a href="/admin/" style="color: #f59e0b; text-decoration: underline;">Click here if not redirected automatically</a></p>
   </div>
 </body>
 </html>

@@ -2,25 +2,7 @@
 <html lang="en">
 
 <head>
-  <script>
-    (function () {
-      var hostname = window.location.hostname;
-      var pathname = window.location.pathname;
-      var isGithub = hostname.endsWith('github.io');
-      var repo = pathname.split('/')[1] || 'harichandsteel';
-      var baseHref = isGithub ? '/' + repo + '/' : '/';
-      document.write('<base href="' + baseHref + '">');
-
-      // Instant client-side redirect: strip .html on GitHub Pages & static hosts
-      if (pathname.endsWith('.html') || pathname.endsWith('.htm')) {
-        var clean = pathname.replace(/\.html?$/i, '');
-        var target = (clean.endsWith('/index') || clean === '/index' || clean === '/' + repo + '/index' || clean === '/' + repo)
-          ? baseHref
-          : clean + '/';
-        window.location.replace(target + window.location.search + window.location.hash);
-      }
-    })();
-  </script>
+  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>About Us - HARICHAND STEEL</title>
@@ -32,9 +14,9 @@
   {"@context":"https://schema.org","@graph":[{"@type":["Organization","Person"],"@id":"https://harichandsteel.com/#person","name":"HARICHAND STEEL","url":"https://harichandsteel.com","address":{"@type":"PostalAddress","streetAddress":"L-11, 25 Feet Rd, Chanakya Place II, Block H, Uttam Nagar, Sitapuri,","addressLocality":"janakpuri","addressRegion":"delhi","postalCode":"110046","addressCountry":"india"},"logo":{"@type":"ImageObject","@id":"https://harichandsteel.com/#logo","url":"https://harichandsteel.com/wp-content/uploads/2024/07/cropped-HS-SIGN-1.jpeg","contentUrl":"https://harichandsteel.com/wp-content/uploads/2024/07/cropped-HS-SIGN-1.jpeg","caption":"HARICHAND STEEL","inLanguage":"en-US","width":"1279","height":"914"},"image":{"@id":"https://harichandsteel.com/#logo"}},{"@type":"WebSite","@id":"https://harichandsteel.com/#website","url":"https://harichandsteel.com","name":"HARICHAND STEEL","publisher":{"@id":"https://harichandsteel.com/#person"},"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://harichandsteel.com/wp-content/uploads/2024/05/blacony-railing.jpg","url":"https://harichandsteel.com/wp-content/uploads/2024/05/blacony-railing.jpg","width":"200","height":"200","inLanguage":"en-US"},{"@type":"BreadcrumbList","@id":"https://harichandsteel.com/about-us/#breadcrumb","itemListElement":[{"@type":"ListItem","position":"1","item":{"@id":"https://harichandsteel.com","name":"Home"}},{"@type":"ListItem","position":"2","item":{"@id":"https://harichandsteel.com/about-us/","name":"About us"}}]},{"@type":"AboutPage","@id":"https://harichandsteel.com/about-us/#webpage","url":"https://harichandsteel.com/about-us/","name":"About Us - HARICHAND STEEL","datePublished":"2024-06-18T08:34:40+00:00","dateModified":"2026-01-08T19:44:31+00:00","isPartOf":{"@id":"https://harichandsteel.com/#website"},"primaryImageOfPage":{"@id":"https://harichandsteel.com/wp-content/uploads/2024/05/blacony-railing.jpg"},"inLanguage":"en-US","breadcrumb":{"@id":"https://harichandsteel.com/about-us/#breadcrumb"}}]}
   </script>
   <!-- Favicons -->
-  <link rel="icon" href="images/favicon-32.jpeg" sizes="32x32">
-  <link rel="icon" href="images/favicon-32.jpeg" sizes="32x32">
-  <link rel="apple-touch-icon" href="images/favicon-32.jpeg">
+  <link rel="icon" href="/images/favicon-32.jpeg" sizes="32x32">
+  <link rel="icon" href="/images/favicon-32.jpeg" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/favicon-32.jpeg">
 
   <!-- Google Fonts: Oswald & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,10 +26,10 @@
     rel="stylesheet">
 
   <!-- Font Awesome CDN -->
-  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="/css/all.min.css">
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
@@ -92,8 +74,8 @@
     <div class="container">
       <div class="nav-wrapper">
         <!-- Logo -->
-        <a href="./" class="brand-logo" aria-label="Harichand Steel Home">
-          <img src="images/logo.jpeg" alt="HARICHAND STEEL"
+        <a href="/" class="brand-logo" aria-label="Harichand Steel Home">
+          <img src="/images/logo.jpeg" alt="HARICHAND STEEL"
             onerror="this.src='https://harichandsteel.com/wp-content/uploads/2024/07/cropped-HS-SIGN-1-69x49.jpeg'">
           <div class="brand-text">
             <span class="brand-title">HARICHAND STEEL</span>
@@ -105,34 +87,34 @@
         <nav class="main-nav" id="mainNav">
           <ul class="nav-menu">
             <li class="nav-item">
-              <a href="./" class="nav-link ">Home</a>
+              <a href="/" class="nav-link ">Home</a>
             </li>
             <li class="nav-item">
-              <a href="our-products/" class="nav-link ">Our Products</a>
+              <a href="/our-products/" class="nav-link ">Our Products</a>
             </li>
             <li class="nav-item">
-              <a href="about-us/" class="nav-link active">About us</a>
+              <a href="/about-us/" class="nav-link active">About us</a>
             </li>
             <li class="nav-item">
-              <a href="contact/" class="nav-link ">Contact</a>
+              <a href="/contact/" class="nav-link ">Contact</a>
             </li>
             <li class="nav-item">
-              <a href="news/" class="nav-link ">News</a>
+              <a href="/news/" class="nav-link ">News</a>
             </li>
             <li class="nav-item has-dropdown">
-              <a href="product/" class="nav-link ">
+              <a href="/product/" class="nav-link ">
                 Product <i class="fas fa-chevron-down arrow"></i>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="product-category/aluminum-profile-gate/" class="dropdown-link"><i
+                <li><a href="/product-category/aluminum-profile-gate/" class="dropdown-link"><i
                       class="fas fa-angle-right"></i> Aluminum Profile Gate</a></li>
-                <li><a href="product-category/iron-main-gate/" class="dropdown-link"><i class="fas fa-angle-right"></i>
+                <li><a href="/product-category/iron-main-gate/" class="dropdown-link"><i class="fas fa-angle-right"></i>
                     Iron Main Gate</a></li>
-                <li><a href="product-category/steel-main-gate/" class="dropdown-link"><i class="fas fa-angle-right"></i>
+                <li><a href="/product-category/steel-main-gate/" class="dropdown-link"><i class="fas fa-angle-right"></i>
                     Steel Main Gate</a></li>
-                <li><a href="product-category/steel-door/" class="dropdown-link"><i class="fas fa-angle-right"></i>
+                <li><a href="/product-category/steel-door/" class="dropdown-link"><i class="fas fa-angle-right"></i>
                     Steel Door</a></li>
-                <li><a href="product-category/powder-coated-gates/" class="dropdown-link"><i
+                <li><a href="/product-category/powder-coated-gates/" class="dropdown-link"><i
                       class="fas fa-angle-right"></i> Powder Coated Gates</a></li>
               </ul>
             </li>
@@ -160,7 +142,7 @@
   <div class="page-header-banner">
     <div class="container">
       <nav class="breadcrumb-nav">
-        <a href="./">Home</a>
+        <a href="/">Home</a>
         <span class="sep"><i class="fas fa-chevron-right"></i></span>
         <span>About Us</span>
       </nav>
@@ -229,7 +211,7 @@
               <a href="tel:+919870433868" class="btn btn-primary btn-lg">
                 <i class="fas fa-phone-alt"></i> Call +91 98704 33868
               </a>
-              <a href="contact/" class="btn btn-outline-dark btn-lg">
+              <a href="/contact/" class="btn btn-outline-dark btn-lg">
                 <i class="fas fa-map-marker-alt"></i> Visit Workshop
               </a>
             </div>
@@ -237,7 +219,7 @@
 
           <div class="showcase-media">
             <div class="showcase-img-box">
-              <img src="images/about-1.jpg" alt="Harichand Steel Gates Workshop"
+              <img src="/images/about-1.jpg" alt="Harichand Steel Gates Workshop"
                 onerror="this.src='https://harichandsteel.com/wp-content/uploads/2024/05/Main-Entrance-Gate_2850083224362_stainless-steel-window-grills-576x1024.jpg'">
             </div>
             <div class="experience-badge">
@@ -268,7 +250,7 @@
             <h4>Steel Gates</h4>
             <p style="font-size: 0.84rem; color: #64748b; margin: 4px 0 10px;">SS304 main gates with modern laser-cut
               CNC designs and sturdy hinges.</p>
-            <a href="product-category/steel-main-gate/"
+            <a href="/product-category/steel-main-gate/"
               style="font-size: 0.8rem; font-weight: 600; color: var(--color-primary);">Explore Steel Gates &rarr;</a>
           </div>
 
@@ -277,7 +259,7 @@
             <h4>Steel Grills</h4>
             <p style="font-size: 0.84rem; color: #64748b; margin: 4px 0 10px;">Window security grills, boundary wall
               railings, and decorative patterns.</p>
-            <a href="steel-gate-design/"
+            <a href="/steel-gate-design/"
               style="font-size: 0.8rem; font-weight: 600; color: var(--color-primary);">View Grill Designs &rarr;</a>
           </div>
 
@@ -286,7 +268,7 @@
             <h4>Steel Staircase</h4>
             <p style="font-size: 0.84rem; color: #64748b; margin: 4px 0 10px;">Indoor & outdoor spiral or straight steel
               stairs with safety railings.</p>
-            <a href="our-products/" style="font-size: 0.8rem; font-weight: 600; color: var(--color-primary);">View
+            <a href="/our-products/" style="font-size: 0.8rem; font-weight: 600; color: var(--color-primary);">View
               Staircases &rarr;</a>
           </div>
 
@@ -295,7 +277,7 @@
             <h4>Aluminium Profile Gates</h4>
             <p style="font-size: 0.84rem; color: #64748b; margin: 4px 0 10px;">Lightweight, rust-free profile gates with
               wood-finish or rose-gold accents.</p>
-            <a href="product-category/aluminum-profile-gate/"
+            <a href="/product-category/aluminum-profile-gate/"
               style="font-size: 0.8rem; font-weight: 600; color: var(--color-primary);">View Profile Gates &rarr;</a>
           </div>
 
@@ -304,7 +286,7 @@
             <h4>Rolling Shutter</h4>
             <p style="font-size: 0.84rem; color: #64748b; margin: 4px 0 10px;">Motorized and manual heavy-duty security
               shutters for shops and warehouses.</p>
-            <a href="contact/" style="font-size: 0.8rem; font-weight: 600; color: var(--color-primary);">Get Shutter
+            <a href="/contact/" style="font-size: 0.8rem; font-weight: 600; color: var(--color-primary);">Get Shutter
               Quote &rarr;</a>
           </div>
         </div>
@@ -323,22 +305,22 @@
 
         <div class="collage-grid" >
           <div class="collage-item">
-            <img src="images/about-1.jpg" alt="Aluminium profile gates"
+            <img src="/images/about-1.jpg" alt="Aluminium profile gates"
               onerror="this.src='https://harichandsteel.com/wp-content/uploads/2024/05/Main-Entrance-Gate_2850083224362_stainless-steel-window-grills-576x1024.jpg'">
             <div class="collage-overlay"><span class="collage-caption">Aluminium Profile Gates</span></div>
           </div>
           <div class="collage-item">
-            <img src="images/about-2.jpg" alt="Aluminum Profile Gate Manufacturer In Janakpuri"
+            <img src="/images/about-2.jpg" alt="Aluminum Profile Gate Manufacturer In Janakpuri"
               onerror="this.src='https://harichandsteel.com/wp-content/uploads/2024/05/golden-brown-profile-gate-1024x461.jpg'">
             <div class="collage-overlay"><span class="collage-caption">Golden Brown Finish</span></div>
           </div>
           <div class="collage-item">
-            <img src="images/about-3.jpg" alt="best steel gate manufacturer in Delhi"
+            <img src="/images/about-3.jpg" alt="best steel gate manufacturer in Delhi"
               onerror="this.src='https://harichandsteel.com/wp-content/uploads/2024/05/20231029_141009-1024x768.jpg'">
             <div class="collage-overlay"><span class="collage-caption">SS304 Main Gate</span></div>
           </div>
           <div class="collage-item">
-            <img src="images/about-4.jpg" alt="Harichand Steel Gates"
+            <img src="/images/about-4.jpg" alt="Harichand Steel Gates"
               onerror="this.src='https://harichandsteel.com/wp-content/uploads/2024/05/20231018_133021-768x1024.jpg'">
             <div class="collage-overlay"><span class="collage-caption">Custom Steel Entrance</span></div>
           </div>
@@ -378,8 +360,8 @@
         <div class="footer-grid">
           <!-- Col 1: Brand & Contact -->
           <div class="footer-col">
-            <a href="./" class="brand-logo" style="margin-bottom: 18px;">
-              <img src="images/logo.jpeg" alt="HARICHAND STEEL"
+            <a href="/" class="brand-logo" style="margin-bottom: 18px;">
+              <img src="/images/logo.jpeg" alt="HARICHAND STEEL"
                 onerror="this.src='https://harichandsteel.com/wp-content/uploads/2024/07/cropped-HS-SIGN-1-69x49.jpeg'">
               <div class="brand-text">
                 <span class="brand-title">HARICHAND STEEL</span>
@@ -412,14 +394,14 @@
           <div class="footer-col">
             <h4>OUR PRODUCTS</h4>
             <div class="footer-links-list">
-              <a href="product-category/aluminum-profile-gate/"><i class="fas fa-chevron-right"></i> Aluminum Profile
+              <a href="/product-category/aluminum-profile-gate/"><i class="fas fa-chevron-right"></i> Aluminum Profile
                 Gate</a>
-              <a href="product-category/iron-main-gate/"><i class="fas fa-chevron-right"></i> Iron Main Gate</a>
-              <a href="product-category/steel-main-gate/"><i class="fas fa-chevron-right"></i> Steel Main Gate</a>
-              <a href="product-category/steel-door/"><i class="fas fa-chevron-right"></i> Steel Door</a>
-              <a href="product-category/powder-coated-gates/"><i class="fas fa-chevron-right"></i> Powder Coated
+              <a href="/product-category/iron-main-gate/"><i class="fas fa-chevron-right"></i> Iron Main Gate</a>
+              <a href="/product-category/steel-main-gate/"><i class="fas fa-chevron-right"></i> Steel Main Gate</a>
+              <a href="/product-category/steel-door/"><i class="fas fa-chevron-right"></i> Steel Door</a>
+              <a href="/product-category/powder-coated-gates/"><i class="fas fa-chevron-right"></i> Powder Coated
                 Gates</a>
-              <a href="product/"><i class="fas fa-chevron-right"></i> All Products</a>
+              <a href="/product/"><i class="fas fa-chevron-right"></i> All Products</a>
             </div>
           </div>
 
@@ -427,12 +409,12 @@
           <div class="footer-col">
             <h4>About Us</h4>
             <div class="footer-links-list">
-              <a href="about-us/"><i class="fas fa-chevron-right"></i> About Us</a>
-              <a href="about-us/"><i class="fas fa-chevron-right"></i> OUR MOTO</a>
-              <a href="about-us/"><i class="fas fa-chevron-right"></i> WHY US</a>
-              <a href="about-us/"><i class="fas fa-chevron-right"></i> OUR TEAM</a>
-              <a href="news/"><i class="fas fa-chevron-right"></i> News & Insights</a>
-              <a href="contact/"><i class="fas fa-chevron-right"></i> Contact Us</a>
+              <a href="/about-us/"><i class="fas fa-chevron-right"></i> About Us</a>
+              <a href="/about-us/"><i class="fas fa-chevron-right"></i> OUR MOTO</a>
+              <a href="/about-us/"><i class="fas fa-chevron-right"></i> WHY US</a>
+              <a href="/about-us/"><i class="fas fa-chevron-right"></i> OUR TEAM</a>
+              <a href="/news/"><i class="fas fa-chevron-right"></i> News & Insights</a>
+              <a href="/contact/"><i class="fas fa-chevron-right"></i> Contact Us</a>
             </div>
           </div>
 
@@ -464,7 +446,7 @@
     <!-- Bottom Copyright Bar -->
     <div class="footer-bottom">
       <div class="container">
-        <p>Copyright &copy; 2026 HARICHAND STEEL. All rights reserved. &bull; <a href="admin/"
+        <p>Copyright &copy; 2026 HARICHAND STEEL. All rights reserved. &bull; <a href="/admin/"
             style="color: rgba(255,255,255,0.45); text-decoration: none;"><i class="fas fa-lock"></i> Admin CMS</a></p>
         <p>Redesigned in pure HTML5, CSS3, & JavaScript | Zero Dependencies</p>
       </div>
@@ -532,8 +514,8 @@
     </div>
   </div>
 
-  <script src="js/cms-data.js"></script>
-  <script src="js/main.js"></script>
+  <script src="/js/cms-data.js"></script>
+  <script src="/js/main.js"></script>
 </body>
 
 </html>

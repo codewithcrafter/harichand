@@ -374,7 +374,7 @@ async function requestDispatcher(req, res) {
             }
             try { markdownSync.generateProductMarkdown(item); } catch (_) { }
           }
-          fs.writeFileSync(productsFile, JSON.stringify(currentProducts, null, 2), 'utf8');
+          try { fs.writeFileSync(productsFile, JSON.stringify(currentProducts, null, 2), 'utf8'); } catch (_) {}
           sendJson(res, 200, { success: true, count: data.length });
         } else if (data && typeof data === 'object') {
           const item = normalizeItem(data);
@@ -384,7 +384,7 @@ async function requestDispatcher(req, res) {
           } else {
             currentProducts.unshift(item);
           }
-          fs.writeFileSync(productsFile, JSON.stringify(currentProducts, null, 2), 'utf8');
+          try { fs.writeFileSync(productsFile, JSON.stringify(currentProducts, null, 2), 'utf8'); } catch (_) {}
           if (db && typeof db.saveProduct === 'function') {
             try { await db.saveProduct(item); } catch (_) { }
           }
@@ -755,53 +755,55 @@ async function requestDispatcher(req, res) {
   res.end(`<!DOCTYPE html><html><head><title>404 Not Found</title></head><body style="font-family:sans-serif;text-align:center;padding:50px;"><h1>404 - Page Not Found</h1><p>The requested file <code>${pathname}</code> does not exist.</p><a href="/" style="color:#d32f2f;">Return to Homepage</a></body></html>`);
 }
 
-// Create Main Server
+// Create Main Server & Export for Vercel Serverless Function
 const server = http.createServer(requestDispatcher);
 
-// Primary server error listener
-server.on('error', (err) => {
-  console.error(' [Server Guard] Primary Server Error:', err.message);
-});
+// Only start standalone HTTP listeners when executed directly (node server.js)
+if (require.main === module) {
+  server.on('error', (err) => {
+    console.error(' [Server Guard] Primary Server Error:', err.message);
+  });
 
-// Global process crash prevention
-process.on('uncaughtException', (err) => {
-  console.error(' [Server Guard] Uncaught Exception:', err.message);
-});
+  process.on('uncaughtException', (err) => {
+    console.error(' [Server Guard] Uncaught Exception:', err.message);
+  });
 
-process.on('unhandledRejection', (reason) => {
-  console.error(' [Server Guard] Unhandled Rejection:', reason && reason.message ? reason.message : reason);
-});
+  process.on('unhandledRejection', (reason) => {
+    console.error(' [Server Guard] Unhandled Rejection:', reason && reason.message ? reason.message : reason);
+  });
 
-// Start Server on 0.0.0.0 (Port 8080)
-server.listen(PORT, '0.0.0.0', () => {
-  console.log('================================================================');
-  console.log('   HARICHAND STEEL - ENTERPRISE CLEAN URL SERVER RUNNING        ');
-  console.log('================================================================');
-  console.log(` > Primary Server:  http://0.0.0.0:${PORT}/ (Port ${PORT})`);
-  console.log(` > Localhost URL:   http://localhost:${PORT}/`);
-  console.log(` > Network / LAN:   http://192.168.88.57:${PORT}/`);
-  console.log(` > CMS Dashboard:   http://localhost:${PORT}/admin/`);
-  console.log(` > Products Page:   http://localhost:${PORT}/product/`);
-  console.log(` > Single Product:  http://localhost:${PORT}/product/aluminium-door-profile-gate/`);
-  try {
-    const mdSummary = markdownSync.syncAll();
-    console.log(` > Markdown Content: ${mdSummary.pages.length} Pages, ${mdSummary.products.length} Products, ${mdSummary.blogs.length} Blogs`);
-  } catch (_) {}
-  console.log('----------------------------------------------------------------');
-  const dbHost = process.env.DATABASE_URL ? (new URL(process.env.DATABASE_URL.replace(/^postgresql:\/\//i, 'http://')).host || 'Supabase') : 'Local JSON';
-  console.log(` Database Target:   ${dbHost}`);
-  console.log('================================================================');
-});
+  // Start Server on 0.0.0.0 (Port 8080)
+  server.listen(PORT, '0.0.0.0', () => {
+    console.log('================================================================');
+    console.log('   HARICHAND STEEL - ENTERPRISE CLEAN URL SERVER RUNNING        ');
+    console.log('================================================================');
+    console.log(` > Primary Server:  http://0.0.0.0:${PORT}/ (Port ${PORT})`);
+    console.log(` > Localhost URL:   http://localhost:${PORT}/`);
+    console.log(` > CMS Dashboard:   http://localhost:${PORT}/admin/`);
+    console.log(` > Products Page:   http://localhost:${PORT}/product/`);
+    console.log(` > Single Product:  http://localhost:${PORT}/product/aluminium-door-profile-gate/`);
+    try {
+      const mdSummary = markdownSync.syncAll();
+      console.log(` > Markdown Content: ${mdSummary.pages.length} Pages, ${mdSummary.products.length} Products, ${mdSummary.blogs.length} Blogs`);
+    } catch (_) {}
+    console.log('----------------------------------------------------------------');
+    const dbHost = process.env.DATABASE_URL ? (new URL(process.env.DATABASE_URL.replace(/^postgresql:\/\//i, 'http://')).host || 'Supabase') : 'Local JSON';
+    console.log(` Database Target:   ${dbHost}`);
+    console.log('================================================================');
+  });
 
-// Also start secondary listener on port 3000 if PORT is 8080
-if (PORT != ALT_PORT) {
-  try {
-    const altServer = http.createServer(requestDispatcher);
-    altServer.listen(ALT_PORT, '0.0.0.0', () => {
-      console.log(` > Secondary Server: http://localhost:${ALT_PORT}/ (Port ${ALT_PORT})`);
-    });
-    altServer.on('error', (err) => {
-      console.log(` [Notice] Port ${ALT_PORT} not bound: ${err.message}`);
-    });
-  } catch (_) { }
+  // Also start secondary listener on port 3000 if PORT is 8080
+  if (PORT != ALT_PORT) {
+    try {
+      const altServer = http.createServer(requestDispatcher);
+      altServer.listen(ALT_PORT, '0.0.0.0', () => {
+        console.log(` > Secondary Server: http://localhost:${ALT_PORT}/ (Port ${ALT_PORT})`);
+      });
+      altServer.on('error', (err) => {
+        console.log(` [Notice] Port ${ALT_PORT} not bound: ${err.message}`);
+      });
+    } catch (_) { }
+  }
 }
+
+module.exports = requestDispatcher;

@@ -6,7 +6,7 @@ category: "aluminum-profile-gate"
 categoryName: "Aluminum Profile Gate"
 badge: "Reinforced"
 price: "On Request"
-image: "images/prod-3.jpeg"
+image: "/images/prod-3.jpeg"
 featured: true
 createdAt: "2026-02-05"
 updatedAt: "2026-10-31"
@@ -23,7 +23,7 @@ Hybrid construction combining the strength of an internal steel framework with t
 - **Product Category:** [Aluminum Profile Gate](/product-category/aluminum-profile-gate/)
 - **Quality Grade Badge:** Reinforced
 - **Price Range:** On Request
-- **Primary Image:** ![](images/prod-3.jpeg)
+- **Primary Image:** ![](/images/prod-3.jpeg)
 - **Catalogue URL:** [/product/aluminum-profile-gate-with-steel-frame](/product/aluminum-profile-gate-with-steel-frame)
 
 ## Key Specifications & Engineering

@@ -6,7 +6,7 @@ category: "aluminum-profile-gate"
 categoryName: "Aluminum Profile Gate"
 badge: "Modern"
 price: "On Request"
-image: "images/Aluminium-Profile-Main-Gate_2851615169991_product-jpeg-300x300.jpg"
+image: "/images/Aluminium-Profile-Main-Gate_2851615169991_product-jpeg-300x300.jpg"
 featured: false
 createdAt: "2026-02-20"
 updatedAt: "2026-10-31"
@@ -23,7 +23,7 @@ Architectural aluminium slat gate suitable for contemporary residential driveway
 - **Product Category:** [Aluminum Profile Gate](/product-category/aluminum-profile-gate/)
 - **Quality Grade Badge:** Modern
 - **Price Range:** On Request
-- **Primary Image:** ![](images/Aluminium-Profile-Main-Gate_2851615169991_product-jpeg-300x300.jpg)
+- **Primary Image:** ![](/images/Aluminium-Profile-Main-Gate_2851615169991_product-jpeg-300x300.jpg)
 - **Catalogue URL:** [/product/aluminium-profile-gate-for-home](/product/aluminium-profile-gate-for-home)
 
 ## Key Specifications & Engineering

@@ -5,7 +5,7 @@ slug: "aluminium-profile-gate-manufacturer-in-janakpuri"
 tag: "Case Study"
 author: "Harichand Steel Team"
 date: "November 6, 2024"
-image: "images/profile-box.jpg"
+image: "/images/profile-box.jpg"
 excerpt: "How aluminium profile gates have revolutionized residential entrances in Janakpuri and Delhi NCR with lightweight operation, weather immunity, and wood-finish styling."
 published: true
 updatedAt: "2026-10-31"
@@ -14,7 +14,7 @@ updatedAt: "2026-10-31"
 
 *Published on: **November 6, 2024** | Author: **Harichand Steel Team** | Category: **Case Study***
 
-![](images/profile-box.jpg)
+![](/images/profile-box.jpg)
 
 > **Summary:** How aluminium profile gates have revolutionized residential entrances in Janakpuri and Delhi NCR with lightweight operation, weather immunity, and wood-finish styling.
 

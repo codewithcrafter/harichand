@@ -30,7 +30,7 @@ Leading Gate Fabricators in Delhi & Delhi NCR
           
             [
               ** Explore Our Products
-            ](product/)
+            ](/product/)
             [
               ** WhatsApp Quote
             ](https://wa.me/919870433868)
@@ -328,7 +328,7 @@ Transparent quotes without middleman inflation.
               ](https://wa.me/919870433868)
               [
                 ** Send Direct Inquiry
-              ](contact/)
+              ](/contact/)
               [
                 ** Speak to Specialist
               ](tel:+919870433868)
@@ -356,25 +356,25 @@ Serving Delhi NCR
           
           
             
-              ![Aluminium profile gates](images/about-1.jpg)
+              ![Aluminium profile gates](/images/about-1.jpg)
               
                 Aluminium Profile Gates
               
             
             
-              ![Aluminum Profile Gate Manufacturer In Janakpuri​​​](images/about-2.jpg)
+              ![Aluminum Profile Gate Manufacturer In Janakpuri​​​](/images/about-2.jpg)
               
                 Profile Gate Manufacturer Janakpuri
               
             
             
-              ![best steel gate manufacturer in Delhi](images/about-3.jpg)
+              ![best steel gate manufacturer in Delhi](/images/about-3.jpg)
               
                 Steel Gate Manufacturer Delhi
               
             
             
-              ![Harichand Steel Gates](images/about-4.jpg)
+              ![Harichand Steel Gates](/images/about-4.jpg)
               
                 Architectural Gate Designs
               
@@ -418,13 +418,13 @@ Serving Delhi NCR
             
               [
                 ** Learn more
-              ](about-us/)
+              ](/about-us/)
               [
                 ** Chat with Our Team
               ](https://wa.me/919870433868)
               [
                 ** Visit Workshop
-              ](contact/)
+              ](/contact/)
             
           
         
@@ -561,7 +561,7 @@ Serving Delhi NCR
           
             [
               ** Learn more
-            ](news/)
+            ](/news/)
             [
               ** Instant WhatsApp Quote
             ](https://wa.me/919870433868)
@@ -640,7 +640,7 @@ Watch our live gate operations, smooth movement mechanisms, and real aesthetic
             ](tel:+919870433868)
             [
               ** Book Site Visit
-            ](contact/)
+            ](/contact/)
           
         
       
@@ -680,15 +680,15 @@ Watch our live gate operations, smooth movement mechanisms, and real aesthetic
               Best Seller
               [
                 *
-              ](product/aluminium-door-profile-gate/)
+              ](/product/aluminium-door-profile-gate/)
             
             
               [
                 Aluminum Profile Gate
-              ](product-category/aluminum-profile-gate/)
+              ](/product-category/aluminum-profile-gate/)
               
 ### 
-                [Aluminium Door Profile Gate](product/aluminium-door-profile-gate/)
+                [Aluminium Door Profile Gate](/product/aluminium-door-profile-gate/)
               
 
               
@@ -699,7 +699,7 @@ Watch our live gate operations, smooth movement mechanisms, and real aesthetic
               
                 [
                   View Details
-                ](product/aluminium-door-profile-gate/)
+                ](/product/aluminium-door-profile-gate/)
                 [
                   ** Enquire
                 ](https://wa.me/919870433868?text=Hello%20Harichand%20Steel,%20I%20am%20interested%20in%20Aluminium%20Door%20Profile%20Gate)
@@ -713,16 +713,16 @@ Watch our live gate operations, smooth movement mechanisms, and real aesthetic
               Luxury Design
               [
                 *
-              ](product/aluminum-profile-gate-with-rose-gold-handle/)
+              ](/product/aluminum-profile-gate-with-rose-gold-handle/)
             
             
               [
                 Aluminum Profile Gate
-              ](product-category/aluminum-profile-gate/)
+              ](/product-category/aluminum-profile-gate/)
               
 ### 
                 [Aluminum Profile Gate With Rose Gold
-                  Handle](product/aluminum-profile-gate-with-rose-gold-handle/)
+                  Handle](/product/aluminum-profile-gate-with-rose-gold-handle/)
               
 
               
@@ -733,7 +733,7 @@ Watch our live gate operations, smooth movement mechanisms, and real aesthetic
               
                 [
                   View Details
-                ](product/aluminum-profile-gate-with-rose-gold-handle/)
+                ](/product/aluminum-profile-gate-with-rose-gold-handle/)
                 [
                   ** Enquire
                 ](https://wa.me/919870433868?text=Hello%20Harichand%20Steel,%20I%20am%20interested%20in%20Aluminum%20Profile%20Gate%20With%20Rose%20Gold%20Handle)
@@ -747,15 +747,15 @@ Watch our live gate operations, smooth movement mechanisms, and real aesthetic
               High Strength
               [
                 *
-              ](product/aluminum-profile-gate-with-steel-frame/)
+              ](/product/aluminum-profile-gate-with-steel-frame/)
             
             
               [
                 Aluminum Profile Gate
-              ](product-category/aluminum-profile-gate/)
+              ](/product-category/aluminum-profile-gate/)
               
 ### 
-                [Aluminum Profile Gate With Steel Frame](product/aluminum-profile-gate-with-steel-frame/)
+                [Aluminum Profile Gate With Steel Frame](/product/aluminum-profile-gate-with-steel-frame/)
               
 
               
@@ -766,7 +766,7 @@ Watch our live gate operations, smooth movement mechanisms, and real aesthetic
               
                 [
                   View Details
-                ](product/aluminum-profile-gate-with-steel-frame/)
+                ](/product/aluminum-profile-gate-with-steel-frame/)
                 [
                   ** Enquire
                 ](https://wa.me/919870433868?text=Hello%20Harichand%20Steel,%20I%20am%20interested%20in%20Aluminum%20Profile%20Gate%20With%20Steel%20Frame)
@@ -779,7 +779,7 @@ Watch our live gate operations, smooth movement mechanisms, and real aesthetic
         
           [
             ** Load More
-          ](product/)
+          ](/product/)
           
 End of Content.
 
@@ -800,35 +800,35 @@ End of Content.
 #### Aluminum Profile Gate
 
               View Designs &rarr;
-            ](product-category/aluminum-profile-gate/)
+            ](/product-category/aluminum-profile-gate/)
             [
               **
               
 #### Iron Main Gate
 
               View Designs &rarr;
-            ](product-category/iron-main-gate/)
+            ](/product-category/iron-main-gate/)
             [
               **
               
 #### Steel Main Gate
 
               View Designs &rarr;
-            ](product-category/steel-main-gate/)
+            ](/product-category/steel-main-gate/)
             [
               **
               
 #### Steel Door
 
               View Designs &rarr;
-            ](product-category/steel-door/)
+            ](/product-category/steel-door/)
             [
               **
               
 #### Powder Coated Gates
 
               View Designs &rarr;
-            ](product-category/powder-coated-gates/)
+            ](/product-category/powder-coated-gates/)
           
         
       
