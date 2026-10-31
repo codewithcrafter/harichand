@@ -1,16 +1,10 @@
+/**
+ * Vercel Serverless Function entry point for HARICHAND STEEL API
+ * Routes all /api/* requests to the centralized requestDispatcher
+ */
 const requestDispatcher = require('../server.js');
 
 module.exports = async (req, res) => {
-  if (req.url && req.url.includes('debug')) {
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({
-      url: req.url,
-      headers: req.headers,
-      query: req.query
-    }));
-    return;
-  }
-
   try {
     const urlObj = new URL(req.url, 'http://localhost');
     const pathParam = urlObj.searchParams.get('path') || (req.query && req.query.path);
