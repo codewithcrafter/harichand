@@ -693,6 +693,36 @@ async function requestDispatcher(req, res) {
         html = html.replace(/(<button[^>]*class="[^"]*filter-btn)\s+active([^"]*"[^>]*data-filter="all")/i, '$1$2');
         html = html.replace(new RegExp(`(<button[^>]*class="[^"]*filter-btn)([^"]*"[^>]*data-filter="${category}")`, 'i'), '$1 active$2');
 
+        // Dynamically update BreadcrumbList schema for category
+        const catBreadcrumbSchema = {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://harichandsteel.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Product", "item": "https://harichandsteel.com/product/" },
+            { "@type": "ListItem", "position": 3, "name": meta.breadcrumb, "item": `https://harichandsteel.com/product-category/${category}/` }
+          ]
+        };
+        html = html.replace(/<script type="application\/ld\+json"[^>]*id="schemaBreadcrumbs"[^>]*>[\s\S]*?<\/script>/i, `<script type="application/ld+json" id="schemaBreadcrumbs">\n${JSON.stringify(catBreadcrumbSchema, null, 2)}\n  </script>`);
+
+        // Dynamically update WebPage schema for category
+        const catWebPageSchema = {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "@id": `https://harichandsteel.com/product-category/${category}/#webpage`,
+          "url": `https://harichandsteel.com/product-category/${category}/`,
+          "name": fullDocTitle,
+          "description": meta.lead,
+          "isPartOf": {
+            "@id": "https://harichandsteel.com/#website"
+          },
+          "about": {
+            "@id": "https://harichandsteel.com/#organization"
+          },
+          "inLanguage": "en-US"
+        };
+        html = html.replace(/<script type="application\/ld\+json"[^>]*id="schemaWebPage"[^>]*>[\s\S]*?<\/script>/i, `<script type="application/ld+json" id="schemaWebPage">\n${JSON.stringify(catWebPageSchema, null, 2)}\n  </script>`);
+
         res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
         res.end(html);
         return;
