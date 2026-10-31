@@ -238,7 +238,7 @@ async function requestDispatcher(req, res) {
 
   // --- /api or /api/ root endpoint ---
   if ((apiPath === '/api' || apiPath === '') && (req.method === 'GET' || req.method === 'HEAD')) {
-    sendJson(res, 200, { name: "Harichand Steel API", status: "online", version: "1.0.0", debug: { url: req.url, pathname, apiPath } }, req.method);
+    sendJson(res, 200, { name: "Harichand Steel API", status: "online", version: "1.0.0" }, req.method);
     return;
   }
 
