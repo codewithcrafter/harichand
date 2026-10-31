@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found | HARICHAND STEEL</title>
+  <link rel="stylesheet" href="/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script>
+    // GitHub Pages SPA redirect handler
+    (function () {
+      var path = window.location.pathname;
+      var isGithub = window.location.hostname.endsWith('github.io');
+      var prefix = isGithub ? '/harichandsteel' : '';
+      var cleanPath = path.replace(prefix, '');
+
+      // If it's a product detail route: /product/:slug/
+      var prodMatch = cleanPath.match(/^\/product\/([a-zA-Z0-9_-]+)\/?$/i);
+      if (prodMatch && prodMatch[1] !== 'page') {
+        window.location.replace((isGithub ? '/harichandsteel' : '') + '/product-detail/?slug=' + encodeURIComponent(prodMatch[1]));
+        return;
+      }
+
+      // If it's a product category route: /product-category/:category/
+      var catMatch = cleanPath.match(/^\/product-category\/([a-zA-Z0-9_-]+)\/?$/i);
+      if (catMatch) {
+        window.location.replace((isGithub ? '/harichandsteel' : '') + '/product/?category=' + encodeURIComponent(catMatch[1]));
+        return;
+      }
+    })();
+  </script>
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100vh; background: #0b0f15; color: #fff; font-family: sans-serif; text-align: center; justify-content: center; align-items: center; padding: 40px 20px;">
+  <div style="max-width: 600px; background: #111722; padding: 48px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
+    <div style="font-size: 4rem; color: #d32f2f; margin-bottom: 16px;"><i class="fas fa-compass"></i></div>
+    <h1 style="font-size: 2.2rem; margin-bottom: 12px; font-weight: 700;">Page Not Found</h1>
+    <p style="color: #94a3b8; font-size: 1.05rem; line-height: 1.6; margin-bottom: 30px;">
+      The gate design or page you are looking for might have been moved, updated, or is temporarily unavailable.
+    </p>
+    <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+      <a href="/" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: #d32f2f; color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600;">
+        <i class="fas fa-home"></i> Return to Homepage
+      </a>
+      <a href="/product/" class="btn btn-outline-light" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border: 1px solid rgba(255,255,255,0.3); color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600;">
+        <i class="fas fa-boxes-stacked"></i> Explore Products
+      </a>
+      <a href="https://wa.me/919870433868" class="btn btn-whatsapp" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: #25D366; color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600;">
+        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+      </a>
+    </div>
+  </div>
+</body>
+</html>

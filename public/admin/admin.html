@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  
+  <title>Admin Dashboard | Harichand Steel CMS</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/x-icon" href="/images/favicon-32.jpeg">
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/all.min.css">
+  <link rel="stylesheet" href="/admin/css/admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- ==================== SIDEBAR ==================== -->
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="sidebar-brand">
+      <img src="/images/logo.jpeg" alt="Harichand Steel Logo" onerror="this.src='/images/logo.jpeg'">
+      <div class="sidebar-brand-text">
+        <h2>HARICHAND</h2>
+        <span>CMS DASHBOARD</span>
+      </div>
+    </div>
+
+    <div class="sidebar-nav">
+      <div class="nav-category">Main Menu</div>
+      <button type="button" class="admin-nav-item active" data-tab="dashboard">
+        <i class="fas fa-chart-pie"></i>
+        <span>Dashboard</span>
+      </button>
+
+      <button type="button" class="admin-nav-item" data-tab="products">
+        <i class="fas fa-boxes-stacked"></i>
+        <span>Products</span>
+        <span class="admin-nav-badge" id="badgeProductCount">0</span>
+      </button>
+
+      <button type="button" class="admin-nav-item" data-tab="blogs">
+        <i class="fas fa-newspaper"></i>
+        <span>Blog & News</span>
+        <span class="admin-nav-badge" id="badgeBlogCount">0</span>
+      </button>
+
+      <button type="button" class="admin-nav-item" data-tab="inquiries">
+        <i class="fas fa-envelope-open-text"></i>
+        <span>Inquiries</span>
+        <span class="admin-nav-badge" id="badgeInquiryCount" style="background:#f59e0b;">0</span>
+      </button>
+
+      <div class="nav-category">Management</div>
+      <button type="button" class="admin-nav-item" data-tab="settings">
+        <i class="fas fa-database"></i>
+        <span>Backup & Data</span>
+      </button>
+
+      <a href="../" class="admin-nav-item" target="_blank" rel="noopener">
+        <i class="fas fa-external-link-alt"></i>
+        <span>View Website</span>
+      </a>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="user-mini">
+        <div class="user-avatar">HS</div>
+        <div>
+          <div class="user-name">Manager</div>
+          <div class="user-role">Administrator</div>
+        </div>
+      </div>
+      <button type="button" class="admin-btn admin-btn-outline admin-btn-sm" id="btnAdminLogout" title="Exit Dashboard">
+        <i class="fas fa-power-off"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ==================== MAIN CONTENT AREA ==================== -->
+  <main class="admin-main">
+    
+    <!-- Topbar Header -->
+    <header class="admin-topbar">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <button type="button" id="sidebarToggle" class="admin-btn admin-btn-outline admin-btn-sm" style="display: none;">
+          <i class="fas fa-bars"></i>
+        </button>
+        <h2 id="pageHeading" style="margin: 0; font-family: 'Oswald', sans-serif; font-size: 1.4rem; color: #fff; letter-spacing: 0.02em;">Dashboard Overview</h2>
+      </div>
+
+      <div class="topbar-search">
+        <i class="fas fa-search" style="color: var(--admin-text-muted);"></i>
+        <input type="text" id="globalSearchInput" placeholder="Quick search products, blogs...">
+      </div>
+
+      <div class="topbar-actions">
+        <button type="button" class="admin-btn admin-btn-primary" id="btnOpenProductModalTop">
+          <i class="fas fa-plus"></i>
+          <span>Add Product</span>
+        </button>
+        <button type="button" class="admin-btn admin-btn-outline" id="btnOpenBlogModalTop">
+          <i class="fas fa-pen-nib"></i>
+          <span>Add Article</span>
+        </button>
+        <a href="../product/" target="_blank" class="admin-btn admin-btn-outline" title="Preview Public Products Page">
+          <i class="fas fa-eye"></i>
+        </a>
+      </div>
+    </header>
+
+    <!-- Workspace Content (Dynamic Tab Panels) -->
+    <div class="admin-content">
+
+      <!-- ==================== TAB 1: DASHBOARD OVERVIEW ==================== -->
+      <section class="admin-tab-pane active" id="pane-dashboard">
+        
+        <!-- Stats Row -->
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-box-info">
+              <h3>Total Products</h3>
+              <div class="num" id="statTotalProducts">0</div>
+            </div>
+            <div class="stat-box-icon">
+              <i class="fas fa-door-closed"></i>
+            </div>
+          </div>
+
+          <div class="stat-box">
+            <div class="stat-box-info">
+              <h3>Active Blog Posts</h3>
+              <div class="num" id="statTotalBlogs">0</div>
+            </div>
+            <div class="stat-box-icon" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;">
+              <i class="fas fa-file-lines"></i>
+            </div>
+          </div>
+
+          <div class="stat-box">
+            <div class="stat-box-info">
+              <h3>Total Inquiries</h3>
+              <div class="num" id="statTotalInquiries">0</div>
+            </div>
+            <div class="stat-box-icon" style="background: rgba(34, 197, 94, 0.15); color: #22c55e;">
+              <i class="fas fa-comments"></i>
+            </div>
+          </div>
+
+          <div class="stat-box" id="dbStatusBox">
+            <div class="stat-box-info">
+              <h3 id="dbStatusTitle">Database Engine</h3>
+              <div class="num" id="statDbSync" style="font-size: 1.15rem; color: #22c55e; margin-top: 6px;"><i class="fas fa-check-circle"></i> Supabase / Ready</div>
+            </div>
+            <div class="stat-box-icon" id="statDbIcon" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;">
+              <i class="fas fa-database"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Launch Cards -->
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 28px;">
+          
+          <!-- Recent Products Preview -->
+          <div class="admin-card-panel" style="margin-bottom: 0;">
+            <div class="panel-header">
+              <h3 class="panel-title"><i class="fas fa-boxes-stacked" style="color: var(--admin-primary); margin-right: 8px;"></i> Recent Products</h3>
+              <button type="button" class="admin-btn admin-btn-outline admin-btn-sm" data-goto-tab="products">View All Products &rarr;</button>
+            </div>
+            <div style="overflow-x: auto;">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Category</th>
+                    <th>Badge</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="dashRecentProductsTable">
+                  <!-- Injected via admin.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Quick Actions & Status Panel -->
+          <div class="admin-card-panel" style="margin-bottom: 0; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div class="panel-header">
+                <h3 class="panel-title"><i class="fas fa-bolt" style="color: #f59e0b; margin-right: 8px;"></i> Quick Actions</h3>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 14px;">
+                <button type="button" class="admin-btn admin-btn-primary" style="justify-content: center;" id="dashBtnAddProduct">
+                  <i class="fas fa-plus"></i> Add New Product
+                </button>
+                <button type="button" class="admin-btn admin-btn-outline" style="justify-content: center;" id="dashBtnAddBlog">
+                  <i class="fas fa-pen-nib"></i> Add New Blog Article
+                </button>
+                <button type="button" class="admin-btn admin-btn-outline" style="justify-content: center;" id="dashBtnBackup">
+                  <i class="fas fa-download"></i> Download Full Backup
+                </button>
+                <a href="../product/" target="_blank" class="admin-btn admin-btn-outline" style="justify-content: center;">
+                  <i class="fas fa-globe"></i> Open Catalog in New Tab
+                </a>
+              </div>
+            </div>
+
+            <div style="margin-top: 24px; padding: 14px; background: #090c10; border-radius: 8px; border: 1px solid var(--admin-border); font-size: 0.82rem; color: var(--admin-text-muted);">
+              <i class="fas fa-info-circle" style="color: var(--admin-primary); margin-right: 6px;"></i>
+              <strong>Notice:</strong> Changes made here automatically update your local catalog & blog sections in real-time.
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Recent Blogs Preview -->
+        <div class="admin-card-panel">
+          <div class="panel-header">
+            <h3 class="panel-title"><i class="fas fa-newspaper" style="color: #f59e0b; margin-right: 8px;"></i> Recent Blog Articles</h3>
+            <button type="button" class="admin-btn admin-btn-outline admin-btn-sm" data-goto-tab="blogs">View All Articles &rarr;</button>
+          </div>
+          <div style="overflow-x: auto;">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Article Title</th>
+                  <th>Topic / Tag</th>
+                  <th>Date</th>
+                  <th>Author</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="dashRecentBlogsTable">
+                <!-- Injected via admin.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ==================== TAB 2: PRODUCTS MANAGER ==================== -->
+      <section class="admin-tab-pane" id="pane-products" style="display: none;">
+        
+        <div class="admin-card-panel">
+          <div class="panel-header">
+            <div>
+              <h3 class="panel-title">Manage Products Catalog</h3>
+              <p style="margin: 4px 0 0; font-size: 0.85rem; color: var(--admin-text-muted);">Add, edit, categorise and manage all gates, doors, railings and steel builds.</p>
+            </div>
+            <button type="button" class="admin-btn admin-btn-primary" id="btnOpenProductModal">
+              <i class="fas fa-plus"></i> Add New Product
+            </button>
+          </div>
+
+          <!-- Filter & Search Toolbar -->
+          <div class="table-filter-bar">
+            <div class="filter-group">
+              <div class="topbar-search" style="width: 280px;">
+                <i class="fas fa-search" style="color: var(--admin-text-muted);"></i>
+                <input type="text" id="productSearchInput" placeholder="Filter by title or specs...">
+              </div>
+              
+              <select class="admin-select" id="productCategoryFilter">
+                <option value="all">All Categories</option>
+                <option value="aluminum-profile-gate">Aluminum Profile Gate</option>
+                <option value="steel-main-gate">Steel Main Gate</option>
+                <option value="steel-door">Steel Door</option>
+                <option value="modern-railings">Modern Railings</option>
+                <option value="custom-fabrication">Custom Fabrication</option>
+              </select>
+            </div>
+
+            <div style="font-size: 0.85rem; color: var(--admin-text-muted);">
+              <span id="productShowingCount" style="color: #fff; font-weight: 700;">Showing 0 items</span>
+            </div>
+          </div>
+
+          <!-- Products Table -->
+          <div style="overflow-x: auto;">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th style="width: 65px;">Image</th>
+                  <th>Product Title</th>
+                  <th>Category</th>
+                  <th>Badge</th>
+                  <th>Key Specs</th>
+                  <th>Price</th>
+                  <th style="text-align: right; width: 140px;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="productsTableBody">
+                <!-- Injected via admin.js -->
+              </tbody>
+            </table>
+          </div>
+          <div class="admin-pagination" id="productsPagination"></div>
+        </div>
+
+      </section>
+
+      <!-- ==================== TAB 3: BLOGS MANAGER ==================== -->
+      <section class="admin-tab-pane" id="pane-blogs" style="display: none;">
+        
+        <div class="admin-card-panel">
+          <div class="panel-header">
+            <div>
+              <h3 class="panel-title">Manage News & Blog Articles</h3>
+              <p style="margin: 4px 0 0; font-size: 0.85rem; color: var(--admin-text-muted);">Publish guides, local landing updates, and gate fabrication case studies.</p>
+            </div>
+            <button type="button" class="admin-btn admin-btn-primary" id="btnOpenBlogModal">
+              <i class="fas fa-pen-nib"></i> Add New Article
+            </button>
+          </div>
+
+          <!-- Filter & Search Toolbar -->
+          <div class="table-filter-bar">
+            <div class="filter-group">
+              <div class="topbar-search" style="width: 280px;">
+                <i class="fas fa-search" style="color: var(--admin-text-muted);"></i>
+                <input type="text" id="blogSearchInput" placeholder="Search articles by title...">
+              </div>
+
+              <select class="admin-select" id="blogTagFilter">
+                <option value="all">All Topics & Tags</option>
+                <option value="Design Guide">Design Guide</option>
+                <option value="Manufacturing">Manufacturing</option>
+                <option value="Case Study">Case Study</option>
+                <option value="Luxury Projects">Luxury Projects</option>
+              </select>
+            </div>
+
+            <div style="font-size: 0.85rem; color: var(--admin-text-muted);">
+              <span id="blogShowingCount" style="color: #fff; font-weight: 700;">Showing 0 items</span>
+            </div>
+          </div>
+
+          <!-- Blogs Table -->
+          <div style="overflow-x: auto;">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th style="width: 65px;">Cover</th>
+                  <th>Article Title</th>
+                  <th>Topic / Tag</th>
+                  <th>Author</th>
+                  <th>Publish Date</th>
+                  <th style="text-align: right; width: 140px;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="blogsTableBody">
+                <!-- Injected via admin.js -->
+              </tbody>
+            </table>
+          </div>
+          <div class="admin-pagination" id="blogsPagination"></div>
+        </div>
+
+      </section>
+
+      <!-- ==================== TAB 4: INQUIRIES LEADS ==================== -->
+      <section class="admin-tab-pane" id="pane-inquiries" style="display: none;">
+        
+        <div class="admin-card-panel">
+          <div class="panel-header">
+            <div>
+              <h3 class="panel-title">Customer Inquiries & Quote Leads</h3>
+              <p style="margin: 4px 0 0; font-size: 0.85rem; color: var(--admin-text-muted);">Leads generated from the website contact form, quote estimator, and WhatsApp triggers.</p>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--admin-text-muted); margin-right: 8px; display: flex; align-items: center;"><span id="inquiryShowingCount" style="color: #fff; font-weight: 700;">Showing 0 items</span></div>
+            <div style="display: flex; gap: 10px;">
+              <button type="button" class="admin-btn admin-btn-outline admin-btn-sm" id="btnExportInquiries">
+                <i class="fas fa-file-csv"></i> Export CSV
+              </button>
+              <button type="button" class="admin-btn admin-btn-outline admin-btn-sm" id="btnClearInquiries" style="color: var(--admin-danger);">
+                <i class="fas fa-trash"></i> Clear All
+              </button>
+            </div>
+          </div>
+
+          <!-- Inquiries Table -->
+          <div style="overflow-x: auto;">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Date & Time</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Requirement</th>
+                  <th>Message</th>
+                  <th>WhatsApp</th>
+                </tr>
+              </thead>
+              <tbody id="inquiriesTableBody">
+                <!-- Injected via admin.js -->
+              </tbody>
+            </table>
+          </div>
+          <div class="admin-pagination" id="inquiriesPagination"></div>
+        </div>
+
+      </section>
+
+      <!-- ==================== TAB 5: BACKUP & SETTINGS ==================== -->
+      <section class="admin-tab-pane" id="pane-settings" style="display: none;">
+        
+        <div class="stats-grid" style="grid-template-columns: repeat(2, 1fr); margin-bottom: 24px;">
+          
+          <div class="admin-card-panel" style="margin-bottom: 0;">
+            <div class="panel-header">
+              <h3 class="panel-title"><i class="fas fa-cloud-arrow-down" style="color: #3b82f6; margin-right: 8px;"></i> Export Data Backup</h3>
+            </div>
+            <p style="color: var(--admin-text-muted); font-size: 0.88rem; line-height: 1.5; margin-bottom: 18px;">
+              Download a complete JSON snapshot containing all products, blog articles, specifications, and inquiries. Use this file as an offline backup or to sync between environments.
+            </p>
+            <button type="button" class="admin-btn admin-btn-primary" id="btnDownloadBackupFile">
+              <i class="fas fa-download"></i> Download Backup JSON
+            </button>
+          </div>
+
+          <div class="admin-card-panel" style="margin-bottom: 0;">
+            <div class="panel-header">
+              <h3 class="panel-title"><i class="fas fa-cloud-arrow-up" style="color: #22c55e; margin-right: 8px;"></i> Restore / Import Data</h3>
+            </div>
+            <p style="color: var(--admin-text-muted); font-size: 0.88rem; line-height: 1.5; margin-bottom: 18px;">
+              Upload a previously exported JSON backup file to instantly restore products and articles into your CMS.
+            </p>
+            <input type="file" id="importFileInput" accept=".json" style="display: none;">
+            <button type="button" class="admin-btn admin-btn-outline" id="btnTriggerImportFile">
+              <i class="fas fa-upload"></i> Upload & Restore Backup
+            </button>
+          </div>
+
+        </div>
+
+        <div class="admin-card-panel">
+          <div class="panel-header">
+            <h3 class="panel-title"><i class="fas fa-triangle-exclamation" style="color: var(--admin-danger); margin-right: 8px;"></i> Reset Data to Defaults</h3>
+          </div>
+          <p style="color: var(--admin-text-muted); font-size: 0.88rem; line-height: 1.5; margin-bottom: 18px;">
+            Reset the catalog and blogs back to the 9 original seed products and 4 initial blog articles from Harichand Steel's live website.
+          </p>
+          <button type="button" class="admin-btn admin-btn-outline" id="btnResetToDefaults" style="border-color: var(--admin-danger); color: var(--admin-danger);">
+            <i class="fas fa-rotate-left"></i> Reset to Default Live Catalog
+          </button>
+        </div>
+
+        <div class="admin-card-panel" style="margin-top: 24px;">
+          <div class="panel-header">
+            <h3 class="panel-title"><i class="fas fa-database" style="color: #3b82f6; margin-right: 8px;"></i> Supabase PostgreSQL Connection</h3>
+            <span class="pill-badge pill-cat" id="badgeSupabaseStatus">Checking Connection...</span>
+          </div>
+          <p style="color: var(--admin-text-muted); font-size: 0.88rem; line-height: 1.5; margin-bottom: 14px;">
+            Target Supabase Host: <code style="color: #38bdf8; background: #090c10; padding: 3px 8px; border-radius: 4px;">db.uxazybwdglgvmnmjetoy.supabase.co:5432</code>
+          </p>
+          <div style="background: #090c10; border: 1px solid var(--admin-border); border-radius: 8px; padding: 14px; font-family: monospace; font-size: 0.85rem; color: #cbd5e1; word-break: break-all; margin-bottom: 14px;">
+            postgresql://postgres:<span style="color: #f59e0b; font-weight: bold;">[YOUR-PASSWORD]</span>@db.uxazybwdglgvmnmjetoy.supabase.co:5432/postgres
+          </div>
+          <p style="color: var(--admin-text-muted); font-size: 0.82rem; margin: 0;">
+            <i class="fas fa-info-circle" style="color: var(--admin-accent); margin-right: 6px;"></i>
+            To complete the live PostgreSQL connection, enter your Supabase project password in your project's <code style="color: #fff;">.env</code> file: <code style="color: #22c55e;">DATABASE_URL=postgresql://postgres:your_password@db.uxazybwdglgvmnmjetoy.supabase.co:5432/postgres</code>
+          </p>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==================== PRODUCT MODAL ==================== -->
+  <div class="admin-modal-overlay" id="productModalOverlay">
+    <div class="admin-modal">
+      <div class="modal-head">
+        <h3 id="productModalTitle">Add New Product</h3>
+        <button type="button" class="modal-close" data-close-modal>&times;</button>
+      </div>
+      <form id="productForm" class="modal-body">
+        <input type="hidden" id="prodInputId">
+
+        <div class="form-group-admin">
+          <label for="prodInputTitle">Product Title *</label>
+          <input type="text" class="admin-input" id="prodInputTitle" placeholder="e.g. Aluminium Door Profile Gate" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group-admin">
+            <label for="prodInputCategory">Category *</label>
+            <select class="admin-select" id="prodInputCategory" style="width: 100%;" required>
+              <option value="aluminum-profile-gate">Aluminum Profile Gate</option>
+              <option value="iron-main-gate">Iron Main Gate</option>
+              <option value="steel-main-gate">Steel Main Gate</option>
+              <option value="steel-door">Steel Door</option>
+              <option value="powder-coated-gates">Powder Coated Gates</option>
+              <option value="modern-railings">Modern Railings</option>
+              <option value="custom-fabrication">Custom Fabrication</option>
+            </select>
+          </div>
+
+          <div class="form-group-admin">
+            <label for="prodInputCategoryName">Category Display Name</label>
+            <input type="text" class="admin-input" id="prodInputCategoryName" placeholder="e.g. Aluminum Profile Gate">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group-admin">
+            <label for="prodInputBadge">Badge / Highlight</label>
+            <input type="text" class="admin-input" id="prodInputBadge" placeholder="e.g. Top Rated, SS304, Motorized">
+          </div>
+
+          <div class="form-group-admin">
+            <label for="prodInputPrice">Price Display</label>
+            <input type="text" class="admin-input" id="prodInputPrice" placeholder="e.g. On Request or ₹3,500/sqft" value="On Request">
+          </div>
+        </div>
+
+        <!-- Image Selector -->
+        <div class="form-group-admin">
+          <label>Product Image</label>
+          <div style="display: flex; gap: 10px; margin-bottom: 8px;">
+            <input type="text" class="admin-input" id="prodInputImage" placeholder="Path e.g. images/prod-1.png or URL" style="flex-grow: 1;">
+            <label class="admin-btn admin-btn-outline" style="cursor: pointer; margin: 0; white-space: nowrap;">
+              <i class="fas fa-folder-open"></i> Upload
+              <input type="file" id="prodFileInput" accept="image/*" style="display: none;">
+            </label>
+          </div>
+          <div class="image-preview-box" id="prodImagePreview">
+            <span style="color: var(--admin-text-muted); font-size: 0.85rem;"><i class="fas fa-image"></i> Image Preview</span>
+          </div>
+        </div>
+
+        <div class="form-group-admin">
+          <label for="prodInputDescription">Short Description</label>
+          <textarea class="admin-textarea" id="prodInputDescription" rows="3" placeholder="Engineered for high security, weather resistance, and sleek modern architecture."></textarea>
+        </div>
+
+        <div class="form-group-admin">
+          <label for="prodInputSpecs">Key Specifications (comma or line separated)</label>
+          <input type="text" class="admin-input" id="prodInputSpecs" placeholder="e.g. SS304 Grade Hardware, Custom Sizing Available, Smart Lock Ready">
+          <small style="color: var(--admin-text-muted); font-size: 0.76rem; margin-top: 4px;">Separate with commas. These appear as feature tags on the product card.</small>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 8px; margin: 16px 0;">
+          <input type="checkbox" id="prodInputFeatured" style="width: 16px; height: 16px; accent-color: var(--admin-primary); cursor: pointer;">
+          <label for="prodInputFeatured" style="font-size: 0.88rem; cursor: pointer; color: #fff;">Feature this product on Homepage Showcase</label>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--admin-border);">
+          <button type="button" class="admin-btn admin-btn-outline" data-close-modal>Cancel</button>
+          <button type="submit" class="admin-btn admin-btn-primary"><i class="fas fa-save"></i> Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== BLOG MODAL ==================== -->
+  <div class="admin-modal-overlay" id="blogModalOverlay">
+    <div class="admin-modal">
+      <div class="modal-head">
+        <h3 id="blogModalTitle">Add New Blog Article</h3>
+        <button type="button" class="modal-close" data-close-modal>&times;</button>
+      </div>
+      <form id="blogForm" class="modal-body">
+        <input type="hidden" id="blogInputId">
+
+        <div class="form-group-admin">
+          <label for="blogInputTitle">Article Title *</label>
+          <input type="text" class="admin-input" id="blogInputTitle" placeholder="e.g. Latest Steel Gate Design (2025) – Ultimate Modern Guide" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group-admin">
+            <label for="blogInputTag">Topic / Tag *</label>
+            <input type="text" class="admin-input" id="blogInputTag" placeholder="e.g. Design Guide, Manufacturing, Case Study" required>
+          </div>
+
+          <div class="form-group-admin">
+            <label for="blogInputSlug">Target Page URL / Slug</label>
+            <input type="text" class="admin-input" id="blogInputSlug" placeholder="e.g. steel-gate-design.html" value="news.html">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group-admin">
+            <label for="blogInputAuthor">Author</label>
+            <input type="text" class="admin-input" id="blogInputAuthor" value="Harichand Steel Team">
+          </div>
+
+          <div class="form-group-admin">
+            <label for="blogInputDate">Publish Date</label>
+            <input type="text" class="admin-input" id="blogInputDate" placeholder="e.g. October 27, 2026">
+          </div>
+        </div>
+
+        <!-- Image Selector -->
+        <div class="form-group-admin">
+          <label>Cover Image</label>
+          <div style="display: flex; gap: 10px; margin-bottom: 8px;">
+            <input type="text" class="admin-input" id="blogInputImage" placeholder="Path e.g. images/about-3.jpg or URL" style="flex-grow: 1;">
+            <label class="admin-btn admin-btn-outline" style="cursor: pointer; margin: 0; white-space: nowrap;">
+              <i class="fas fa-folder-open"></i> Upload
+              <input type="file" id="blogFileInput" accept="image/*" style="display: none;">
+            </label>
+          </div>
+          <div class="image-preview-box" id="blogImagePreview">
+            <span style="color: var(--admin-text-muted); font-size: 0.85rem;"><i class="fas fa-image"></i> Cover Preview</span>
+          </div>
+        </div>
+
+        <div class="form-group-admin">
+          <label for="blogInputExcerpt">Short Summary / Excerpt *</label>
+          <textarea class="admin-textarea" id="blogInputExcerpt" rows="3" placeholder="Brief summary of this article to display on news listing cards..." required></textarea>
+        </div>
+
+        <div class="form-group-admin">
+          <label for="blogInputContent">Full Article Content</label>
+          <textarea class="admin-textarea" id="blogInputContent" rows="6" placeholder="Write full article content or notes here..."></textarea>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 8px; margin: 16px 0;">
+          <input type="checkbox" id="blogInputPublished" checked style="width: 16px; height: 16px; accent-color: var(--admin-primary); cursor: pointer;">
+          <label for="blogInputPublished" style="font-size: 0.88rem; cursor: pointer; color: #fff;">Publish immediately to News & Insights</label>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--admin-border);">
+          <button type="button" class="admin-btn admin-btn-outline" data-close-modal>Cancel</button>
+          <button type="submit" class="admin-btn admin-btn-primary"><i class="fas fa-save"></i> Save Article</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== DELETE CONFIRMATION MODAL ==================== -->
+  <div class="admin-modal-overlay" id="confirmModalOverlay">
+    <div class="admin-modal" style="max-width: 440px;">
+      <div class="modal-head">
+        <h3 id="confirmModalTitle">Confirm Action</h3>
+        <button type="button" class="modal-close" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="confirmModalMessage" style="color: var(--admin-text-muted); font-size: 0.95rem; margin-top: 0; line-height: 1.5;">Are you sure you want to proceed?</p>
+        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
+          <button type="button" class="admin-btn admin-btn-outline" data-close-modal>Cancel</button>
+          <button type="button" class="admin-btn admin-btn-danger" id="confirmModalExecuteBtn"><i class="fas fa-trash"></i> Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="/js/cms-data.js"></script>
+  <script src="/admin/js/admin.js"></script>
+</body>
+</html>

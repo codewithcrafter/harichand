@@ -7,3 +7,4 @@ const requestDispatcher = require('../server.js');
 module.exports = async (req, res) => {
   return requestDispatcher(req, res);
 };
+

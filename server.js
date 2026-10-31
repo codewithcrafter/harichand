@@ -168,7 +168,7 @@ async function requestDispatcher(req, res) {
   // Example: /product/aluminium-door-profile-gate -> /product/aluminium-door-profile-gate/
   // ==========================================
   const isStaticAsset = /\.(css|js|png|jpg|jpeg|svg|ico|webp|json|txt|woff2?|ttf|eot|xml)$/i.test(pathname);
-  if (!isStaticAsset && !pathname.startsWith('/api/')) {
+  if (!isStaticAsset && !pathname.startsWith('/api')) {
     // A. Strip .html / .htm and redirect with trailing slash (301)
     if (/\.html?$/i.test(pathname)) {
       const cleanPath = pathname.replace(/\.html?$/i, '');
@@ -234,9 +234,10 @@ async function requestDispatcher(req, res) {
   // ==========================================
   // 3. API ROUTES (Powered by db.js & Supabase)
   // ==========================================
+  const apiPath = (pathname.endsWith('/') && pathname.length > 1) ? pathname.slice(0, -1) : pathname;
 
   // --- /api/db-status ---
-  if (pathname === '/api/db-status' && (req.method === 'GET' || req.method === 'HEAD')) {
+  if (apiPath === '/api/db-status' && (req.method === 'GET' || req.method === 'HEAD')) {
     try {
       const dbStatus = await db.checkConnection();
       sendJson(res, 200, dbStatus, req.method);
@@ -247,7 +248,7 @@ async function requestDispatcher(req, res) {
   }
 
   // --- /api/admin/login ---
-  if (pathname === '/api/admin/login' && req.method === 'POST') {
+  if (apiPath === '/api/admin/login' && req.method === 'POST') {
     try {
       const data = await parseJsonBody(req);
       const user = (data.username || '').trim();
@@ -279,7 +280,7 @@ async function requestDispatcher(req, res) {
   }
 
   // --- /api/admin/check-auth ---
-  if (pathname === '/api/admin/check-auth' && (req.method === 'GET' || req.method === 'HEAD')) {
+  if (apiPath === '/api/admin/check-auth' && (req.method === 'GET' || req.method === 'HEAD')) {
     const authorized = isAuthorized(req);
     let username = 'admin';
     const cookies = parseCookies(req);
@@ -290,7 +291,7 @@ async function requestDispatcher(req, res) {
   }
 
   // --- /api/admin/logout ---
-  if (pathname === '/api/admin/logout' && req.method === 'POST') {
+  if (apiPath === '/api/admin/logout' && req.method === 'POST') {
     const cookies = parseCookies(req);
     if (cookies.hs_admin_session) {
       activeAdminSessions.delete(cookies.hs_admin_session);
@@ -304,7 +305,7 @@ async function requestDispatcher(req, res) {
   }
 
   // --- /api/markdown/sync ---
-  if (pathname === '/api/markdown/sync') {
+  if (apiPath === '/api/markdown/sync') {
     if (!isAuthorized(req)) {
       return sendJson(res, 401, { error: 'Unauthorized: Valid x-admin-key or Bearer token required' });
     }
@@ -318,7 +319,7 @@ async function requestDispatcher(req, res) {
   }
 
   // --- /api/products ---
-  if (pathname === '/api/products') {
+  if (apiPath === '/api/products') {
     if (req.method === 'GET' || req.method === 'HEAD') {
       try {
         const products = await db.getProducts();
@@ -423,7 +424,7 @@ async function requestDispatcher(req, res) {
   }
 
   // --- /api/blogs ---
-  if (pathname === '/api/blogs') {
+  if (apiPath === '/api/blogs') {
     if (req.method === 'GET' || req.method === 'HEAD') {
       try {
         const blogs = await db.getBlogs();
@@ -481,7 +482,7 @@ async function requestDispatcher(req, res) {
   }
 
   // --- /api/inquiries ---
-  if (pathname === '/api/inquiries') {
+  if (apiPath === '/api/inquiries') {
     if (req.method === 'GET' || req.method === 'HEAD') {
       if (!isAuthorized(req)) {
         return sendJson(res, 401, { error: 'Unauthorized: Valid x-admin-key or Bearer token required' }, req.method);
@@ -548,6 +549,17 @@ async function requestDispatcher(req, res) {
       res.writeHead(200, { 'Content-Type': contentType });
       if (req.method === 'HEAD') { res.end(); return; }
       fs.createReadStream(assetPath).pipe(res);
+      return;
+    }
+
+    // 1b. Direct path check from public/
+    let publicAssetPath = path.join(ROOT_DIR, 'public', pathname.replace(/^\/+/, ''));
+    if (fs.existsSync(publicAssetPath) && !fs.statSync(publicAssetPath).isDirectory()) {
+      const ext = path.extname(publicAssetPath).toLowerCase();
+      const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+      res.writeHead(200, { 'Content-Type': contentType });
+      if (req.method === 'HEAD') { res.end(); return; }
+      fs.createReadStream(publicAssetPath).pipe(res);
       return;
     }
 

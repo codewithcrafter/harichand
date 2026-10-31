@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Test Customer",
+    "phone": "9876543210",
+    "email": "customer@test.com",
+    "requirement": "Quote: Modern Gate",
+    "message": "Automated test inquiry lead submission",
+    "id": "inq-1793349470239",
+    "timestamp": "30/10/2026, 2:07:50 pm"
+  },
+  {
+    "name": "Test Customer",
+    "phone": "9876543210",
+    "email": "customer@test.com",
+    "requirement": "Quote: Modern Gate",
+    "message": "Automated test inquiry lead submission",
+    "id": "inq-1793345485184",
+    "timestamp": "30/10/2026, 1:01:25 pm"
+  },
+  {
+    "id": "test-inq-1",
+    "name": "Rohan Sharma",
+    "phone": "+91 9811122233",
+    "email": "rohan@example.com",
+    "requirement": "Aluminium Sliding Gate 14x7ft",
+    "message": "Need quotation for Janakpuri villa installation.",
+    "timestamp": "10/27/2026, 5:35:27 PM"
+  },
+  {
+    "id": "test-inq-1",
+    "name": "Rohan Sharma",
+    "phone": "+91 9811122233",
+    "email": "rohan@example.com",
+    "requirement": "Aluminium Sliding Gate 14x7ft",
+    "message": "Need quotation for Janakpuri villa installation.",
+    "timestamp": "10/27/2026, 5:32:21 PM"
+  }
+]

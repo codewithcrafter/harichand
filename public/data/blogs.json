@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Test Automated Gate Guide 2026",
+    "slug": "/test-automated-gate-guide-2026/",
+    "tag": "Design Guide",
+    "author": "Harichand Senior Engineer",
+    "date": "October 29, 2026",
+    "image": "/images/about-3.jpg",
+    "excerpt": "Comprehensive engineering breakdown of heavy duty stainless steel gates.",
+    "content": "<h2>Gate Automation Architecture</h2><p>Our custom fabricated gates feature heavy duty Italian motors and seamless stainless steel ball bearings.</p>",
+    "published": true,
+    "id": "blog-1793263012906"
+  },
+  {
+    "id": "blog-1793107304359",
+    "title": "abd",
+    "slug": "/news/",
+    "tag": "Design Guide",
+    "author": "Harichand Steel Team",
+    "date": "October 27, 2026",
+    "image": "/images/about-3.jpg",
+    "excerpt": "sdsd",
+    "content": "sdsd",
+    "published": true
+  },
+  {
+    "id": "blog-1",
+    "title": "Latest Steel Gate Design (2025) – Ultimate Modern Guide",
+    "slug": "/steel-gate-design/",
+    "tag": "Design Guide",
+    "image": "/images/about-3.jpg",
+    "author": "Harichand Steel Team",
+    "date": "January 19, 2026",
+    "excerpt": "Explore the most popular steel gate designs for modern homes, villas, and commercial properties, including laser-cut CNC patterns, SS304 durability, and motorized options.",
+    "content": "Premium steel gate designs crafted for security, style, and durability. Stainless steel (SS304) represents the peak of gate engineering in Delhi NCR.\n\nKey Styles:\n- Modern Steel Gates with horizontal louvres\n- Laser Cut CNC Decorative Panels\n- Reinforced Aluminium & SS Hybrid gates\n- Automated Sliding and Double Swing Entrances",
+    "published": true
+  },
+  {
+    "id": "blog-2",
+    "title": "Best Steel Gate Manufacturer In Delhi – Complete Buyer's Guide",
+    "slug": "/best-steel-gate-manufacturer-in-delhi/",
+    "tag": "Manufacturing",
+    "image": "/images/about-2.jpg",
+    "author": "Harichand Steel Team",
+    "date": "February 10, 2026",
+    "excerpt": "Why Harichand Steel is recognized as Delhi's #1 steel gate manufacturer. Insights on material grades, SS304 vs SS202, order processes, and custom fabrication.",
+    "content": "Harichand Steel is appreciated for exceptional craftsmanship, timely delivery, and dependable service. Established in 2004, our workshop produces custom main gates for homes across Janakpuri, Dwarka, and Delhi NCR.",
+    "published": true
+  },
+  {
+    "id": "blog-3",
+    "title": "Aluminium Profile Gate Manufacturer in Janakpuri – Innovation & Strength",
+    "slug": "/aluminium-profile-gate-manufacturer-in-janakpuri/",
+    "tag": "Case Study",
+    "image": "/images/profile-box.jpg",
+    "author": "Harichand Steel Team",
+    "date": "November 6, 2024",
+    "excerpt": "How aluminium profile gates have revolutionized residential entrances in Janakpuri and Delhi NCR with lightweight operation, weather immunity, and wood-finish styling.",
+    "content": "Aluminium profile gates solve the rust problem of traditional metal gates while offering 60% less weight, zero corrosion, and sleek European styling.",
+    "published": true
+  },
+  {
+    "id": "blog-4",
+    "title": "Aluminum Profile Gate Manufacturer in Prithviraj Road",
+    "slug": "/news.html#prithviraj-road/",
+    "tag": "Luxury Projects",
+    "image": "/images/hero-slide-2.jpg",
+    "author": "Harichand Steel Team",
+    "date": "November 6, 2024",
+    "excerpt": "High-end bespoke architectural gate installations tailored for premium residences and diplomatic areas across Central Delhi and Prithviraj Road.",
+    "content": "Luxury gate design engineered specifically for diplomatic and bungalow entrances requiring maximum privacy, sound dampening, and automated sensors.",
+    "published": true
+  }
+]

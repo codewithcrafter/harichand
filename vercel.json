@@ -1,7 +1,40 @@
 {
   "version": 2,
+  "outputDirectory": "public",
   "cleanUrls": true,
-  "trailingSlash": true,
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "data/**"
+    }
+  },
+  "headers": [
+    {
+      "source": "/css/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/css; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/js/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/javascript; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, must-revalidate"
+        }
+      ]
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/:path*",
@@ -24,7 +57,11 @@
       "destination": "/admin/index.html"
     },
     {
-      "source": "/admin/:subpath*",
+      "source": "/admin/(dashboard|products|blogs|inquiries)",
+      "destination": "/admin/index.html"
+    },
+    {
+      "source": "/admin/(dashboard|products|blogs|inquiries)/",
       "destination": "/admin/index.html"
     },
     {
