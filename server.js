@@ -237,7 +237,7 @@ async function requestDispatcher(req, res) {
   const apiPath = (pathname.endsWith('/') && pathname.length > 1) ? pathname.slice(0, -1) : pathname;
 
   // --- /api or /api/ root endpoint ---
-  if ((apiPath === '/api' || apiPath === '/api/index.js') && (req.method === 'GET' || req.method === 'HEAD')) {
+  if ((apiPath === '/api' || apiPath === '') && (req.method === 'GET' || req.method === 'HEAD')) {
     sendJson(res, 200, { name: "Harichand Steel API", status: "online", version: "1.0.0" }, req.method);
     return;
   }
