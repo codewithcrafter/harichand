@@ -85,6 +85,14 @@
       "destination": "/product/index.html"
     },
     {
+      "source": "/product/:slug.md",
+      "destination": "/product/:slug.md"
+    },
+    {
+      "source": "/product/:slug.md/",
+      "destination": "/product/:slug.md"
+    },
+    {
       "source": "/product/:slug",
       "destination": "/product-detail/index.html"
     },

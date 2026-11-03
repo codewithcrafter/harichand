@@ -71,4 +71,21 @@ for (const item of itemsToCopy) {
   }
 }
 
+
+// Copy product markdown files into product/ and public/product/ for direct static access
+const mdProductsDir = path.join(ROOT_DIR, 'markdown', 'products');
+if (fs.existsSync(mdProductsDir)) {
+  const rootProductDir = path.join(ROOT_DIR, 'product');
+  const pubProductDir = path.join(PUBLIC_DIR, 'product');
+  ensureDir(rootProductDir);
+  ensureDir(pubProductDir);
+
+  for (const f of fs.readdirSync(mdProductsDir)) {
+    if (f.endsWith('.md') && f !== 'index.md') {
+      fs.copyFileSync(path.join(mdProductsDir, f), path.join(rootProductDir, f));
+      fs.copyFileSync(path.join(mdProductsDir, f), path.join(pubProductDir, f));
+    }
+  }
+}
+
 console.log('Build completed successfully: public/ populated with all static assets and routes.');

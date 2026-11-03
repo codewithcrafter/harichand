@@ -145,6 +145,113 @@ function sendJson(res, statusCode, data, method = 'GET') {
   }
 }
 
+
+// Helper to dynamically build comprehensive product markdown
+function buildProductMarkdown(product) {
+  if (!product) return '';
+  const title = product.title || product.name || 'Custom Gate Product';
+  const rawSlug = product.slug || title.toLowerCase().replace(/[^a-z0-9_-]+/g, '-');
+  const slug = rawSlug.replace(/^\/+|\/+$/g, '');
+  const category = product.category || 'aluminum-profile-gate';
+  const categoryName = product.categoryName || product.category_display || category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+  const badge = product.badge || 'Premium';
+  const price = product.price || 'On Request (Custom Sized)';
+  const image = product.image 
+    ? (product.image.startsWith('http') ? product.image : `https://harichandsteel.com${product.image.startsWith('/') ? '' : '/'}${product.image}`)
+    : 'https://harichandsteel.com/images/prod-1.png';
+  const desc = product.description || 'Premium architectural gate designed and manufactured by Harichand Steel.';
+  const specs = Array.isArray(product.specs) ? product.specs : [];
+  const outerFrame = product.outerFrame || product.outer_frame || 'Heavy-duty extruded alloy profile';
+  const innerFrame = product.innerFrame || product.inner_frame || 'Interlocking 16 Gauge (16G) structural cross-members';
+  const materialGrade = (category === 'steel-main-gate')
+    ? 'Certified SS304 Grade Stainless Steel (18% Cr, 8% Ni)'
+    : (category === 'aluminum-profile-gate')
+      ? 'Architectural 6063-T6 Grade Aluminium Extrusions'
+      : (category === 'iron-main-gate')
+        ? 'Forged Heavy Wrought Iron / Solid Cast Iron'
+        : (category === 'steel-door')
+          ? 'Heavy-Duty Carbon Steel with Fire-Resistant Core'
+          : 'High-Durability Electrostatic Powder-Coated Steel';
+  const usage = product.usage || 'Residential entrances, luxury villas, bungalows, and commercial properties';
+  const finish = product.finish || 'High-durability architectural powder coated or weather-resistant industrial finish';
+  const hardware = product.hardware || 'SS304 stainless steel ball bearing hinges & concealed locks';
+  const automation = product.automation || '100% compatible with motorized remote swing & sliding gate operators (Sommer, Nice, BFT)';
+  const canonicalUrl = `https://harichandsteel.com/product/${slug}/`;
+  const categoryUrl = `https://harichandsteel.com/product-category/${category}/`;
+
+  return `---
+title: "${title} | Harichand Steel"
+original_url: "${canonicalUrl}"
+meta_description: "${desc.replace(/"/g, '\\"')}"
+product_id: "${product.id || slug}"
+category: "${categoryName}"
+category_slug: "${category}"
+price: "${price}"
+badge: "${badge}"
+image: "${image}"
+updated_at: "2026-11-03"
+---
+
+# ${title}
+
+> ${desc}
+
+- **Original Page URL:** [${canonicalUrl}](${canonicalUrl})
+- **Product Category:** [${categoryName}](${categoryUrl})
+- **Pricing:** ${price}
+- **Quality Grade Badge:** ${badge}
+
+![${title}](${image})
+
+## Product Overview & Architecture
+
+The **${title}** is precision-engineered by Harichand Steel for luxury residences, modern bungalows, and high-security commercial entrances across Delhi and Delhi NCR. Built with premium structural materials, this gate combines effortless operation, enduring corrosion resistance, and striking architectural aesthetics.
+
+## Key Features & Specifications
+
+| Technical Specification | Engineering Details |
+| :--- | :--- |
+| **Outer Frame Construction** | ${outerFrame} |
+| **Inner Frame & Cross Members** | ${innerFrame} |
+| **Primary Material Grade** | ${materialGrade} |
+| **Recommended Usage** | ${usage} |
+| **Surface Finish & Coating** | ${finish} |
+| **Hardware & Bearing Setup** | ${hardware} |
+| **Automation Compatibility** | ${automation} |
+
+${specs.length > 0 ? `## Core Features & Inclusions\n\n${specs.map(s => `- **${s}:** Engineered to meet strict industrial safety and durability criteria.`).join('\n')}\n` : ''}
+## Benefits & Advantages
+
+- **Zero Rust & Weather Immunity:** High-durability weather-resistant metallurgy protects against heavy monsoon moisture, seasonal humidity, and direct UV solar exposure without rusting or peeling.
+- **Lightweight Gliding & Reduced Strain:** Reduces structural load on hinges and automated motor actuators by up to 60%, preventing post sagging and prolonging mechanical lifespan.
+- **Smart Security Integration:** Fully compatible with remote Italian motorized actuators (Sommer, Nice, BFT), optical fingerprint biometric locks, RFID access cards, and smartphone mobile control.
+- **Low Maintenance Longevity:** Factory-cured protective coating eliminates periodic painting or rust scrape treatments, retaining high-end luster with minimal maintenance.
+- **Turnkey Sizing & Architectural Symmetry:** Every model is precision-fabricated to the millimeter to seamlessly complement villa facade geometry and property boundary aesthetics.
+
+## Custom Fabrication & Site Measurement Services
+
+Harichand Steel provides turnkey metal fabrication services across Delhi & Delhi NCR:
+1. **Free Doorstep Site Visit:** Our technical engineers inspect post alignments, ground levels, and opening clearances anywhere in Delhi NCR.
+2. **CAD Design Customization:** Tailor infill patterns, louver spacing, glass inserts, and metallic accent colors (rose gold, matte black, wood-grain).
+3. **Turnkey Installation:** Delivered and installed by our certified in-house fabrication team with complete warranty and support.
+
+## Direct Inquiries & Ordering Information
+
+- **Direct Calling:** [+91 98704 33868](tel:+919870433868)
+- **WhatsApp Consultation:** [Chat on WhatsApp](https://wa.me/919870433868?text=${encodeURIComponent('Enquiry regarding ' + title)})
+- **Official Email:** [Admin@HARICHANDSTEEL.COM](mailto:Admin@HARICHANDSTEEL.COM)
+- **Factory Address:** 27B, Street, New Jankipuri, Anup Nagar, Uttam Nagar, Bindapur, New Delhi, Delhi, 110059, India
+
+## Related Internal Pages
+
+- **Parent Category:** [${categoryName}](${categoryUrl})
+- **Full Products Catalogue:** [Gate Products Catalogue](https://harichandsteel.com/product/)
+- **Company Profile:** [About Harichand Steel](https://harichandsteel.com/about-us/)
+- **Contact Us:** [Contact Harichand Steel](https://harichandsteel.com/contact/)
+- **Latest Gate Guides:** [News & Architectural Insights](https://harichandsteel.com/news/)
+`;
+}
+
 // Central Request Dispatcher
 async function requestDispatcher(req, res) {
   const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
@@ -168,7 +275,7 @@ async function requestDispatcher(req, res) {
   // Example: /about-us -> /about-us/
   // Example: /product/aluminium-door-profile-gate -> /product/aluminium-door-profile-gate/
   // ==========================================
-  const isStaticAsset = /\.(css|js|png|jpg|jpeg|svg|ico|webp|json|txt|md|woff2?|ttf|eot|xml)$/i.test(pathname);
+  const isStaticAsset = /\.(css|js|png|jpg|jpeg|svg|ico|webp|json|txt|md|woff2?|ttf|eot|xml)\/?$/i.test(pathname);
   if (!isStaticAsset && !pathname.startsWith('/api')) {
     // A. Strip .html / .htm and redirect with trailing slash (301)
     if (/\.html?$/i.test(pathname)) {
@@ -546,10 +653,11 @@ async function requestDispatcher(req, res) {
   // ==========================================
   // 4. UNIVERSAL ASSET SERVING (HANDLES ANY PATH DEPTH)
   // ==========================================
-  const isAsset = /\.(css|js|png|jpg|jpeg|svg|ico|webp|json|txt|md|woff2?|ttf|eot|xml)$/i.test(pathname);
+  const isAsset = /\.(css|js|png|jpg|jpeg|svg|ico|webp|json|txt|md|woff2?|ttf|eot|xml)\/?$/i.test(pathname);
   if (isAsset) {
     // 1. Direct path check from root
-    let assetPath = path.join(ROOT_DIR, pathname.replace(/^\/+/, ''));
+    const cleanAssetUrl = pathname.replace(/\/+$/, '').replace(/^\/+/, '');
+    let assetPath = path.join(ROOT_DIR, cleanAssetUrl);
     if (fs.existsSync(assetPath) && !fs.statSync(assetPath).isDirectory()) {
       const ext = path.extname(assetPath).toLowerCase();
       const contentType = MIME_TYPES[ext] || 'application/octet-stream';
@@ -560,7 +668,7 @@ async function requestDispatcher(req, res) {
     }
 
     // 1b. Direct path check from public/
-    let publicAssetPath = path.join(ROOT_DIR, 'public', pathname.replace(/^\/+/, ''));
+    let publicAssetPath = path.join(ROOT_DIR, 'public', cleanAssetUrl);
     if (fs.existsSync(publicAssetPath) && !fs.statSync(publicAssetPath).isDirectory()) {
       const ext = path.extname(publicAssetPath).toLowerCase();
       const contentType = MIME_TYPES[ext] || 'application/octet-stream';
@@ -731,6 +839,54 @@ async function requestDispatcher(req, res) {
         console.error('Error serving category page:', err);
         res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
         fs.createReadStream(productHtmlPath).pipe(res);
+        return;
+      }
+    }
+  }
+
+    // --- D1. Dynamic Product Markdown Document: /product/:slug.md and /product/:slug.md/ ---
+  const productMdMatch = pathname.match(/^\/product\/([a-zA-Z0-9_-]+)\.md\/?$/i);
+  if (productMdMatch) {
+    const rawSlug = productMdMatch[1].toLowerCase();
+    if (rawSlug !== 'page') {
+      try {
+        const products = await db.getProducts();
+        const product = Array.isArray(products)
+          ? products.find(p => p && (
+              (p.slug && p.slug.toLowerCase().replace(/^\/+|\/+$/g, '') === rawSlug) ||
+              String(p.id).toLowerCase() === rawSlug
+            ))
+          : null;
+
+        if (!product) {
+          res.writeHead(404, { 'Content-Type': 'text/markdown; charset=utf-8' });
+          res.end(`# 404 - Product Not Found\n\nThe requested product \`${rawSlug}\` was not found in our catalogue.\n\nPlease visit the [Gate Products Catalogue](https://harichandsteel.com/product/) to explore all available models.\n`);
+          return;
+        }
+
+        // Check if pre-rendered markdown exists on disk
+        const preRenderedPath1 = path.join(ROOT_DIR, 'markdown', 'products', `${rawSlug}.md`);
+        const preRenderedPath2 = path.join(ROOT_DIR, 'content', 'products', `${rawSlug}.md`);
+        let markdownContent = null;
+
+        if (fs.existsSync(preRenderedPath1)) {
+          markdownContent = fs.readFileSync(preRenderedPath1, 'utf8');
+        } else if (fs.existsSync(preRenderedPath2)) {
+          markdownContent = fs.readFileSync(preRenderedPath2, 'utf8');
+        } else {
+          markdownContent = buildProductMarkdown(product);
+        }
+
+        res.writeHead(200, {
+          'Content-Type': 'text/markdown; charset=utf-8',
+          'Cache-Control': 'public, max-age=3600, must-revalidate'
+        });
+        res.end(markdownContent);
+        return;
+      } catch (err) {
+        console.error('Error serving product markdown for', rawSlug, err);
+        res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
+        res.end('Internal Server Error generating product markdown.');
         return;
       }
     }
