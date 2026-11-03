@@ -6,14 +6,11 @@ category: "aluminum-profile-gate"
 categoryName: "Aluminum Profile Gate"
 badge: "Classic Swing"
 price: "On Request"
-image: "/images/WhatsApp-Image-2026-02-23-at-1.07.57-PM-300x300.jpeg"
+image: "images/WhatsApp-Image-2026-02-23-at-1.07.57-PM-300x300.jpeg"
 featured: false
 createdAt: "2026-01-28"
 updatedAt: "2026-11-03"
 specs:
-  - "Heavy Duty Pivot Hinges"
-  - "Weather Resilient"
-  - "Clean Minimal Slat Spacing"
 ---
 # Aluminum Profile Swing Gate for Home
 
@@ -23,7 +20,7 @@ Dual-leaf swing gate suitable for residential driveways, equipped with heavy-dut
 - **Product Category:** [Aluminum Profile Gate](/product-category/aluminum-profile-gate/)
 - **Quality Grade Badge:** Classic Swing
 - **Price Range:** On Request
-- **Primary Image:** ![](/images/WhatsApp-Image-2026-02-23-at-1.07.57-PM-300x300.jpeg)
+- **Primary Image:** ![](images/WhatsApp-Image-2026-02-23-at-1.07.57-PM-300x300.jpeg)
 - **Catalogue URL:** [/product/aluminum-profile-swing-gate-for-home](/product/aluminum-profile-swing-gate-for-home)
 
 ## Key Specifications & Engineering
@@ -34,10 +31,6 @@ Dual-leaf swing gate suitable for residential driveways, equipped with heavy-dut
 - **Hardware & Bearing Setup:** Heavy-duty sealed stainless-steel ball bearing hinges & concealed locks
 - **Motor Automation Compatibility:** 100% compatible with motorized remote swing & sliding gate operators
 
-## Core Features
-- Heavy Duty Pivot Hinges
-- Weather Resilient
-- Clean Minimal Slat Spacing
 
 ## Custom Sizing & Fabrication
 Harichand Steel fabricates every gate strictly tailored to opening dimensions:

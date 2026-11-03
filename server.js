@@ -9,6 +9,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const db = require('./db.js');
+const { generateProductSchema } = require('./js/product-schema.js');
 const markdownSync = require('./markdown-sync.js');
 
 const PORT = process.env.PORT || 8080;
@@ -472,6 +473,23 @@ async function requestDispatcher(req, res) {
           if (!item.finish) item.finish = 'Powder coated or painted';
           if (!item.hardware) item.hardware = 'Heavy-duty sealed stainless-steel ball bearing hinges / Italian rolling track';
           if (!item.automation) item.automation = '100% compatible with motorized remote swing & sliding gate operators';
+
+          if (item.schemaEnabled !== undefined) item.schemaEnabled = !!item.schemaEnabled;
+          if (item.schemaOfferEnabled !== undefined) item.schemaOfferEnabled = !!item.schemaOfferEnabled;
+          if (item.schemaReviewEnabled !== undefined) item.schemaReviewEnabled = !!item.schemaReviewEnabled;
+          if (item.schemaSku) item.schemaSku = String(item.schemaSku).trim();
+          if (item.schemaMpn) item.schemaMpn = String(item.schemaMpn).trim();
+          if (item.schemaBrand) item.schemaBrand = String(item.schemaBrand).trim();
+          if (item.schemaGtin) item.schemaGtin = String(item.schemaGtin).trim();
+          if (item.schemaPrice !== undefined) item.schemaPrice = item.schemaPrice;
+          if (item.schemaCurrency) item.schemaCurrency = String(item.schemaCurrency).trim();
+          if (item.schemaAvailability) item.schemaAvailability = String(item.schemaAvailability).trim();
+          if (item.schemaCondition) item.schemaCondition = String(item.schemaCondition).trim();
+          if (item.schemaPriceValidUntil) item.schemaPriceValidUntil = String(item.schemaPriceValidUntil).trim();
+          if (item.schemaRatingValue !== undefined) item.schemaRatingValue = item.schemaRatingValue;
+          if (item.schemaReviewCount !== undefined) item.schemaReviewCount = item.schemaReviewCount;
+          if (item.schemaReviews) item.schemaReviews = item.schemaReviews;
+
           return item;
         }
 
@@ -892,16 +910,89 @@ async function requestDispatcher(req, res) {
     }
   }
 
-  // --- D. Dynamic Product Slug Page: /product/:slug/ -> serves product-detail.html ---
+    // --- D. Dynamic Product Slug Page: /product/:slug/ -> serves product-detail.html with dynamic Google Product Schema ---
   const productSlugMatch = pathname.match(/^\/product\/([a-zA-Z0-9_-]+)\/$/i);
   if (productSlugMatch) {
     const slug = productSlugMatch[1];
     if (slug.toLowerCase() !== 'page') {
       const detailHtmlPath = path.join(ROOT_DIR, 'product-detail.html');
       if (fs.existsSync(detailHtmlPath)) {
-        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-        fs.createReadStream(detailHtmlPath).pipe(res);
-        return;
+        try {
+          let html = fs.readFileSync(detailHtmlPath, 'utf8');
+          const products = await db.getProducts();
+          const cleanSlug = slug.toLowerCase().trim();
+          const product = Array.isArray(products)
+            ? products.find(p => p && (
+                (p.slug && p.slug.toLowerCase().replace(/^\/+|\/+$/g, '') === cleanSlug) ||
+                String(p.id).toLowerCase() === cleanSlug
+              ))
+            : null;
+
+          if (product) {
+            // 1. Generate Google-Compliant Product Schema (JSON-LD)
+            const prodSchema = (typeof generateProductSchema === 'function')
+              ? generateProductSchema(product)
+              : null;
+
+            if (prodSchema) {
+              const schemaTag = `  <!-- Google Product Schema (JSON-LD) -->\n  <script type="application/ld+json" id="schemaProduct">\n${JSON.stringify(prodSchema, null, 2)}\n  </script>`;
+              if (html.includes('id="schemaProduct"')) {
+                html = html.replace(/<!--\s*Product Schema[^>]*-->\s*<script type="application\/ld\+json"[^>]*id="schemaProduct"[^>]*>[\s\S]*?<\/script>/i, schemaTag);
+                if (html.includes('id="schemaProduct"')) {
+                  html = html.replace(/<script type="application\/ld\+json"[^>]*id="schemaProduct"[^>]*>[\s\S]*?<\/script>/i, schemaTag);
+                }
+              } else if (html.includes('<!-- Favicons -->')) {
+                html = html.replace('<!-- Favicons -->', `${schemaTag}\n\n  <!-- Favicons -->`);
+              } else if (html.includes('</head>')) {
+                html = html.replace('</head>', `${schemaTag}\n</head>`);
+              }
+            } else {
+              // Product Schema disabled in Admin: strip schemaProduct script tag completely
+              html = html.replace(/<!--\s*Product Schema[^>]*-->\s*<script type="application\/ld\+json"[^>]*id="schemaProduct"[^>]*>[\s\S]*?<\/script>\s*/i, '');
+              html = html.replace(/<script type="application\/ld\+json"[^>]*id="schemaProduct"[^>]*>[\s\S]*?<\/script>\s*/i, '');
+            }
+
+            // 2. Dynamically pre-render Breadcrumb Schema
+            const catSlug = product.category || 'aluminum-profile-gate';
+            const catName = product.categoryName || product.category_display || 'Gates';
+            const breadcrumbSchema = {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://harichandsteel.com/" },
+                { "@type": "ListItem", "position": 2, "name": catName, "item": `https://harichandsteel.com/product-category/${catSlug}/` },
+                { "@type": "ListItem", "position": 3, "name": product.title || product.name, "item": `https://harichandsteel.com/product/${cleanSlug}/` }
+              ]
+            };
+            html = html.replace(/<script type="application\/ld\+json"[^>]*id="schemaBreadcrumbs"[^>]*>[\s\S]*?<\/script>/i, `<script type="application/ld+json" id="schemaBreadcrumbs">\n${JSON.stringify(breadcrumbSchema, null, 2)}\n  </script>`);
+
+            // 3. Dynamically pre-render WebPage Schema
+            const webPageSchema = {
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              "@id": `https://harichandsteel.com/product/${cleanSlug}/#webpage`,
+              "url": `https://harichandsteel.com/product/${cleanSlug}/`,
+              "name": `${product.title || product.name} - HARICHAND STEEL`,
+              "description": product.description || `Technical specifications, dimensions, frame gauges, and custom options for ${product.title || product.name} manufactured by Harichand Steel.`,
+              "isPartOf": { "@id": "https://harichandsteel.com/#website" },
+              "about": { "@id": "https://harichandsteel.com/#organization" },
+              "inLanguage": "en-IN"
+            };
+            html = html.replace(/<script type="application\/ld\+json"[^>]*id="schemaWebPage"[^>]*>[\s\S]*?<\/script>/i, `<script type="application/ld+json" id="schemaWebPage">\n${JSON.stringify(webPageSchema, null, 2)}\n  </script>`);
+
+            // 4. Update Document Title
+            html = html.replace(/<title>.*?<\/title>/i, `<title>${product.title || product.name} - HARICHAND STEEL</title>`);
+          }
+
+          res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+          res.end(html);
+          return;
+        } catch (err) {
+          console.error('Error pre-rendering product detail page:', err);
+          res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+          fs.createReadStream(detailHtmlPath).pipe(res);
+          return;
+        }
       }
     }
   }

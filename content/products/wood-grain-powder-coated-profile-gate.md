@@ -6,14 +6,11 @@ category: "powder-coated-gates"
 categoryName: "Powder Coated Gates"
 badge: "Wood Texture"
 price: "On Request"
-image: "/images/aluminuim-profile-box-1-1-1024x576.jpg"
+image: "images/aluminuim-profile-box-1-1-1024x576.jpg"
 featured: true
 createdAt: "2026-01-18"
 updatedAt: "2026-11-03"
 specs:
-  - "Sublimation Wood Finish"
-  - "Zero Rot & Termite Proof"
-  - "Marine Grade Substrate"
 ---
 # Wood-Grain Powder Coated Profile Gate
 
@@ -23,7 +20,7 @@ Innovative heat-sublimated wood grain powder coating providing natural timber wa
 - **Product Category:** [Powder Coated Gates](/product-category/powder-coated-gates/)
 - **Quality Grade Badge:** Wood Texture
 - **Price Range:** On Request
-- **Primary Image:** ![](/images/aluminuim-profile-box-1-1-1024x576.jpg)
+- **Primary Image:** ![](images/aluminuim-profile-box-1-1-1024x576.jpg)
 - **Catalogue URL:** [/product/wood-grain-powder-coated-profile-gate](/product/wood-grain-powder-coated-profile-gate)
 
 ## Key Specifications & Engineering
@@ -34,10 +31,6 @@ Innovative heat-sublimated wood grain powder coating providing natural timber wa
 - **Hardware & Bearing Setup:** Marine-grade stainless-steel hinges and self-lubricating nylon guide rollers
 - **Motor Automation Compatibility:** Universal mounting brackets for motorized swing & sliding gate automation
 
-## Core Features
-- Sublimation Wood Finish
-- Zero Rot & Termite Proof
-- Marine Grade Substrate
 
 ## Custom Sizing & Fabrication
 Harichand Steel fabricates every gate strictly tailored to opening dimensions:

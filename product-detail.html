@@ -97,6 +97,10 @@
   }
   </script>
 
+  <!-- Product Schema (JSON-LD) -->
+  <script type="application/ld+json" id="schemaProduct">
+  </script>
+
   <!-- Favicons -->
   <link rel="icon" href="/images/favicon-32.jpeg" sizes="32x32">
   <link rel="apple-touch-icon" href="/images/favicon-32.jpeg">
@@ -702,6 +706,26 @@
         }, null, 2);
       }
 
+      
+      // Update dynamic Google Product Schema
+      const schemaProductElem = document.getElementById('schemaProduct');
+      if (typeof ProductSchema !== 'undefined' && typeof ProductSchema.generateProductSchema === 'function') {
+        const prodSchema = ProductSchema.generateProductSchema(product);
+        if (prodSchema) {
+          if (schemaProductElem) {
+            schemaProductElem.textContent = JSON.stringify(prodSchema, null, 2);
+          } else {
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.id = 'schemaProduct';
+            script.textContent = JSON.stringify(prodSchema, null, 2);
+            document.head.appendChild(script);
+          }
+        } else if (schemaProductElem) {
+          schemaProductElem.remove();
+        }
+      }
+
       // 5. Update Left Column Gallery
       const mainImg = document.getElementById('detailMainImg');
       const badgeElem = document.getElementById('detailBadge');
@@ -837,6 +861,7 @@
       }
     });
   </script>
+  <script src="/js/product-schema.js"></script>
 </body>
 
 </html>

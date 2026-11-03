@@ -1,18 +1,16 @@
 ---
-id: "prod-1793104149147"
+id: "2"
 title: "Supabase Test Gate"
 slug: "supabase-test-gate"
 category: "aluminum-profile-gate"
 categoryName: "Aluminum Profile Gate"
 badge: "DB Test"
 price: "₹5,000/sqft"
-image: "/images/prod-1.png"
+image: "images/prod-1.png"
 featured: false
 createdAt: "2026-10-27"
 updatedAt: "2026-11-03"
 specs:
-  - "Test Spec 1"
-  - "Test Spec 2"
 ---
 # Supabase Test Gate
 
@@ -22,7 +20,7 @@ Testing Supabase connector
 - **Product Category:** [Aluminum Profile Gate](/product-category/aluminum-profile-gate/)
 - **Quality Grade Badge:** DB Test
 - **Price Range:** ₹5,000/sqft
-- **Primary Image:** ![](/images/prod-1.png)
+- **Primary Image:** ![](images/prod-1.png)
 - **Catalogue URL:** [/product/supabase-test-gate](/product/supabase-test-gate)
 
 ## Key Specifications & Engineering
@@ -33,9 +31,6 @@ Testing Supabase connector
 - **Hardware & Bearing Setup:** Heavy-duty sealed stainless-steel ball bearing hinges & concealed locks
 - **Motor Automation Compatibility:** 100% compatible with motorized remote swing & sliding gate operators
 
-## Core Features
-- Test Spec 1
-- Test Spec 2
 
 ## Custom Sizing & Fabrication
 Harichand Steel fabricates every gate strictly tailored to opening dimensions:

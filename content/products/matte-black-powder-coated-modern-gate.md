@@ -6,14 +6,11 @@ category: "powder-coated-gates"
 categoryName: "Powder Coated Gates"
 badge: "Scratch Proof"
 price: "On Request"
-image: "/images/golden-brown-profile-gate-1024x461.jpg"
+image: "images/golden-brown-profile-gate-1024x461.jpg"
 featured: true
 createdAt: "2026-02-14"
 updatedAt: "2026-11-03"
 specs:
-  - "80 Micron Electrostatic Coat"
-  - "UV Fade & Weatherproof"
-  - "Smooth Architectural Finish"
 ---
 # Matte Black Powder Coated Modern Gate
 
@@ -23,7 +20,7 @@ Sleek architectural steel gate coated with 80-micron electrostatically applied m
 - **Product Category:** [Powder Coated Gates](/product-category/powder-coated-gates/)
 - **Quality Grade Badge:** Scratch Proof
 - **Price Range:** On Request
-- **Primary Image:** ![](/images/golden-brown-profile-gate-1024x461.jpg)
+- **Primary Image:** ![](images/golden-brown-profile-gate-1024x461.jpg)
 - **Catalogue URL:** [/product/matte-black-powder-coated-modern-gate](/product/matte-black-powder-coated-modern-gate)
 
 ## Key Specifications & Engineering
@@ -34,10 +31,6 @@ Sleek architectural steel gate coated with 80-micron electrostatically applied m
 - **Hardware & Bearing Setup:** Marine-grade stainless-steel hinges and self-lubricating nylon guide rollers
 - **Motor Automation Compatibility:** Universal mounting brackets for motorized swing & sliding gate automation
 
-## Core Features
-- 80 Micron Electrostatic Coat
-- UV Fade & Weatherproof
-- Smooth Architectural Finish
 
 ## Custom Sizing & Fabrication
 Harichand Steel fabricates every gate strictly tailored to opening dimensions:

@@ -6,14 +6,11 @@ category: "powder-coated-gates"
 categoryName: "Powder Coated Gates"
 badge: "Luxury Finish"
 price: "On Request"
-image: "/images/20231029_141009-1024x768.jpg"
+image: "images/20231029_141009-1024x768.jpg"
 featured: false
 createdAt: "2026-02-02"
 updatedAt: "2026-11-03"
 specs:
-  - "10-Year Coating Guarantee"
-  - "Impact & Scratch Resistant"
-  - "Dual Swing Automated"
 ---
 # Antique Bronze Powder Coated Steel Gate
 
@@ -23,7 +20,7 @@ Premium metallic antique bronze textured powder coating over galvanized rust-res
 - **Product Category:** [Powder Coated Gates](/product-category/powder-coated-gates/)
 - **Quality Grade Badge:** Luxury Finish
 - **Price Range:** On Request
-- **Primary Image:** ![](/images/20231029_141009-1024x768.jpg)
+- **Primary Image:** ![](images/20231029_141009-1024x768.jpg)
 - **Catalogue URL:** [/product/antique-bronze-powder-coated-steel-gate](/product/antique-bronze-powder-coated-steel-gate)
 
 ## Key Specifications & Engineering
@@ -34,10 +31,6 @@ Premium metallic antique bronze textured powder coating over galvanized rust-res
 - **Hardware & Bearing Setup:** Marine-grade stainless-steel hinges and self-lubricating nylon guide rollers
 - **Motor Automation Compatibility:** Universal mounting brackets for motorized swing & sliding gate automation
 
-## Core Features
-- 10-Year Coating Guarantee
-- Impact & Scratch Resistant
-- Dual Swing Automated
 
 ## Custom Sizing & Fabrication
 Harichand Steel fabricates every gate strictly tailored to opening dimensions:

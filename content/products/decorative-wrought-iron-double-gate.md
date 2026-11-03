@@ -6,14 +6,11 @@ category: "iron-main-gate"
 categoryName: "Iron Main Gate"
 badge: "Artisanal Build"
 price: "On Request"
-image: "/images/download-5.jpg"
+image: "images/download-5.jpg"
 featured: false
 createdAt: "2026-01-25"
 updatedAt: "2026-11-03"
 specs:
-  - "Traditional Forged Iron"
-  - "Anti-Sag Heavy Pivot Bushings"
-  - "Custom Crest Monogram"
 ---
 # Decorative Wrought Iron Double Gate
 
@@ -23,7 +20,7 @@ Timeless dual-swing wrought iron gate with intricate center crest medallion, hea
 - **Product Category:** [Iron Main Gate](/product-category/iron-main-gate/)
 - **Quality Grade Badge:** Artisanal Build
 - **Price Range:** On Request
-- **Primary Image:** ![](/images/download-5.jpg)
+- **Primary Image:** ![](images/download-5.jpg)
 - **Catalogue URL:** [/product/decorative-wrought-iron-double-gate](/product/decorative-wrought-iron-double-gate)
 
 ## Key Specifications & Engineering
@@ -34,10 +31,6 @@ Timeless dual-swing wrought iron gate with intricate center crest medallion, hea
 - **Hardware & Bearing Setup:** Heavy-duty greaseable brass-core pivot hinges and Italian floor track
 - **Motor Automation Compatibility:** Compatible with high-torque Italian automated sliding & double-swing gear motors
 
-## Core Features
-- Traditional Forged Iron
-- Anti-Sag Heavy Pivot Bushings
-- Custom Crest Monogram
 
 ## Custom Sizing & Fabrication
 Harichand Steel fabricates every gate strictly tailored to opening dimensions:

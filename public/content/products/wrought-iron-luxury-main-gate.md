@@ -6,14 +6,11 @@ category: "iron-main-gate"
 categoryName: "Iron Main Gate"
 badge: "Hand Forged"
 price: "On Request"
-image: "/images/Main-Entrance-Gate_2850083224362_stainless-steel-window-grills-576x1024.jpg"
+image: "images/Main-Entrance-Gate_2850083224362_stainless-steel-window-grills-576x1024.jpg"
 featured: true
 createdAt: "2026-02-12"
 updatedAt: "2026-11-03"
 specs:
-  - "Heavy Solid Iron Stock"
-  - "Hand-Crafted Floral Finials"
-  - "Anti-Corrosion Red Oxide Coating"
 ---
 # Wrought Iron Luxury Main Gate
 
@@ -23,7 +20,7 @@ Classic heavy wrought iron entrance gate with hand-forged scrollwork, spearhead 
 - **Product Category:** [Iron Main Gate](/product-category/iron-main-gate/)
 - **Quality Grade Badge:** Hand Forged
 - **Price Range:** On Request
-- **Primary Image:** ![](/images/Main-Entrance-Gate_2850083224362_stainless-steel-window-grills-576x1024.jpg)
+- **Primary Image:** ![](images/Main-Entrance-Gate_2850083224362_stainless-steel-window-grills-576x1024.jpg)
 - **Catalogue URL:** [/product/wrought-iron-luxury-main-gate](/product/wrought-iron-luxury-main-gate)
 
 ## Key Specifications & Engineering
@@ -34,10 +31,6 @@ Classic heavy wrought iron entrance gate with hand-forged scrollwork, spearhead 
 - **Hardware & Bearing Setup:** Heavy-duty greaseable brass-core pivot hinges and Italian floor track
 - **Motor Automation Compatibility:** Compatible with high-torque Italian automated sliding & double-swing gear motors
 
-## Core Features
-- Heavy Solid Iron Stock
-- Hand-Crafted Floral Finials
-- Anti-Corrosion Red Oxide Coating
 
 ## Custom Sizing & Fabrication
 Harichand Steel fabricates every gate strictly tailored to opening dimensions:

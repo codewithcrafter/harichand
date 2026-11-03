@@ -543,6 +543,169 @@
           <small style="color: var(--admin-text-muted); font-size: 0.76rem; margin-top: 4px;">Separate with commas. These appear as feature tags on the product card.</small>
         </div>
 
+                <!-- Google Product Schema (JSON-LD) Management -->
+        <div style="border-top: 1px solid var(--admin-border); margin: 20px 0 16px; padding: 16px; background: rgba(56, 189, 248, 0.04); border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.2);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
+            <h4 style="margin: 0; font-size: 0.98rem; color: #38bdf8; display: flex; align-items: center; gap: 8px;">
+              <i class="fab fa-google"></i> Google Product Schema (JSON-LD) Management
+            </h4>
+            <div id="schemaValidationBadge">
+              <span class="badge" style="background: #22c55e; color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 600;">
+                <i class="fas fa-check-circle"></i> Schema Valid
+              </span>
+            </div>
+          </div>
+
+          <!-- Master Schema Toggles -->
+          <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; background: rgba(0,0,0,0.25); padding: 10px 14px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #fff; font-size: 0.85rem;">
+              <input type="checkbox" id="prodSchemaEnabled" checked style="accent-color: #38bdf8; width: 16px; height: 16px;">
+              <strong>Enable Product Schema</strong>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #fff; font-size: 0.85rem;">
+              <input type="checkbox" id="prodSchemaOfferEnabled" checked style="accent-color: #38bdf8; width: 16px; height: 16px;">
+              <span>Enable Offer Schema</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #fff; font-size: 0.85rem;">
+              <input type="checkbox" id="prodSchemaReviewEnabled" style="accent-color: #38bdf8; width: 16px; height: 16px;">
+              <span>Enable Reviews &amp; Ratings</span>
+            </label>
+          </div>
+
+          <div id="schemaControlsContainer">
+            <!-- Identifiers: SKU, MPN, Brand, GTIN -->
+            <div class="form-row">
+              <div class="form-group-admin">
+                <label for="prodSchemaSku">SKU (Stock Keeping Unit)</label>
+                <input type="text" class="admin-input" id="prodSchemaSku" placeholder="e.g. HS-ALU-007">
+              </div>
+              <div class="form-group-admin">
+                <label for="prodSchemaMpn">MPN (Manufacturer Part Number)</label>
+                <input type="text" class="admin-input" id="prodSchemaMpn" placeholder="e.g. HCS-GATE-007">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group-admin">
+                <label for="prodSchemaBrand">Brand Name</label>
+                <input type="text" class="admin-input" id="prodSchemaBrand" value="Harichand Steel">
+              </div>
+              <div class="form-group-admin">
+                <label for="prodSchemaGtin">GTIN / Barcode (GTIN-8/12/13/14)</label>
+                <input type="text" class="admin-input" id="prodSchemaGtin" placeholder="Optional e.g. 8901234567890">
+              </div>
+            </div>
+
+            <!-- Pricing and Availability for Offers -->
+            <div style="margin: 12px 0 8px; font-weight: 600; color: #94a3b8; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.05em;">
+              <i class="fas fa-tag"></i> Pricing &amp; Availability (Google Offer)
+            </div>
+            <div class="form-row">
+              <div class="form-group-admin">
+                <label for="prodSchemaPrice">Numeric Price (INR) *</label>
+                <input type="number" class="admin-input" id="prodSchemaPrice" placeholder="e.g. 35000" min="0">
+                <small style="color: var(--admin-text-muted); font-size: 0.72rem;">Required for Google Rich Results Offer (exact numeric value).</small>
+              </div>
+              <div class="form-group-admin">
+                <label for="prodSchemaCurrency">Currency Code</label>
+                <select class="admin-select" id="prodSchemaCurrency" style="width: 100%;">
+                  <option value="INR" selected>INR (₹ Indian Rupee)</option>
+                  <option value="USD">USD ($ US Dollar)</option>
+                  <option value="EUR">EUR (€ Euro)</option>
+                  <option value="GBP">GBP (£ British Pound)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group-admin">
+                <label for="prodSchemaAvailability">Stock Availability</label>
+                <select class="admin-select" id="prodSchemaAvailability" style="width: 100%;">
+                  <option value="https://schema.org/InStock" selected>In Stock (Made to Order / Ready)</option>
+                  <option value="https://schema.org/PreOrder">Pre-Order</option>
+                  <option value="https://schema.org/BackOrder">Back Order</option>
+                  <option value="https://schema.org/OutOfStock">Out of Stock</option>
+                  <option value="https://schema.org/Discontinued">Discontinued</option>
+                </select>
+              </div>
+              <div class="form-group-admin">
+                <label for="prodSchemaCondition">Item Condition</label>
+                <select class="admin-select" id="prodSchemaCondition" style="width: 100%;">
+                  <option value="https://schema.org/NewCondition" selected>New Condition (Brand New)</option>
+                  <option value="https://schema.org/RefurbishedCondition">Refurbished</option>
+                  <option value="https://schema.org/UsedCondition">Used</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group-admin">
+              <label for="prodSchemaPriceValidUntil">Price Valid Until</label>
+              <input type="date" class="admin-input" id="prodSchemaPriceValidUntil">
+            </div>
+
+            <!-- Customer Reviews & Ratings (Optional) -->
+            <div id="schemaReviewFieldsContainer" style="display: none; border-top: 1px dashed rgba(255,255,255,0.15); margin-top: 14px; padding-top: 12px;">
+              <div style="background: rgba(245, 158, 11, 0.1); border-left: 3px solid #f59e0b; padding: 8px 12px; margin-bottom: 12px; border-radius: 4px; font-size: 0.8rem; color: #fde68a;">
+                <i class="fas fa-shield-alt"></i> <strong>Google Compliance Notice:</strong> Only add genuine, verified customer reviews and ratings. Never generate fake reviews.
+              </div>
+              <div class="form-row">
+                <div class="form-group-admin">
+                  <label for="prodSchemaRatingValue">Overall Average Rating (1.0 to 5.0)</label>
+                  <input type="number" step="0.1" min="1" max="5" class="admin-input" id="prodSchemaRatingValue" placeholder="e.g. 4.9">
+                </div>
+                <div class="form-group-admin">
+                  <label for="prodSchemaReviewCount">Total Review Count</label>
+                  <input type="number" min="1" class="admin-input" id="prodSchemaReviewCount" placeholder="e.g. 12">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group-admin">
+                  <label for="prodReviewAuthor">Reviewer Name</label>
+                  <input type="text" class="admin-input" id="prodReviewAuthor" placeholder="e.g. Rajesh Kumar (Janakpuri)">
+                </div>
+                <div class="form-group-admin">
+                  <label for="prodReviewRating">Review Rating</label>
+                  <select class="admin-select" id="prodReviewRating" style="width: 100%;">
+                    <option value="5" selected>5 Stars (Excellent)</option>
+                    <option value="4">4 Stars (Very Good)</option>
+                    <option value="3">3 Stars (Good)</option>
+                    <option value="2">2 Stars (Fair)</option>
+                    <option value="1">1 Star (Poor)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group-admin">
+                  <label for="prodReviewTitle">Review Title</label>
+                  <input type="text" class="admin-input" id="prodReviewTitle" placeholder="e.g. Exceptional Gate Fabrication">
+                </div>
+                <div class="form-group-admin">
+                  <label for="prodReviewDate">Review Date</label>
+                  <input type="date" class="admin-input" id="prodReviewDate">
+                </div>
+              </div>
+              <div class="form-group-admin">
+                <label for="prodReviewBody">Customer Review Text</label>
+                <textarea class="admin-textarea" id="prodReviewBody" rows="2" placeholder="e.g. Installed a wood-grain aluminium profile gate for our residence. Flawless finish and silent motor."></textarea>
+              </div>
+            </div>
+
+            <!-- Live JSON-LD Preview & Validation Box -->
+            <div style="margin-top: 14px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span style="font-size: 0.8rem; font-weight: 600; color: #94a3b8;">
+                  <i class="fas fa-code"></i> Live Google Product JSON-LD Preview
+                </span>
+                <button type="button" id="btnCopySchemaPreview" class="admin-btn admin-btn-outline" style="padding: 2px 8px; font-size: 0.72rem;">
+                  <i class="fas fa-copy"></i> Copy JSON-LD
+                </button>
+              </div>
+              <div id="schemaMissingAlert" style="display: none; background: rgba(239, 68, 68, 0.15); color: #fca5a5; padding: 6px 10px; border-radius: 4px; font-size: 0.76rem; margin-bottom: 8px;"></div>
+              <pre id="schemaPreviewCode" style="background: #090d16; color: #38bdf8; padding: 10px; border-radius: 6px; font-size: 0.74rem; max-height: 180px; overflow-y: auto; border: 1px solid rgba(255,255,255,0.08); margin: 0; line-height: 1.4;"></pre>
+            </div>
+          </div>
+        </div>
+
         <div style="display: flex; align-items: center; gap: 8px; margin: 16px 0;">
           <input type="checkbox" id="prodInputFeatured" style="width: 16px; height: 16px; accent-color: var(--admin-primary); cursor: pointer;">
           <label for="prodInputFeatured" style="font-size: 0.88rem; cursor: pointer; color: #fff;">Feature this product on Homepage Showcase</label>
@@ -655,6 +818,7 @@
 
   <!-- Scripts -->
   <script src="/js/cms-data.js"></script>
+  <script src="/js/product-schema.js"></script>
   <script src="/admin/js/admin.js"></script>
 </body>
 </html>

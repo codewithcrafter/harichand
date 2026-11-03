@@ -6,14 +6,11 @@ category: "aluminum-profile-gate"
 categoryName: "Aluminum Profile Gate"
 badge: "Top Rated"
 price: "On Request"
-image: "/images/prod-1.png"
+image: "images/prod-1.png"
 featured: true
 createdAt: "2026-02-24"
 updatedAt: "2026-11-03"
 specs:
-  - "SS304 Grade Hardware"
-  - "Custom Sizing Available"
-  - "Smart Lock Ready"
 ---
 # Aluminium Door Profile Gate
 
@@ -23,7 +20,7 @@ Premium aluminium door profile gate designed for high security, weather resistan
 - **Product Category:** [Aluminum Profile Gate](/product-category/aluminum-profile-gate/)
 - **Quality Grade Badge:** Top Rated
 - **Price Range:** On Request
-- **Primary Image:** ![](/images/prod-1.png)
+- **Primary Image:** ![](images/prod-1.png)
 - **Catalogue URL:** [/product/aluminium-door-profile-gate](/product/aluminium-door-profile-gate)
 
 ## Key Specifications & Engineering
@@ -34,10 +31,6 @@ Premium aluminium door profile gate designed for high security, weather resistan
 - **Hardware & Bearing Setup:** Heavy-duty sealed stainless-steel ball bearing hinges & concealed locks
 - **Motor Automation Compatibility:** 100% compatible with motorized remote swing & sliding gate operators
 
-## Core Features
-- SS304 Grade Hardware
-- Custom Sizing Available
-- Smart Lock Ready
 
 ## Custom Sizing & Fabrication
 Harichand Steel fabricates every gate strictly tailored to opening dimensions:

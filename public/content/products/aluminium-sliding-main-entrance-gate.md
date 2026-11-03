@@ -6,14 +6,11 @@ category: "aluminum-profile-gate"
 categoryName: "Aluminum Profile Gate"
 badge: "Motorized"
 price: "On Request"
-image: "/images/WhatsApp-Image-2026-02-23-at-12.55.26-PM-300x300.jpeg"
+image: "images/WhatsApp-Image-2026-02-23-at-12.55.26-PM-300x300.jpeg"
 featured: false
 createdAt: "2026-02-15"
 updatedAt: "2026-11-03"
 specs:
-  - "Italian Motor Compatible"
-  - "Tough Alloy Frame"
-  - "Wind Resilient"
 ---
 # Aluminium Sliding Main Entrance Gate
 
@@ -23,7 +20,7 @@ Smooth gliding bottom-track sliding gate engineered for silent, effortless motor
 - **Product Category:** [Aluminum Profile Gate](/product-category/aluminum-profile-gate/)
 - **Quality Grade Badge:** Motorized
 - **Price Range:** On Request
-- **Primary Image:** ![](/images/WhatsApp-Image-2026-02-23-at-12.55.26-PM-300x300.jpeg)
+- **Primary Image:** ![](images/WhatsApp-Image-2026-02-23-at-12.55.26-PM-300x300.jpeg)
 - **Catalogue URL:** [/product/aluminium-sliding-main-entrance-gate](/product/aluminium-sliding-main-entrance-gate)
 
 ## Key Specifications & Engineering
@@ -34,10 +31,6 @@ Smooth gliding bottom-track sliding gate engineered for silent, effortless motor
 - **Hardware & Bearing Setup:** Heavy-duty sealed stainless-steel ball bearing hinges & concealed locks
 - **Motor Automation Compatibility:** 100% compatible with motorized remote swing & sliding gate operators
 
-## Core Features
-- Italian Motor Compatible
-- Tough Alloy Frame
-- Wind Resilient
 
 ## Custom Sizing & Fabrication
 Harichand Steel fabricates every gate strictly tailored to opening dimensions:

@@ -6,14 +6,11 @@ category: "aluminum-profile-gate"
 categoryName: "Aluminum Profile Gate"
 badge: "Popular"
 price: "On Request"
-image: "/images/ChatGPT-Image-Feb-23-2026-12_37_41-PM-300x300.png"
+image: "images/ChatGPT-Image-Feb-23-2026-12_37_41-PM-300x300.png"
 featured: false
 createdAt: "2026-02-18"
 updatedAt: "2026-11-03"
 specs:
-  - "Heavy Extrusion Slat"
-  - "Motorized Sliding Compatible"
-  - "High Durability"
 ---
 # Aluminium Profile Main Gate
 
@@ -23,7 +20,7 @@ Full-width main entrance gate featuring heavy-gauge aluminium profiles and integ
 - **Product Category:** [Aluminum Profile Gate](/product-category/aluminum-profile-gate/)
 - **Quality Grade Badge:** Popular
 - **Price Range:** On Request
-- **Primary Image:** ![](/images/ChatGPT-Image-Feb-23-2026-12_37_41-PM-300x300.png)
+- **Primary Image:** ![](images/ChatGPT-Image-Feb-23-2026-12_37_41-PM-300x300.png)
 - **Catalogue URL:** [/product/aluminium-profile-main-gate](/product/aluminium-profile-main-gate)
 
 ## Key Specifications & Engineering
@@ -34,10 +31,6 @@ Full-width main entrance gate featuring heavy-gauge aluminium profiles and integ
 - **Hardware & Bearing Setup:** Heavy-duty sealed stainless-steel ball bearing hinges & concealed locks
 - **Motor Automation Compatibility:** 100% compatible with motorized remote swing & sliding gate operators
 
-## Core Features
-- Heavy Extrusion Slat
-- Motorized Sliding Compatible
-- High Durability
 
 ## Custom Sizing & Fabrication
 Harichand Steel fabricates every gate strictly tailored to opening dimensions:
