@@ -5,9 +5,8 @@
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>News & Articles - HARICHAND STEEL</title>
-  <meta name="description"
-    content="Stay informed with the latest gate manufacturing insights, design trends, architectural guides, and updates from Harichand Steel in Delhi NCR.">
+  <title>News & Blogs | Harichand Steel</title>
+  <meta name="description" content="Explore the latest news, articles, and informative blogs from Harichand Steel about aluminium profile gates, steel gates, gate designs, manufacturing and related products.">>
   <link rel="canonical" href="https://harichandsteel.com/news/">
 
   
@@ -73,22 +72,22 @@
   }
   </script>
 
-  <!-- WebPage Schema -->
-  <script type="application/ld+json" id="schemaWebPage">
+    <!-- CollectionPage Schema (News Listing) -->
+  <script type="application/ld+json" id="schemaNewsCollection">
   {
     "@context": "https://schema.org",
-    "@type": "WebPage",
+    "@type": "CollectionPage",
     "@id": "https://harichandsteel.com/news/#webpage",
     "url": "https://harichandsteel.com/news/",
-    "name": "News & Articles - HARICHAND STEEL",
-    "description": "Read the latest articles, design trends, maintenance tips, and fabrication insights about aluminium profile gates and modern steel gates from Harichand Steel.",
+    "name": "News & Blogs | Harichand Steel",
+    "description": "Explore the latest news, articles, and informative blogs from Harichand Steel about aluminium profile gates, steel gates, gate designs, manufacturing and related products.",
     "isPartOf": {
       "@id": "https://harichandsteel.com/#website"
     },
     "about": {
       "@id": "https://harichandsteel.com/#organization"
     },
-    "inLanguage": "en-US"
+    "inLanguage": "en-IN"
   }
   </script>
 
@@ -225,16 +224,15 @@
         <span class="sep"><i class="fas fa-chevron-right"></i></span>
         <span>News</span>
       </nav>
-      <h1 class="page-title">News & Insights</h1>
-      <p class="page-lead">Latest architectural trends, gate fabrication guides, and project spotlights from Harichand
-        Steel.</p>
+      <h1 class="page-title">News & Blogs</h1>
+      <p class="page-lead">Explore the latest news, articles, and informative blogs from Harichand Steel about aluminium profile gates, steel gates, gate designs, manufacturing and related products.</p>
     </div>
   </div>
 
   <main id="content">
     <section class="section" style="padding-top: 60px;">
       <div class="container">
-        <div class="news-cards-grid">
+        <div class="news-cards-grid" id="newsCardsGrid">
 
           <article class="news-card">
             <div class="news-card-body">
@@ -496,6 +494,133 @@
 
   <script src="/js/cms-data.js"></script>
   <script src="/js/main.js"></script>
+
+  <!-- ========================================================================
+       AUTOMATIC CMS BLOG SYNC & DYNAMIC SCHEMA SCRIPT
+       ======================================================================== -->
+  <script>
+    (function () {
+      // 1. Dynamic Domain Adaptation for Schema (Vercel preview vs harichandsteel.com)
+      var host = window.location.hostname;
+      var protocol = window.location.protocol;
+      var isVercel = host && host.includes('vercel.app');
+      var base = isVercel ? (protocol + '//' + host) : 'https://harichandsteel.com';
+      var elem = document.getElementById('schemaNewsCollection');
+      if (elem) {
+        try {
+          var s = JSON.parse(elem.textContent);
+          s['@id'] = base + '/news/#webpage';
+          s['url'] = base + '/news/';
+          elem.textContent = JSON.stringify(s, null, 2);
+        } catch (_) {}
+      }
+
+      // 2. Dynamic Blog Grid Rendering (Auto Add & Auto Remove on CMS delete)
+      function escapeHtml(str) {
+        if (!str) return '';
+        return String(str).replace(/[&<>"']/g, function (m) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+        });
+      }
+
+      function resolveUrl(slug) {
+        if (!slug) return '/news/';
+        if (slug.startsWith('http://') || slug.startsWith('https://')) return slug;
+        return slug.startsWith('/') ? slug : '/' + slug;
+      }
+
+      function renderNewsGrid(blogs) {
+        var grid = document.getElementById('newsCardsGrid');
+        if (!grid) return;
+        if (!Array.isArray(blogs) || blogs.length === 0) {
+          grid.innerHTML = '<div style="text-align: center; color: var(--text-muted); grid-column: 1/-1; padding: 40px 16px;">No articles published yet.</div>';
+          return;
+        }
+
+        var activeBlogs = blogs.filter(function (b) { return b && b.published !== false && b.title && b.title !== 'abd'; });
+        if (activeBlogs.length === 0) {
+          grid.innerHTML = '<div style="text-align: center; color: var(--text-muted); grid-column: 1/-1; padding: 40px 16px;">No articles published yet.</div>';
+          return;
+        }
+
+        grid.innerHTML = activeBlogs.map(function (blog) {
+          var blogUrl = resolveUrl(blog.slug);
+          var blogTitle = escapeHtml(blog.title || 'Untitled Article');
+          var blogExcerpt = escapeHtml(blog.excerpt || '');
+          var blogTag = escapeHtml(blog.tag || 'Design Guide');
+          var blogDate = escapeHtml(blog.date || '');
+          var waText = encodeURIComponent('Enquiry regarding ' + (blog.title || 'Gate Design'));
+          var imgHtml = blog.image ? '<div style="margin-bottom: 14px; border-radius: 8px; overflow: hidden; max-height: 190px;"><img src="' + escapeHtml(blog.image) + '" alt="' + blogTitle + '" style="width: 100%; height: 190px; object-fit: cover;" onerror="this.parentElement.style.display=\'none\'"></div>' : '';
+
+          return '<article class="news-card" data-blog-id="' + escapeHtml(blog.id || '') + '">' +
+            '<div class="news-card-body">' +
+              imgHtml +
+              '<div class="news-meta">' +
+                '<span><i class="fas fa-calendar-alt"></i> ' + blogDate + '</span>' +
+                '<span><i class="fas fa-tag"></i> ' + blogTag + '</span>' +
+              '</div>' +
+              '<h3 class="news-title"><a href="' + blogUrl + '">' + blogTitle + '</a></h3>' +
+              '<p class="news-excerpt">' + blogExcerpt + '</p>' +
+              '<div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">' +
+                '<a href="' + blogUrl + '" class="btn btn-outline-dark btn-sm">Read Article &rarr;</a>' +
+                '<a href="https://wa.me/919870433868?text=' + waText + '" class="btn btn-whatsapp btn-sm" target="_blank" rel="noopener">' +
+                  '<i class="fab fa-whatsapp"></i> Ask Expert' +
+                '</a>' +
+              '</div>' +
+            '</div>' +
+          '</article>';
+        }).join('');
+      }
+
+      function syncBlogs() {
+        // Read local CMS store
+        var localBlogs = (typeof CMS !== 'undefined' && typeof CMS.getBlogs === 'function')
+          ? CMS.getBlogs()
+          : null;
+
+        if (localBlogs && localBlogs.length) {
+          renderNewsGrid(localBlogs);
+        }
+
+        // Fetch fresh from backend API
+        if (typeof fetch === 'function') {
+          fetch('/api/blogs')
+            .then(function (r) { return r.ok ? r.json() : null; })
+            .then(function (serverBlogs) {
+              if (Array.isArray(serverBlogs) && serverBlogs.length > 0) {
+                renderNewsGrid(serverBlogs);
+                try {
+                  localStorage.setItem('hs_cms_blogs', JSON.stringify(serverBlogs));
+                } catch (_) {}
+              }
+            })
+            .catch(function () {});
+        }
+      }
+
+      // Initial execution
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', syncBlogs);
+      } else {
+        syncBlogs();
+      }
+
+      // React in real-time when a blog is added or deleted in admin CMS
+      window.addEventListener('cms:blogs:updated', function (e) {
+        var updated = (e && e.detail) || (typeof CMS !== 'undefined' ? CMS.getBlogs() : []);
+        renderNewsGrid(updated);
+      });
+
+      window.addEventListener('storage', function (e) {
+        if (e.key === 'hs_cms_blogs' && e.newValue) {
+          try {
+            renderNewsGrid(JSON.parse(e.newValue));
+          } catch (_) {}
+        }
+      });
+    })();
+  </script>
+
 </body>
 
 </html>

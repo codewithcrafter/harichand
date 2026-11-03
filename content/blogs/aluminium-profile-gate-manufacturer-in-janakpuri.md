@@ -8,7 +8,7 @@ date: "November 6, 2024"
 image: "/images/profile-box.jpg"
 excerpt: "How aluminium profile gates have revolutionized residential entrances in Janakpuri and Delhi NCR with lightweight operation, weather immunity, and wood-finish styling."
 published: true
-updatedAt: "2026-10-31"
+updatedAt: "2026-11-03"
 ---
 # Aluminium Profile Gate Manufacturer in Janakpuri – Innovation & Strength
 

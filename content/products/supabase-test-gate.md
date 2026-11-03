@@ -9,7 +9,7 @@ price: "₹5,000/sqft"
 image: "/images/prod-1.png"
 featured: false
 createdAt: "2026-10-27"
-updatedAt: "2026-10-31"
+updatedAt: "2026-11-03"
 specs:
   - "Test Spec 1"
   - "Test Spec 2"

@@ -9,7 +9,7 @@ price: "On Request"
 image: "/images/Aluminium-Profile-Main-Gate_2851615169991_product-jpeg-300x300.jpg"
 featured: false
 createdAt: "2026-02-20"
-updatedAt: "2026-10-31"
+updatedAt: "2026-11-03"
 specs:
   - "Rust Proof Alloy"
   - "Matte Charcoal Powder Coat"

@@ -57,7 +57,10 @@ const itemsToCopy = [
   'product.html',
   'sitemap.html',
   'steel-gate-design.html',
-  'favicon.ico'
+  'favicon.ico',
+  'llms.txt',
+  'markdown',
+  'content'
 ];
 
 for (const item of itemsToCopy) {

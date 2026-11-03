@@ -9,7 +9,7 @@ price: "On Request"
 image: "/images/prod-2.jpeg"
 featured: true
 createdAt: "2026-02-10"
-updatedAt: "2026-10-31"
+updatedAt: "2026-11-03"
 specs:
   - "Rose Gold PVD Coating"
   - "Heavy-Gauge Profiles"

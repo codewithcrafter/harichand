@@ -4,7 +4,7 @@ description: "Privacy policy of Harichand Steel. Learn how we handle customer co
 url: "/privacy-policy/"
 canonical: "https://harichandsteel.com/privacy-policy/"
 layout: "page"
-updatedAt: "2026-10-31"
+updatedAt: "2026-11-03"
 ---
 
 # Privacy Policy

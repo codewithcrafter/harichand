@@ -9,7 +9,7 @@ price: "On Request"
 image: "/images/ChatGPT-Image-Feb-23-2026-04_22_55-PM-300x300.png"
 featured: false
 createdAt: "2026-01-15"
-updatedAt: "2026-10-31"
+updatedAt: "2026-11-03"
 specs:
   - "Internal Steel Ribbing"
   - "Multi-Point Deadbolt Locking"

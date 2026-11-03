@@ -100,6 +100,7 @@ const MIME_TYPES = {
   '.svg': 'image/svg+xml',
   '.ico': 'image/x-icon',
   '.txt': 'text/plain; charset=UTF-8',
+  '.md': 'text/markdown; charset=UTF-8',
   '.xml': 'application/xml; charset=UTF-8',
   '.woff2': 'font/woff2',
   '.woff': 'font/woff',
@@ -167,7 +168,7 @@ async function requestDispatcher(req, res) {
   // Example: /about-us -> /about-us/
   // Example: /product/aluminium-door-profile-gate -> /product/aluminium-door-profile-gate/
   // ==========================================
-  const isStaticAsset = /\.(css|js|png|jpg|jpeg|svg|ico|webp|json|txt|woff2?|ttf|eot|xml)$/i.test(pathname);
+  const isStaticAsset = /\.(css|js|png|jpg|jpeg|svg|ico|webp|json|txt|md|woff2?|ttf|eot|xml)$/i.test(pathname);
   if (!isStaticAsset && !pathname.startsWith('/api')) {
     // A. Strip .html / .htm and redirect with trailing slash (301)
     if (/\.html?$/i.test(pathname)) {
@@ -545,7 +546,7 @@ async function requestDispatcher(req, res) {
   // ==========================================
   // 4. UNIVERSAL ASSET SERVING (HANDLES ANY PATH DEPTH)
   // ==========================================
-  const isAsset = /\.(css|js|png|jpg|jpeg|svg|ico|webp|json|txt|woff2?|ttf|eot|xml)$/i.test(pathname);
+  const isAsset = /\.(css|js|png|jpg|jpeg|svg|ico|webp|json|txt|md|woff2?|ttf|eot|xml)$/i.test(pathname);
   if (isAsset) {
     // 1. Direct path check from root
     let assetPath = path.join(ROOT_DIR, pathname.replace(/^\/+/, ''));
@@ -790,6 +791,55 @@ async function requestDispatcher(req, res) {
     const targetHtml = fs.existsSync(directHtml) ? directHtml : (fs.existsSync(mirrorHtml) ? mirrorHtml : null);
 
     if (targetHtml) {
+      if (pageName === 'news') {
+        try {
+          let html = fs.readFileSync(targetHtml, 'utf8');
+          const blogs = await db.getBlogs();
+          if (Array.isArray(blogs) && blogs.length > 0) {
+            const activeBlogs = blogs.filter(b => b && b.published !== false && b.title && b.title !== 'abd');
+            const escapeHtml = (str) => {
+              if (!str) return '';
+              return String(str).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[m]);
+            };
+            const cardsHtml = activeBlogs.map(blog => {
+              const rawSlug = blog.slug || '/news/';
+              const blogUrl = rawSlug.startsWith('http://') || rawSlug.startsWith('https://') || rawSlug.startsWith('/') ? rawSlug : '/' + rawSlug;
+              const blogTitle = escapeHtml(blog.title || 'Untitled Article');
+              const blogExcerpt = escapeHtml(blog.excerpt || '');
+              const blogTag = escapeHtml(blog.tag || 'Design Guide');
+              const blogDate = escapeHtml(blog.date || '');
+              const waText = encodeURIComponent('Enquiry regarding ' + (blog.title || 'Gate Design'));
+              const imgHtml = blog.image ? `<div style="margin-bottom: 14px; border-radius: 8px; overflow: hidden; max-height: 190px;"><img src="${escapeHtml(blog.image)}" alt="${blogTitle}" style="width: 100%; height: 190px; object-fit: cover;" onerror="this.parentElement.style.display='none'"></div>` : '';
+
+              return `<article class="news-card" data-blog-id="${escapeHtml(blog.id || '')}">
+          <div class="news-card-body">
+            ${imgHtml}
+            <div class="news-meta">
+              <span><i class="fas fa-calendar-alt"></i> ${blogDate}</span>
+              <span><i class="fas fa-tag"></i> ${blogTag}</span>
+            </div>
+            <h3 class="news-title"><a href="${blogUrl}">${blogTitle}</a></h3>
+            <p class="news-excerpt">${blogExcerpt}</p>
+            <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <a href="${blogUrl}" class="btn btn-outline-dark btn-sm">Read Article &rarr;</a>
+              <a href="https://wa.me/919870433868?text=${waText}" class="btn btn-whatsapp btn-sm" target="_blank" rel="noopener">
+                <i class="fab fa-whatsapp"></i> Ask Expert
+              </a>
+            </div>
+          </div>
+        </article>`;
+            }).join('\n        ');
+
+            html = html.replace(/<div class="news-cards-grid"[^>]*>[\s\S]*?<\/div>/i, `<div class="news-cards-grid" id="newsCardsGrid">\n        ${cardsHtml}\n      </div>`);
+          }
+          res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+          res.end(html);
+          return;
+        } catch (e) {
+          console.error('Error pre-rendering news:', e);
+        }
+      }
+
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
       fs.createReadStream(targetHtml).pipe(res);
       return;

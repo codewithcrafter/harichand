@@ -1,29 +1,5 @@
 [
   {
-    "title": "Test Automated Gate Guide 2026",
-    "slug": "/test-automated-gate-guide-2026/",
-    "tag": "Design Guide",
-    "author": "Harichand Senior Engineer",
-    "date": "October 29, 2026",
-    "image": "/images/about-3.jpg",
-    "excerpt": "Comprehensive engineering breakdown of heavy duty stainless steel gates.",
-    "content": "<h2>Gate Automation Architecture</h2><p>Our custom fabricated gates feature heavy duty Italian motors and seamless stainless steel ball bearings.</p>",
-    "published": true,
-    "id": "blog-1793263012906"
-  },
-  {
-    "id": "blog-1793107304359",
-    "title": "abd",
-    "slug": "/news/",
-    "tag": "Design Guide",
-    "author": "Harichand Steel Team",
-    "date": "October 27, 2026",
-    "image": "/images/about-3.jpg",
-    "excerpt": "sdsd",
-    "content": "sdsd",
-    "published": true
-  },
-  {
     "id": "blog-1",
     "title": "Latest Steel Gate Design (2025) – Ultimate Modern Guide",
     "slug": "/steel-gate-design/",

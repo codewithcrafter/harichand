@@ -9,7 +9,7 @@ price: "On Request"
 image: "/images/20230723_115650-768x1024.jpg"
 featured: false
 createdAt: "2026-01-22"
-updatedAt: "2026-10-31"
+updatedAt: "2026-11-03"
 specs:
   - "100% Certified SS304"
   - "CNC Fiber Laser Precision"

@@ -9,7 +9,7 @@ price: "On Request"
 image: "/images/WhatsApp-Image-2026-02-23-at-1.07.57-PM-300x300.jpeg"
 featured: false
 createdAt: "2026-01-28"
-updatedAt: "2026-10-31"
+updatedAt: "2026-11-03"
 specs:
   - "Heavy Duty Pivot Hinges"
   - "Weather Resilient"

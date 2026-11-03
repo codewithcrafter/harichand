@@ -9,7 +9,7 @@ price: "On Request"
 image: "/images/Main-Entrance-Gate_2850083224362_stainless-steel-window-grills-576x1024.jpg"
 featured: true
 createdAt: "2026-02-12"
-updatedAt: "2026-10-31"
+updatedAt: "2026-11-03"
 specs:
   - "Heavy Solid Iron Stock"
   - "Hand-Crafted Floral Finials"

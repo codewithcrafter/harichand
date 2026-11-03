@@ -9,7 +9,7 @@ price: "On Request"
 image: "/images/Interior-Door_24388653330_product-jpeg-768x1024.jpg"
 featured: false
 createdAt: "2026-01-12"
-updatedAt: "2026-10-31"
+updatedAt: "2026-11-03"
 specs:
   - "Double Galvanized Steel Skin"
   - "High Security Multi-Bolt"

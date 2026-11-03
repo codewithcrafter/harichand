@@ -4,7 +4,7 @@ description: "Explore our premium gate collection: Aluminum Profile Gates, Steel
 url: "/our-products/"
 canonical: "https://harichandsteel.com/our-products/"
 layout: "page"
-updatedAt: "2026-10-31"
+updatedAt: "2026-11-03"
 ---
 
 # Our Products

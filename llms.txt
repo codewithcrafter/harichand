@@ -1,0 +1,131 @@
+# Harichand Steel
+
+> Harichand Steel is a premier architectural metal fabrication company headquartered in New Delhi, India. Established in 2004, the firm specializes in engineering aluminium profile gates, certified SS304 stainless steel main gates, high-security steel doors, wrought iron gates, and motorized entrance automation systems across Delhi and Delhi NCR.
+
+Official Website: https://harichandsteel.com/  
+Markdown Documentation Hub: https://harichandsteel.com/markdown/  
+Primary Headquarters & Workshop: 27B, Street, New Jankipuri, Anup Nagar, Uttam Nagar, Bindapur, New Delhi, Delhi, 110059, India  
+Direct Telephone: +91 98704 33868  
+Official Email: Admin@HARICHANDSTEEL.COM
+
+---
+
+## Business & Manufacturing Overview
+
+- **Two Decades of Excellence:** Established in 2004, delivering custom gates for 10,000+ luxury villas, bungalows, residential societies, and commercial properties.
+- **In-House Workshop:** Direct factory fabrication in Uttam Nagar, New Delhi equipped with high-precision fiber CNC laser cutters, argon-shielded TIG welders, and electrostatic powder coating booths.
+- **Certified Raw Materials:** Exclusively authentic SS304 grade austenitic stainless steel (18% Cr, 8% Ni) and architectural 6063-T6 aluminium alloy extrusions.
+- **Smart Gate Automation:** Engineered for compatibility with Italian motorized swing and sliding operators (Sommer, Nice, BFT) and optical biometric fingerprint locks with Tuya mobile app integration.
+- **Service Footprint:** Complete doorstep site measurement, CAD customization, and turnkey installation across Delhi, Janakpuri, Dwarka, Gurugram, Noida, and the entire Delhi NCR.
+
+---
+
+## Core Website Pages
+
+- [Harichand Steel Homepage](https://harichandsteel.com/): Main portal featuring company introduction, architectural gate showcase, customer testimonials, and direct consultation channels. (Markdown: [homepage.md](https://harichandsteel.com/markdown/homepage.md))
+- [About Us - Corporate Profile](https://harichandsteel.com/about-us/): Detailed history since 2004, craftsmanship philosophy, manufacturing pillars, and workshop details. (Markdown: [about-us.md](https://harichandsteel.com/markdown/about-us.md))
+- [Company Information & Technical Infrastructure](https://harichandsteel.com/markdown/company-information.md): In-depth documentation covering machinery, material certifications, welding standards, and quality testing.
+- [Gate Products Catalogue](https://harichandsteel.com/product/): Comprehensive product catalogue featuring all active gate models, pricing parameters, and category filters. (Markdown: [products/index.md](https://harichandsteel.com/markdown/products/index.md))
+- [Our Products & Amenities](https://harichandsteel.com/our-products/): Overview of architectural gate collections, staircase railings, balcony railings, and luxury finishes. (Markdown: [our-products.md](https://harichandsteel.com/markdown/our-products.md))
+- [News & Architectural Blogs](https://harichandsteel.com/news/): Latest technical guides, gate design trends, material comparisons, and buyer advice. (Markdown: [blog/index.md](https://harichandsteel.com/markdown/blog/index.md))
+- [Contact Harichand Steel](https://harichandsteel.com/contact/): Factory address, direct calling, WhatsApp consultation, and doorstep measurement bookings. (Markdown: [contact-us.md](https://harichandsteel.com/markdown/contact-us.md))
+- [Privacy Policy](https://harichandsteel.com/privacy-policy/): Customer data handling, inquiry confidentiality, and privacy terms. (Markdown: [privacy-policy.md](https://harichandsteel.com/markdown/privacy-policy.md))
+- [Website Sitemap](https://harichandsteel.com/sitemap/): Full navigational tree of pages, product categories, and articles. (Markdown: [sitemap.md](https://harichandsteel.com/markdown/sitemap.md))
+
+---
+
+## Product Categories
+
+### [Aluminum Profile Gates](https://harichandsteel.com/product-category/aluminum-profile-gate/)
+- **Description:** Lightweight, zero-rust architectural aluminium extrusions with wood-grain, matte, or rose-gold accents. Engineered for smooth manual or motorized operation.
+- **Webpage:** [https://harichandsteel.com/product-category/aluminum-profile-gate/](https://harichandsteel.com/product-category/aluminum-profile-gate/)
+- **Markdown Documentation:** [https://harichandsteel.com/markdown/products/categories/aluminum-profile-gate.md](https://harichandsteel.com/markdown/products/categories/aluminum-profile-gate.md)
+
+### [Steel Main Gates](https://harichandsteel.com/product-category/steel-main-gate/)
+- **Description:** Heavy-duty entrance gates manufactured from certified SS304 grade stainless steel and carbon steel featuring computer-guided CNC laser cut designs.
+- **Webpage:** [https://harichandsteel.com/product-category/steel-main-gate/](https://harichandsteel.com/product-category/steel-main-gate/)
+- **Markdown Documentation:** [https://harichandsteel.com/markdown/products/categories/steel-main-gate.md](https://harichandsteel.com/markdown/products/categories/steel-main-gate.md)
+
+### [Iron Main Gates](https://harichandsteel.com/product-category/iron-main-gate/)
+- **Description:** Handcrafted forged wrought iron and cast iron luxury main entrance gates with classical European security spikes, scrollwork, and anti-rust coatings.
+- **Webpage:** [https://harichandsteel.com/product-category/iron-main-gate/](https://harichandsteel.com/product-category/iron-main-gate/)
+- **Markdown Documentation:** [https://harichandsteel.com/markdown/products/categories/iron-main-gate.md](https://harichandsteel.com/markdown/products/categories/iron-main-gate.md)
+
+### [Steel Doors](https://harichandsteel.com/product-category/steel-door/)
+- **Description:** Heavy security steel entrance and exterior doors featuring multi-point deadbolt locking systems, weatherproofing, and reinforced door jambs.
+- **Webpage:** [https://harichandsteel.com/product-category/steel-door/](https://harichandsteel.com/product-category/steel-door/)
+- **Markdown Documentation:** [https://harichandsteel.com/markdown/products/categories/steel-door.md](https://harichandsteel.com/markdown/products/categories/steel-door.md)
+
+### [Powder Coated Gates](https://harichandsteel.com/product-category/powder-coated-gates/)
+- **Description:** Weatherproof electrostatic baked powder-coated gates offering scratch resistance, UV color protection, and wood-grain textured finishes.
+- **Webpage:** [https://harichandsteel.com/product-category/powder-coated-gates/](https://harichandsteel.com/product-category/powder-coated-gates/)
+- **Markdown Documentation:** [https://harichandsteel.com/markdown/products/categories/powder-coated-gates.md](https://harichandsteel.com/markdown/products/categories/powder-coated-gates.md)
+
+
+---
+
+## Individual Products Catalogue (17 Models)
+
+- [Aluminium Door Profile Gate](https://harichandsteel.com/product/aluminium-door-profile-gate/): Premium aluminium door profile gate designed for high security, weather resistance, and sleek modern architecture. (Category: Aluminum Profile Gate | Badge: Top Rated | Markdown: [aluminium-door-profile-gate.md](https://harichandsteel.com/markdown/products/aluminium-door-profile-gate.md))
+- [Aluminium Profile Gate For Home](https://harichandsteel.com/product/aluminium-profile-gate-for-home/): Architectural aluminium slat gate suitable for contemporary residential driveways and villas. (Category: Aluminum Profile Gate | Badge: Modern | Markdown: [aluminium-profile-gate-for-home.md](https://harichandsteel.com/markdown/products/aluminium-profile-gate-for-home.md))
+- [Aluminium Profile Main Gate](https://harichandsteel.com/product/aluminium-profile-main-gate/): Full-width main entrance gate featuring heavy-gauge aluminium profiles and integrated safety locks. (Category: Aluminum Profile Gate | Badge: Popular | Markdown: [aluminium-profile-main-gate.md](https://harichandsteel.com/markdown/products/aluminium-profile-main-gate.md))
+- [Aluminium Sliding Main Entrance Gate](https://harichandsteel.com/product/aluminium-sliding-main-entrance-gate/): Smooth gliding bottom-track sliding gate engineered for silent, effortless motorized movement. (Category: Aluminum Profile Gate | Badge: Motorized | Markdown: [aluminium-sliding-main-entrance-gate.md](https://harichandsteel.com/markdown/products/aluminium-sliding-main-entrance-gate.md))
+- [Aluminum Profile Gate With Rose Gold Handle](https://harichandsteel.com/product/aluminum-profile-gate-with-rose-gold-handle/): Luxury entrance gate featuring bespoke rose-gold vertical pull handles and matte black aluminium slats. (Category: Aluminum Profile Gate | Badge: Rose Gold Pull | Markdown: [aluminum-profile-gate-with-rose-gold-handle.md](https://harichandsteel.com/markdown/products/aluminum-profile-gate-with-rose-gold-handle.md))
+- [Aluminum Profile Gate With Steel Frame](https://harichandsteel.com/product/aluminum-profile-gate-with-steel-frame/): Hybrid construction combining the strength of an internal steel framework with the rust-proof aesthetics of aluminium cladding. (Category: Aluminum Profile Gate | Badge: Reinforced | Markdown: [aluminum-profile-gate-with-steel-frame.md](https://harichandsteel.com/markdown/products/aluminum-profile-gate-with-steel-frame.md))
+- [Aluminum Profile Swing Gate for Home](https://harichandsteel.com/product/aluminum-profile-swing-gate-for-home/): Dual-leaf swing gate suitable for residential driveways, equipped with heavy-duty ball-bearing hinges. (Category: Aluminum Profile Gate | Badge: Classic Swing | Markdown: [aluminum-profile-swing-gate-for-home.md](https://harichandsteel.com/markdown/products/aluminum-profile-swing-gate-for-home.md))
+- [Double Door Steel Gate](https://harichandsteel.com/product/double-door-steel-gate/): Grand stainless steel entrance gate with decorative CNC vertical panels and mirror stainless finish. (Category: Steel Main Gate | Badge: SS304 | Markdown: [double-door-steel-gate.md](https://harichandsteel.com/markdown/products/double-door-steel-gate.md))
+- [Entrance Steel Door For Home](https://harichandsteel.com/product/entrance-steel-door-for-home/): Heavy-duty security steel door designed for bungalows and apartments with multi-point perimeter locks. (Category: Steel Door | Badge: High Security | Markdown: [entrance-steel-door-for-home.md](https://harichandsteel.com/markdown/products/entrance-steel-door-for-home.md))
+- [Wrought Iron Luxury Main Gate](https://harichandsteel.com/product/wrought-iron-luxury-main-gate/): Classic heavy wrought iron entrance gate with hand-forged scrollwork, spearhead finials, and multi-stage rust-resistant primer. (Category: Iron Main Gate | Badge: Hand Forged | Markdown: [wrought-iron-luxury-main-gate.md](https://harichandsteel.com/markdown/products/wrought-iron-luxury-main-gate.md))
+- [Modern Cast Iron Sliding Gate](https://harichandsteel.com/product/modern-cast-iron-sliding-gate/): Industrial strength decorative iron sliding gate designed for wide bungalow entrances, high security estates, and villa perimeters. (Category: Iron Main Gate | Badge: Heavy Duty | Markdown: [modern-cast-iron-sliding-gate.md](https://harichandsteel.com/markdown/products/modern-cast-iron-sliding-gate.md))
+- [Decorative Wrought Iron Double Gate](https://harichandsteel.com/product/decorative-wrought-iron-double-gate/): Timeless dual-swing wrought iron gate with intricate center crest medallion, heavy-duty pivot bushings, and motorized opener bracket. (Category: Iron Main Gate | Badge: Artisanal Build | Markdown: [decorative-wrought-iron-double-gate.md](https://harichandsteel.com/markdown/products/decorative-wrought-iron-double-gate.md))
+- [Matte Black Powder Coated Modern Gate](https://harichandsteel.com/product/matte-black-powder-coated-modern-gate/): Sleek architectural steel gate coated with 80-micron electrostatically applied matte black thermoset powder. (Category: Powder Coated Gates | Badge: Scratch Proof | Markdown: [matte-black-powder-coated-modern-gate.md](https://harichandsteel.com/markdown/products/matte-black-powder-coated-modern-gate.md))
+- [Antique Bronze Powder Coated Steel Gate](https://harichandsteel.com/product/antique-bronze-powder-coated-steel-gate/): Premium metallic antique bronze textured powder coating over galvanized rust-resistant steel frame with motorized dual swing. (Category: Powder Coated Gates | Badge: Luxury Finish | Markdown: [antique-bronze-powder-coated-steel-gate.md](https://harichandsteel.com/markdown/products/antique-bronze-powder-coated-steel-gate.md))
+- [Wood-Grain Powder Coated Profile Gate](https://harichandsteel.com/product/wood-grain-powder-coated-profile-gate/): Innovative heat-sublimated wood grain powder coating providing natural timber warm aesthetics with zero rot and zero maintenance. (Category: Powder Coated Gates | Badge: Wood Texture | Markdown: [wood-grain-powder-coated-profile-gate.md](https://harichandsteel.com/markdown/products/wood-grain-powder-coated-profile-gate.md))
+- [SS304 Modern Laser Cut Steel Gate](https://harichandsteel.com/product/ss304-modern-laser-cut-steel-gate/): Architectural grade SS304 stainless steel entrance gate with geometric laser cut privacy grilles and mirror polish accents. (Category: Steel Main Gate | Badge: CNC Laser | Markdown: [ss304-modern-laser-cut-steel-gate.md](https://harichandsteel.com/markdown/products/ss304-modern-laser-cut-steel-gate.md))
+- [Heavy Security Exterior Steel Door](https://harichandsteel.com/product/heavy-security-exterior-steel-door/): Double-walled reinforced steel perimeter door with multi-point biometric deadbolt locking system and weatherstrip insulation. (Category: Steel Door | Badge: Impact Rated | Markdown: [heavy-security-exterior-steel-door.md](https://harichandsteel.com/markdown/products/heavy-security-exterior-steel-door.md))
+
+---
+
+## Technical Guides & Architectural Articles
+
+### [Latest Steel Gate Design (2025) – Ultimate Modern Guide](https://harichandsteel.com/steel-gate-design/)
+- **Summary:** Comprehensive guide to modern residential steel gate designs, CNC laser-cut patterns, SS304 vs SS202 material grades, and quotation steps.
+- **Canonical URL:** [https://harichandsteel.com/steel-gate-design/](https://harichandsteel.com/steel-gate-design/)
+- **Markdown Document:** [https://harichandsteel.com/markdown/blog/steel-gate-design.md](https://harichandsteel.com/markdown/blog/steel-gate-design.md)
+
+### [Best Steel Gate Manufacturer In Delhi – Complete Buyer's Guide](https://harichandsteel.com/best-steel-gate-manufacturer-in-delhi/)
+- **Summary:** Overview of Harichand Steel's in-house fabrication, material standards, doorstep site measurement process, and service areas across Delhi NCR.
+- **Canonical URL:** [https://harichandsteel.com/best-steel-gate-manufacturer-in-delhi/](https://harichandsteel.com/best-steel-gate-manufacturer-in-delhi/)
+- **Markdown Document:** [https://harichandsteel.com/markdown/blog/best-steel-gate-manufacturer-in-delhi.md](https://harichandsteel.com/markdown/blog/best-steel-gate-manufacturer-in-delhi.md)
+
+### [Aluminium Profile Gate Manufacturer in Janakpuri – Innovation & Strength](https://harichandsteel.com/aluminium-profile-gate-manufacturer-in-janakpuri/)
+- **Summary:** Case study on aluminium profile gate adoption in Janakpuri, detailing 60% weight reduction on hinges/motors, zero rust, and customer testimonials.
+- **Canonical URL:** [https://harichandsteel.com/aluminium-profile-gate-manufacturer-in-janakpuri/](https://harichandsteel.com/aluminium-profile-gate-manufacturer-in-janakpuri/)
+- **Markdown Document:** [https://harichandsteel.com/markdown/blog/aluminium-profile-gate-manufacturer-in-janakpuri.md](https://harichandsteel.com/markdown/blog/aluminium-profile-gate-manufacturer-in-janakpuri.md)
+
+### [Aluminum Profile Gate Manufacturer in Prithviraj Road – Luxury Projects](https://harichandsteel.com/news/#prithviraj-road/)
+- **Summary:** Bespoke entrance gate solutions for luxury diplomatic and heritage estates in Central Delhi featuring acoustic dampening and concealed automation.
+- **Canonical URL:** [https://harichandsteel.com/news/#prithviraj-road/](https://harichandsteel.com/news/#prithviraj-road/)
+- **Markdown Document:** [https://harichandsteel.com/markdown/blog/aluminum-profile-gate-manufacturer-in-prithviraj-road.md](https://harichandsteel.com/markdown/blog/aluminum-profile-gate-manufacturer-in-prithviraj-road.md)
+
+
+---
+
+## Technical Specifications & Engineering Standards
+
+- **Aluminium Profile Gates:** High-tensile 6063-T6 extruded alloy; 60% lighter than solid iron; zero rust formation; compatible with wood-grain powder coating, fluted glass, and rose gold handles.
+- **Stainless Steel Main Gates:** Certified SS304 austenitic alloy; 18% chromium, 8% nickel; full resistance to outdoor monsoon corrosion; polished mirror or satin hairline finishes.
+- **CNC Laser Cutting:** Computer-controlled fiber laser profiling delivering burr-free cuts into heavy steel sheets for modern geometric, botanical, and custom family motifs.
+- **Security Steel Doors:** Double-skinned steel security panels with internal acoustic insulation, weatherstripping, and multi-point mortise deadbolts.
+- **Gate Motorization:** Heavy-duty reinforced base tracks and cantilever bearings built to interface with Italian automation motors (Sommer, Nice, BFT) supporting remote keyfobs, RFID sensors, and mobile apps.
+
+---
+
+## Factory & Direct Contact Channels
+
+- **Primary Workshop / Office:** 27B, Street, New Jankipuri, Anup Nagar, Uttam Nagar, Bindapur, New Delhi, Delhi, 110059, India
+- **Direct Phone Hotline:** [+91 98704 33868](tel:+919870433868)
+- **WhatsApp Support:** [https://wa.me/919870433868](https://wa.me/919870433868)
+- **Official Inquiries Email:** [Admin@HARICHANDSTEEL.COM](mailto:Admin@HARICHANDSTEEL.COM)
+- **Operating Hours:** Monday to Saturday, 9:00 AM – 8:00 PM IST
+- **Service Territory:** New Delhi, Janakpuri, Uttam Nagar, Dwarka, Vikaspuri, South Delhi, Prithviraj Road, Gurugram, Noida, and greater Delhi NCR.

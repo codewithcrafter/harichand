@@ -1,15 +1,15 @@
 ---
-title: "News & Articles - HARICHAND STEEL"
-description: "Stay informed with the latest gate manufacturing insights, design trends, architectural guides, and updates from Harichand Steel in Delhi NCR."
+title: "News & Blogs | Harichand Steel"
+description: "Explore the latest news, articles, and informative blogs from Harichand Steel about aluminium profile gates, steel gates, gate designs, manufacturing and related products."
 url: "/news/"
 canonical: "https://harichandsteel.com/news/"
 layout: "page"
-updatedAt: "2026-10-31"
+updatedAt: "2026-11-03"
 ---
 
-# News & Articles
+# News & Blogs | Harichand Steel
 
-> Stay informed with the latest gate manufacturing insights, design trends, architectural guides, and updates from Harichand Steel in Delhi NCR.
+> Explore the latest news, articles, and informative blogs from Harichand Steel about aluminium profile gates, steel gates, gate designs, manufacturing and related products.
 
 ** January 19, 2026
                 ** Design Guide

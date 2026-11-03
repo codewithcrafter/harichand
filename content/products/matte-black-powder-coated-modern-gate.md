@@ -9,7 +9,7 @@ price: "On Request"
 image: "/images/golden-brown-profile-gate-1024x461.jpg"
 featured: true
 createdAt: "2026-02-14"
-updatedAt: "2026-10-31"
+updatedAt: "2026-11-03"
 specs:
   - "80 Micron Electrostatic Coat"
   - "UV Fade & Weatherproof"
