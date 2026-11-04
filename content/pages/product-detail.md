@@ -4,7 +4,7 @@ description: "View high-resolution photos, architectural drawings, technical spe
 url: "/product-detail/"
 canonical: "https://harichandsteel.com/product-detail/"
 layout: "page"
-updatedAt: "2026-11-03"
+updatedAt: "2026-11-04"
 ---
 
 # Product Details

@@ -9,8 +9,11 @@ price: "On Request"
 image: "images/prod-3.jpeg"
 featured: true
 createdAt: "2026-02-05"
-updatedAt: "2026-11-03"
+updatedAt: "2026-11-04"
 specs:
+  - "Steel Reinforced Sub-frame"
+  - "Lightweight Slat Cladding"
+  - "Double Anti-Corrosion Barrier"
 ---
 # Aluminum Profile Gate With Steel Frame
 
@@ -31,6 +34,10 @@ Hybrid construction combining the strength of an internal steel framework with t
 - **Hardware & Bearing Setup:** Heavy-duty sealed stainless-steel ball bearing hinges & concealed locks
 - **Motor Automation Compatibility:** 100% compatible with motorized remote swing & sliding gate operators
 
+## Core Features
+- Steel Reinforced Sub-frame
+- Lightweight Slat Cladding
+- Double Anti-Corrosion Barrier
 
 ## Custom Sizing & Fabrication
 Harichand Steel fabricates every gate strictly tailored to opening dimensions:

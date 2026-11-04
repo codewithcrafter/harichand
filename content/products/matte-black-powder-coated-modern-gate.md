@@ -9,8 +9,11 @@ price: "On Request"
 image: "images/golden-brown-profile-gate-1024x461.jpg"
 featured: true
 createdAt: "2026-02-14"
-updatedAt: "2026-11-03"
+updatedAt: "2026-11-04"
 specs:
+  - "80 Micron Electrostatic Coat"
+  - "UV Fade & Weatherproof"
+  - "Smooth Architectural Finish"
 ---
 # Matte Black Powder Coated Modern Gate
 
@@ -31,6 +34,10 @@ Sleek architectural steel gate coated with 80-micron electrostatically applied m
 - **Hardware & Bearing Setup:** Marine-grade stainless-steel hinges and self-lubricating nylon guide rollers
 - **Motor Automation Compatibility:** Universal mounting brackets for motorized swing & sliding gate automation
 
+## Core Features
+- 80 Micron Electrostatic Coat
+- UV Fade & Weatherproof
+- Smooth Architectural Finish
 
 ## Custom Sizing & Fabrication
 Harichand Steel fabricates every gate strictly tailored to opening dimensions:

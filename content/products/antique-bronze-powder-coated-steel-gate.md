@@ -9,8 +9,11 @@ price: "On Request"
 image: "images/20231029_141009-1024x768.jpg"
 featured: false
 createdAt: "2026-02-02"
-updatedAt: "2026-11-03"
+updatedAt: "2026-11-04"
 specs:
+  - "10-Year Coating Guarantee"
+  - "Impact & Scratch Resistant"
+  - "Dual Swing Automated"
 ---
 # Antique Bronze Powder Coated Steel Gate
 
@@ -31,6 +34,10 @@ Premium metallic antique bronze textured powder coating over galvanized rust-res
 - **Hardware & Bearing Setup:** Marine-grade stainless-steel hinges and self-lubricating nylon guide rollers
 - **Motor Automation Compatibility:** Universal mounting brackets for motorized swing & sliding gate automation
 
+## Core Features
+- 10-Year Coating Guarantee
+- Impact & Scratch Resistant
+- Dual Swing Automated
 
 ## Custom Sizing & Fabrication
 Harichand Steel fabricates every gate strictly tailored to opening dimensions:

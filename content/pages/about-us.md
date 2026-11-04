@@ -4,7 +4,7 @@ description: "Harichand Steel has built a strong reputation as a trusted manufac
 url: "/about-us/"
 canonical: "https://harichandsteel.com/about-us/"
 layout: "page"
-updatedAt: "2026-11-03"
+updatedAt: "2026-11-04"
 ---
 
 # About Us

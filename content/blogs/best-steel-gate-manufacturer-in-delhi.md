@@ -8,7 +8,7 @@ date: "February 10, 2026"
 image: "/images/about-2.jpg"
 excerpt: "Why Harichand Steel is recognized as Delhi's #1 steel gate manufacturer. Insights on material grades, SS304 vs SS202, order processes, and custom fabrication."
 published: true
-updatedAt: "2026-11-03"
+updatedAt: "2026-11-04"
 ---
 # Best Steel Gate Manufacturer In Delhi – Complete Buyer's Guide
 

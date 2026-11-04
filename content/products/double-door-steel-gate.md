@@ -9,8 +9,11 @@ price: "On Request"
 image: "images/ChatGPT-Image-Feb-23-2026-04_42_39-PM-300x300.png"
 featured: false
 createdAt: "2026-01-20"
-updatedAt: "2026-11-03"
+updatedAt: "2026-11-04"
 specs:
+  - "100% SS304 Stainless Steel"
+  - "Argon TIG Welded Joints"
+  - "Sag-Proof Heavy Posts"
 ---
 # Double Door Steel Gate
 
@@ -31,6 +34,10 @@ Grand stainless steel entrance gate with decorative CNC vertical panels and mirr
 - **Hardware & Bearing Setup:** Italian rolling track with double-bearing stainless steel wheels
 - **Motor Automation Compatibility:** Fully motorized remote automation ready with safety infrared sensors
 
+## Core Features
+- 100% SS304 Stainless Steel
+- Argon TIG Welded Joints
+- Sag-Proof Heavy Posts
 
 ## Custom Sizing & Fabrication
 Harichand Steel fabricates every gate strictly tailored to opening dimensions:

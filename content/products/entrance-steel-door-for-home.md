@@ -9,8 +9,11 @@ price: "On Request"
 image: "images/ChatGPT-Image-Feb-23-2026-04_22_55-PM-300x300.png"
 featured: false
 createdAt: "2026-01-15"
-updatedAt: "2026-11-03"
+updatedAt: "2026-11-04"
 specs:
+  - "Internal Steel Ribbing"
+  - "Multi-Point Deadbolt Locking"
+  - "Sound & Weather Insulated"
 ---
 # Entrance Steel Door For Home
 
@@ -31,6 +34,10 @@ Heavy-duty security steel door designed for bungalows and apartments with multi-
 - **Hardware & Bearing Setup:** Multi-point European mortise deadbolt system & tamper-proof ball-bearing hinges
 - **Motor Automation Compatibility:** Biometric fingerprint scanner, RFID card, and motorized smart lock ready
 
+## Core Features
+- Internal Steel Ribbing
+- Multi-Point Deadbolt Locking
+- Sound & Weather Insulated
 
 ## Custom Sizing & Fabrication
 Harichand Steel fabricates every gate strictly tailored to opening dimensions:

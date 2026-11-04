@@ -9,8 +9,11 @@ price: "On Request"
 image: "images/aluminuim-profile-box-1-1-1024x576.jpg"
 featured: true
 createdAt: "2026-01-18"
-updatedAt: "2026-11-03"
+updatedAt: "2026-11-04"
 specs:
+  - "Sublimation Wood Finish"
+  - "Zero Rot & Termite Proof"
+  - "Marine Grade Substrate"
 ---
 # Wood-Grain Powder Coated Profile Gate
 
@@ -31,6 +34,10 @@ Innovative heat-sublimated wood grain powder coating providing natural timber wa
 - **Hardware & Bearing Setup:** Marine-grade stainless-steel hinges and self-lubricating nylon guide rollers
 - **Motor Automation Compatibility:** Universal mounting brackets for motorized swing & sliding gate automation
 
+## Core Features
+- Sublimation Wood Finish
+- Zero Rot & Termite Proof
+- Marine Grade Substrate
 
 ## Custom Sizing & Fabrication
 Harichand Steel fabricates every gate strictly tailored to opening dimensions:

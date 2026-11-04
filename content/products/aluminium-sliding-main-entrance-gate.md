@@ -9,8 +9,11 @@ price: "On Request"
 image: "images/WhatsApp-Image-2026-02-23-at-12.55.26-PM-300x300.jpeg"
 featured: false
 createdAt: "2026-02-15"
-updatedAt: "2026-11-03"
+updatedAt: "2026-11-04"
 specs:
+  - "Italian Motor Compatible"
+  - "Tough Alloy Frame"
+  - "Wind Resilient"
 ---
 # Aluminium Sliding Main Entrance Gate
 
@@ -31,6 +34,10 @@ Smooth gliding bottom-track sliding gate engineered for silent, effortless motor
 - **Hardware & Bearing Setup:** Heavy-duty sealed stainless-steel ball bearing hinges & concealed locks
 - **Motor Automation Compatibility:** 100% compatible with motorized remote swing & sliding gate operators
 
+## Core Features
+- Italian Motor Compatible
+- Tough Alloy Frame
+- Wind Resilient
 
 ## Custom Sizing & Fabrication
 Harichand Steel fabricates every gate strictly tailored to opening dimensions:

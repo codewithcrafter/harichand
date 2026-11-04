@@ -9,8 +9,11 @@ price: "On Request"
 image: "images/20230723_115650-768x1024.jpg"
 featured: false
 createdAt: "2026-01-22"
-updatedAt: "2026-11-03"
+updatedAt: "2026-11-04"
 specs:
+  - "100% Certified SS304"
+  - "CNC Fiber Laser Precision"
+  - "Mirror Polish Accents"
 ---
 # SS304 Modern Laser Cut Steel Gate
 
@@ -31,6 +34,10 @@ Architectural grade SS304 stainless steel entrance gate with geometric laser cut
 - **Hardware & Bearing Setup:** Italian rolling track with double-bearing stainless steel wheels
 - **Motor Automation Compatibility:** Fully motorized remote automation ready with safety infrared sensors
 
+## Core Features
+- 100% Certified SS304
+- CNC Fiber Laser Precision
+- Mirror Polish Accents
 
 ## Custom Sizing & Fabrication
 Harichand Steel fabricates every gate strictly tailored to opening dimensions:

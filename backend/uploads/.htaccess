@@ -1,0 +1,36 @@
+# ============================================================================
+# HARICHAND STEEL — UPLOADS DIRECTORY SECURITY CONFIGURATION
+# Fortified for Hostinger Shared Hosting (Apache 2.4 + PHP-FPM / FastCGI)
+# ============================================================================
+
+# 1. Block access to all executable script extensions (Apache 2.4 & 2.2 compatible)
+<FilesMatch "(?i)\.(php|phar|phtml|php3|php4|php5|php7|php8|phps|pl|py|cgi|sh|bash|exe|bat|cmd|jsp|asp|aspx)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order Deny,Allow
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# 2. Prevent PHP-FPM / FastCGI execution via default handler override
+<IfModule mod_mime.c>
+    RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .php8
+    RemoveType .php .phtml .php3 .php4 .php5 .php7 .php8
+</IfModule>
+SetHandler default-handler
+
+# 3. Disable mod_php execution if active
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php7.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php8.c>
+    php_flag engine off
+</IfModule>
+
+# 4. Prevent directory indexing and script execution
+Options -Indexes -ExecCGI

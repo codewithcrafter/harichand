@@ -1,0 +1,13 @@
+# ============================================================================
+# HARICHAND STEEL — CONFIGURATION DIRECTORY ACCESS PROTECTION
+# Strictly denies all direct HTTP/HTTPS web requests to this directory
+# ============================================================================
+
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+    Order Deny,Allow
+    Deny from all
+</IfModule>
+

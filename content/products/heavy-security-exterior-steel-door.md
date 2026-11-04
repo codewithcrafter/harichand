@@ -9,8 +9,11 @@ price: "On Request"
 image: "images/Interior-Door_24388653330_product-jpeg-768x1024.jpg"
 featured: false
 createdAt: "2026-01-12"
-updatedAt: "2026-11-03"
+updatedAt: "2026-11-04"
 specs:
+  - "Double Galvanized Steel Skin"
+  - "High Security Multi-Bolt"
+  - "Weatherstrip Sound Insulation"
 ---
 # Heavy Security Exterior Steel Door
 
@@ -31,6 +34,10 @@ Double-walled reinforced steel perimeter door with multi-point biometric deadbol
 - **Hardware & Bearing Setup:** Multi-point European mortise deadbolt system & tamper-proof ball-bearing hinges
 - **Motor Automation Compatibility:** Biometric fingerprint scanner, RFID card, and motorized smart lock ready
 
+## Core Features
+- Double Galvanized Steel Skin
+- High Security Multi-Bolt
+- Weatherstrip Sound Insulation
 
 ## Custom Sizing & Fabrication
 Harichand Steel fabricates every gate strictly tailored to opening dimensions:

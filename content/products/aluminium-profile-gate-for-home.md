@@ -9,8 +9,11 @@ price: "On Request"
 image: "images/Aluminium-Profile-Main-Gate_2851615169991_product-jpeg-300x300.jpg"
 featured: false
 createdAt: "2026-02-20"
-updatedAt: "2026-11-03"
+updatedAt: "2026-11-04"
 specs:
+  - "Rust Proof Alloy"
+  - "Matte Charcoal Powder Coat"
+  - "Low Maintenance"
 ---
 # Aluminium Profile Gate For Home
 
@@ -31,6 +34,10 @@ Architectural aluminium slat gate suitable for contemporary residential driveway
 - **Hardware & Bearing Setup:** Heavy-duty sealed stainless-steel ball bearing hinges & concealed locks
 - **Motor Automation Compatibility:** 100% compatible with motorized remote swing & sliding gate operators
 
+## Core Features
+- Rust Proof Alloy
+- Matte Charcoal Powder Coat
+- Low Maintenance
 
 ## Custom Sizing & Fabrication
 Harichand Steel fabricates every gate strictly tailored to opening dimensions:

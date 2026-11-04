@@ -4,7 +4,7 @@ description: "Get in touch with Harichand Steel in Uttam Nagar, New Delhi. Call 
 url: "/contact/"
 canonical: "https://harichandsteel.com/contact/"
 layout: "page"
-updatedAt: "2026-11-03"
+updatedAt: "2026-11-04"
 ---
 
 # Contact

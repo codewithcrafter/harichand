@@ -9,8 +9,11 @@ price: "On Request"
 image: "images/20231103_094312-scaled.jpg"
 featured: false
 createdAt: "2026-02-08"
-updatedAt: "2026-11-03"
+updatedAt: "2026-11-04"
 specs:
+  - "Reinforced Iron Channel Frame"
+  - "Heavy Duty Bottom Rollers"
+  - "Weather Seal Coating"
 ---
 # Modern Cast Iron Sliding Gate
 
@@ -31,6 +34,10 @@ Industrial strength decorative iron sliding gate designed for wide bungalow entr
 - **Hardware & Bearing Setup:** Heavy-duty greaseable brass-core pivot hinges and Italian floor track
 - **Motor Automation Compatibility:** Compatible with high-torque Italian automated sliding & double-swing gear motors
 
+## Core Features
+- Reinforced Iron Channel Frame
+- Heavy Duty Bottom Rollers
+- Weather Seal Coating
 
 ## Custom Sizing & Fabrication
 Harichand Steel fabricates every gate strictly tailored to opening dimensions:
