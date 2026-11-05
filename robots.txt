@@ -1,0 +1,27 @@
+# ============================================================================
+# HARICHAND STEEL — ROBOTS.TXT
+# Search Engine Crawling & Indexing Directives
+# Canonical Domain: https://harichandsteel.com
+# ============================================================================
+
+User-agent: *
+Allow: /
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /webfonts/
+
+# Disallow Internal & Private Routes
+Disallow: /admin/
+Disallow: /admin.html
+Disallow: /backend/
+Disallow: /api/
+Disallow: /data/
+Disallow: /database/
+Disallow: /scratch/
+Disallow: /router.php
+Disallow: /sitemap.php
+
+# Sitemap Directive
+Sitemap: https://harichandsteel.com/sitemap.xml
+

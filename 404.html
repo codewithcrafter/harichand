@@ -10,22 +10,24 @@
   <script>
     // GitHub Pages SPA redirect handler
     (function () {
-      var path = window.location.pathname;
       var isGithub = window.location.hostname.endsWith('github.io');
-      var prefix = isGithub ? '/harichandsteel' : '';
+      if (!isGithub) return; // Production Apache handles routes natively; prevent redirect loops
+
+      var path = window.location.pathname;
+      var prefix = '/harichandsteel';
       var cleanPath = path.replace(prefix, '');
 
       // If it's a product detail route: /product/:slug/
       var prodMatch = cleanPath.match(/^\/product\/([a-zA-Z0-9_-]+)\/?$/i);
       if (prodMatch && prodMatch[1] !== 'page') {
-        window.location.replace((isGithub ? '/harichandsteel' : '') + '/product-detail/?slug=' + encodeURIComponent(prodMatch[1]));
+        window.location.replace('/harichandsteel/product/' + encodeURIComponent(prodMatch[1]) + '/');
         return;
       }
 
       // If it's a product category route: /product-category/:category/
       var catMatch = cleanPath.match(/^\/product-category\/([a-zA-Z0-9_-]+)\/?$/i);
       if (catMatch) {
-        window.location.replace((isGithub ? '/harichandsteel' : '') + '/product/?category=' + encodeURIComponent(catMatch[1]));
+        window.location.replace('/harichandsteel/product/?category=' + encodeURIComponent(catMatch[1]));
         return;
       }
     })();

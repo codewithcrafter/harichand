@@ -1,0 +1,27 @@
+# ============================================================================
+# HARICHAND STEEL — API DIRECTORY INTERNAL REWRITE ROUTER
+# Fortified fallback for Apache / LiteSpeed physical directory traversal
+# ============================================================================
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /api/
+
+    # Block direct HTTP access to old Node.js / Vercel script files
+    RewriteRule \.js$ - [F,L]
+
+    # Database Health Endpoints
+    RewriteRule ^db-status/?$ ../backend/api/db_status.php [L,QSA]
+    RewriteRule ^admin/db-status/?$ ../backend/api/db_status.php [L,QSA]
+
+    # Admin Authentication Endpoints
+    RewriteRule ^admin/check-auth/?$ ../backend/auth/check_auth.php [L,QSA]
+    RewriteRule ^admin/login/?$ ../backend/auth/login.php [L,QSA]
+    RewriteRule ^admin/logout/?$ ../backend/auth/logout.php [L,QSA]
+
+    # Core REST Resources
+    RewriteRule ^products/?$ ../backend/api/products/index.php [L,QSA]
+    RewriteRule ^blogs/?$ ../backend/api/blogs/index.php [L,QSA]
+    RewriteRule ^inquiries/?$ ../backend/api/inquiries/index.php [L,QSA]
+    RewriteRule ^upload/?$ ../backend/api/upload.php [L,QSA]
+</IfModule>

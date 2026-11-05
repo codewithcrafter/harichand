@@ -634,26 +634,30 @@
         targetSlug = window.location.hash.substring(1);
       }
 
+      // Check for server-injected MySQL product data (SSR hydration)
+      let product = (typeof window !== 'undefined' && window.__INITIAL_PRODUCT__)
+        ? window.__INITIAL_PRODUCT__
+        : null;
+
       // 2. Retrieve products from CMS / localStorage
       const products = (typeof CMS !== 'undefined' && typeof CMS.getProducts === 'function')
         ? CMS.getProducts()
         : [];
 
-      if (!products || !products.length) return;
-
-      // 3. Find matching product
-      let product = null;
-      if (targetSlug) {
-        const cleanTarget = targetSlug.toLowerCase().trim();
-        product = products.find(p => {
-          const pSlug = (p.slug || slugify(p.title || p.id)).toLowerCase();
-          return pSlug === cleanTarget || (p.id && p.id.toLowerCase() === cleanTarget);
-        });
-      }
-
-      // Fallback to first product if slug not found
+      // 3. Find matching product if not already supplied by server hydration
       if (!product) {
-        product = products[0];
+        if (targetSlug && products.length) {
+          const cleanTarget = targetSlug.toLowerCase().trim();
+          product = products.find(p => {
+            const pSlug = (p.slug || slugify(p.title || p.id)).toLowerCase();
+            return pSlug === cleanTarget || (p.id && String(p.id).toLowerCase() === cleanTarget);
+          });
+        }
+
+        // Fallback to first product if slug not found
+        if (!product && products.length) {
+          product = products[0];
+        }
       }
 
       if (!product) return;
@@ -834,7 +838,7 @@
 
         relatedGrid.innerHTML = fallbackRelated.map(rp => {
           const rSlug = rp.slug || slugify(rp.title || rp.id);
-          const rUrl = `product/${rSlug}/`;
+          const rUrl = `/product/${rSlug}/`;
           const rImg = normImg(rp.image);
           const rTitle = escapeHtml(rp.title);
           const rBadge = escapeHtml(rp.badge || 'Premium Build');

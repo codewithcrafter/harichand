@@ -1,0 +1,128 @@
+# ============================================================================
+# HARICHAND STEEL — APACHE & LITESPEED ENTERPRISE ROUTING CONFIGURATION
+# Platform Compatibility: Apache 2.4+ / Hostinger Shared Hosting (LiteSpeed / hPanel)
+# ============================================================================
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # ------------------------------------------------------------------------
+    # 1. SECURITY & ACCESS CONTROL (BLOCK SENSITIVE FILES & CONFIGURATION)
+    # ------------------------------------------------------------------------
+    # Deny direct access to system dotfiles, environment, and version control
+    RewriteRule ^(\.env|\.git|\.htaccess) - [F,L]
+
+    # Deny direct access to server-side source files, package manifests, and Node scripts
+    RewriteRule ^(package\.json|package-lock\.json|composer\.json|server\.js|db\.js) - [F,L]
+
+    # Deny direct HTTP access to flat-file JSON databases and database migrations
+    RewriteRule ^data/.*\.json$ - [F,L]
+    RewriteRule ^database/ - [F,L]
+
+    # Protect physical public_html/api/ folder and its legacy JS scripts from direct HTTP access
+    RewriteRule ^api/.*\.js$ - [F,L]
+    RewriteRule ^api/?$ - [F,L]
+
+    # ------------------------------------------------------------------------
+    # 2. PROTECT BACKEND DIRECT ACCESS
+    # Block external direct HTTP requests to internal /backend/ scripts,
+    # while permitting internal subrequests from approved /api/ routes
+    # and legitimate public static assets in /backend/uploads/
+    # ------------------------------------------------------------------------
+    RewriteCond %{THE_REQUEST} \s/+backend/ [NC]
+    RewriteCond %{REQUEST_URI} !^/backend/uploads/ [NC]
+    RewriteRule ^backend/ - [F,L]
+
+    # ------------------------------------------------------------------------
+    # 3. SEO & DISCOVERY DIRECTIVES
+    # ------------------------------------------------------------------------
+    # Dynamic XML Sitemap (served dynamically by sitemap.php)
+    RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
+    # ------------------------------------------------------------------------
+    # 4. CORE REST API ENDPOINTS (PRESERVES HTTP METHODS & QUERY STRINGS)
+    # Evaluated before physical directory fallbacks to cleanly bypass public_html/api/
+    # ------------------------------------------------------------------------
+    # Database Health & Status Endpoints
+    RewriteRule ^api/db-status/?$ backend/api/db_status.php [L,QSA]
+    RewriteRule ^api/admin/db-status/?$ backend/api/db_status.php [L,QSA]
+
+    # Admin Authentication & Session Management
+    RewriteRule ^api/admin/check-auth/?$ backend/auth/check_auth.php [L,QSA]
+    RewriteRule ^api/admin/login/?$ backend/auth/login.php [L,QSA]
+    RewriteRule ^api/admin/logout/?$ backend/auth/logout.php [L,QSA]
+
+    # Core REST Resources (Products, Blogs, Inquiries, Upload)
+    RewriteRule ^api/products/?$ backend/api/products/index.php [L,QSA]
+    RewriteRule ^api/blogs/?$ backend/api/blogs/index.php [L,QSA]
+    RewriteRule ^api/inquiries/?$ backend/api/inquiries/index.php [L,QSA]
+    RewriteRule ^api/upload/?$ backend/api/upload.php [L,QSA]
+
+    # ------------------------------------------------------------------------
+    # 4b. PERMANENT 301 REDIRECTS FOR LEGACY PRODUCT URLS
+    # ------------------------------------------------------------------------
+    # Redirect /product-detail/?slug=xxx or /product-detail.html?slug=xxx -> /product/xxx/
+    RewriteCond %{THE_REQUEST} \s/+(?:product-detail(?:\.html)?|product-detail/)\?(?:[^&\s]*&)*slug=([a-zA-Z0-9_-]+) [NC]
+    RewriteRule ^ /product/%1/? [R=301,L,NE]
+
+    # If legacy product-detail visited without slug parameter, redirect to catalogue
+    RewriteRule ^product-detail(?:\.html)?/?$ /product/ [R=301,L]
+
+    # ------------------------------------------------------------------------
+    # 5. DYNAMIC SEO CATALOGUE & CATEGORY ROUTING
+    # ------------------------------------------------------------------------
+    # Enforce canonical trailing slash: /product/:slug -> /product/:slug/
+    RewriteCond %{REQUEST_METHOD} =GET [NC]
+    RewriteRule ^product/((?!page$)[a-zA-Z0-9_-]+)$ /product/$1/ [R=301,L]
+
+    # Product Detail Pages: /product/:slug/
+    RewriteRule ^product/((?!page/)[a-zA-Z0-9_-]+)/$ router.php?route=product&slug=$1 [L,QSA]
+
+    # Product Category Pages with Pagination: /product-category/:cat/page/:num/
+    RewriteRule ^product-category/([a-zA-Z0-9_-]+)/page/([0-9]+)/?$ router.php?route=category&cat=$1&page=$2 [L,QSA]
+    RewriteRule ^product-category/([a-zA-Z0-9_-]+)/?$ router.php?route=category&cat=$1 [L,QSA]
+
+    # Product Catalogue Listing Base & Pagination: /product/page/:num/
+    RewriteRule ^product/page/([0-9]+)/?$ product.html [L,QSA]
+    RewriteRule ^product/?$ product.html [L,QSA]
+
+    # ------------------------------------------------------------------------
+    # 6. CLEAN CANONICAL URLS FOR CORE STATIC PAGES
+    # ------------------------------------------------------------------------
+    RewriteRule ^about-us/?$ about-us.html [L]
+    RewriteRule ^contact/?$ contact.html [L]
+    RewriteRule ^our-products/?$ our-products.html [L]
+    RewriteRule ^news/?$ news.html [L]
+    RewriteRule ^privacy-policy/?$ privacy-policy.html [L]
+    RewriteRule ^admin/?$ admin.html [L]
+    RewriteRule ^sitemap/?$ sitemap.html [L]
+
+    # ------------------------------------------------------------------------
+    # 7. CLEAN CANONICAL URLS FOR DEDICATED BLOG ARTICLES
+    # ------------------------------------------------------------------------
+    RewriteRule ^steel-gate-design/?$ steel-gate-design.html [L]
+    RewriteRule ^best-steel-gate-manufacturer-in-delhi/?$ best-steel-gate-manufacturer-in-delhi.html [L]
+    RewriteRule ^aluminium-profile-gate-manufacturer-in-janakpuri/?$ aluminium-profile-gate-manufacturer-in-janakpuri.html [L]
+
+    # ------------------------------------------------------------------------
+    # 8. GENERIC CLEAN HTML EXTENSIONLESS FALLBACK
+    # Maps any /page/ or /page to page.html if matching physical file exists
+    # ------------------------------------------------------------------------
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.html -f
+    RewriteRule ^(.*)/?$ $1.html [L]
+</IfModule>
+
+# ----------------------------------------------------------------------------
+# 9. ERROR DOCUMENTS & SERVER DEFAULTS
+# ----------------------------------------------------------------------------
+# Custom 404 Error Document (Maintains strict HTTP 404 status code; no 302 redirect)
+ErrorDocument 404 /404.html
+
+# Prevent Directory Browsing
+Options -Indexes
+
+# UTF-8 Encoding default
+AddDefaultCharset UTF-8

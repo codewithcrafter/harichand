@@ -585,7 +585,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <td><span class="pill-badge">${escapeHtml(prod.badge || 'Standard')}</span></td>
             <td>
               <div class="table-actions">
-                <a href="/product/${prod.slug || slugifyProd(prod.title, prod.id)}" target="_blank" class="admin-btn admin-btn-outline admin-btn-sm" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);" title="View Live Product Page">
+                <a href="/product/${prod.slug || slugifyProd(prod.title, prod.id)}/" target="_blank" class="admin-btn admin-btn-outline admin-btn-sm" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);" title="View Live Product Page">
                   <i class="fas fa-external-link-alt"></i>
                 </a>
                 <button type="button" class="admin-btn admin-btn-outline admin-btn-sm" onclick="window.adminCMS.editProduct('${prod.id}')" title="Edit">
@@ -711,7 +711,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <td><strong style="color: var(--admin-accent); font-size: 0.88rem;">${escapeHtml(prod.price || 'On Request')}</strong></td>
           <td style="text-align: right;">
             <div class="table-actions" style="justify-content: flex-end; gap: 6px;">
-              <a href="/product/${prod.slug || slugifyProd(prod.title, prod.id)}" target="_blank" class="admin-btn admin-btn-outline admin-btn-sm" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);" title="View Live Product Page">
+              <a href="/product/${prod.slug || slugifyProd(prod.title, prod.id)}/" target="_blank" class="admin-btn admin-btn-outline admin-btn-sm" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);" title="View Live Product Page">
                 <i class="fas fa-external-link-alt"></i> View
               </a>
               <button type="button" class="admin-btn admin-btn-outline admin-btn-sm" onclick="window.adminCMS.editProduct('${prod.id}')" title="Edit Product">
