@@ -9,7 +9,7 @@ price: "On Request"
 image: "images/20231103_094312-scaled.jpg"
 featured: false
 createdAt: "2026-02-08"
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-05"
 specs:
   - "Reinforced Iron Channel Frame"
   - "Heavy Duty Bottom Rollers"

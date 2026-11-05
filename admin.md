@@ -4,7 +4,7 @@ description: ""
 url: "/admin/"
 canonical: "https://harichandsteel.com/admin/"
 layout: "page"
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-05"
 ---
 
 # Admin Dashboard | Harichand Steel CMS

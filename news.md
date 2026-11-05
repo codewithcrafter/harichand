@@ -4,7 +4,7 @@ description: "Explore the latest news, articles, and informative blogs from Hari
 url: "/news/"
 canonical: "https://harichandsteel.com/news/"
 layout: "page"
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-05"
 ---
 
 # News & Blogs | Harichand Steel

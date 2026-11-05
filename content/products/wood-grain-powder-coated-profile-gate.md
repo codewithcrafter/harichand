@@ -9,7 +9,7 @@ price: "On Request"
 image: "images/aluminuim-profile-box-1-1-1024x576.jpg"
 featured: true
 createdAt: "2026-01-18"
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-05"
 specs:
   - "Sublimation Wood Finish"
   - "Zero Rot & Termite Proof"

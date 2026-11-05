@@ -9,7 +9,7 @@ price: "On Request"
 image: "images/ChatGPT-Image-Feb-23-2026-12_37_41-PM-300x300.png"
 featured: false
 createdAt: "2026-02-18"
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-05"
 specs:
   - "Heavy Extrusion Slat"
   - "Motorized Sliding Compatible"

@@ -9,7 +9,7 @@ price: "₹ 1,85,000"
 image: "images/prod-1.png"
 featured: false
 createdAt: "2026-10-31"
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-05"
 specs:
 ---
 # Automated Test Luxury Gate 2026

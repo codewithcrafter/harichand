@@ -9,7 +9,7 @@ price: "On Request"
 image: "images/20231029_141009-1024x768.jpg"
 featured: false
 createdAt: "2026-02-02"
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-05"
 specs:
   - "10-Year Coating Guarantee"
   - "Impact & Scratch Resistant"

@@ -8,7 +8,7 @@ date: "January 19, 2026"
 image: "/images/about-3.jpg"
 excerpt: "Explore the most popular steel gate designs for modern homes, villas, and commercial properties, including laser-cut CNC patterns, SS304 durability, and motorized options."
 published: true
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-05"
 ---
 # Latest Steel Gate Design (2025) – Ultimate Modern Guide
 

@@ -4,7 +4,7 @@ description: "HTML Sitemap for Harichand Steel. Easily browse all pages, gate mo
 url: "/sitemap/"
 canonical: "https://harichandsteel.com/sitemap/"
 layout: "page"
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-05"
 ---
 
 # Sitemap

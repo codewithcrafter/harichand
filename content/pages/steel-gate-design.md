@@ -4,7 +4,7 @@ description: "Discover the latest modern steel gate designs in 2025. Explore sta
 url: "/steel-gate-design/"
 canonical: "https://harichandsteel.com/steel-gate-design/"
 layout: "page"
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-05"
 ---
 
 # Latest Steel Gate Design | Get Best Price

@@ -4,7 +4,7 @@ description: "Browse our full product catalogue: Aluminium profile gates, stainl
 url: "/product/"
 canonical: "https://harichandsteel.com/product/"
 layout: "page"
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-05"
 ---
 
 # Product

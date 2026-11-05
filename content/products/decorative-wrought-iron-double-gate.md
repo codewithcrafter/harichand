@@ -9,7 +9,7 @@ price: "On Request"
 image: "images/download-5.jpg"
 featured: false
 createdAt: "2026-01-25"
-updatedAt: "2026-11-04"
+updatedAt: "2026-11-05"
 specs:
   - "Traditional Forged Iron"
   - "Anti-Sag Heavy Pivot Bushings"
