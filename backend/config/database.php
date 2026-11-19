@@ -90,11 +90,20 @@ class Database {
             self::$lastError = null;
             return self::$instance;
         } catch (PDOException $e) {
-            self::$instance = null;
-            self::$lastError = $e->getMessage();
-            // Log securely without leaking credentials to output
-            error_log("[Harichand DB Error] Connection failed to {$host}:{$port}/{$name} - " . $e->getMessage());
-            return null;
+            // Smart fail-safe: if primary host fails, try fallback host (srv1328.hstgr.io <-> localhost)
+            $fallbackHost = ($host === 'localhost' || $host === '127.0.0.1') ? 'srv1328.hstgr.io' : 'localhost';
+            try {
+                $fallbackDsn = "mysql:host={$fallbackHost};port={$port};dbname={$name};charset={$charset}";
+                self::$instance = new PDO($fallbackDsn, $user, $pass, $options);
+                self::$lastError = null;
+                return self::$instance;
+            } catch (PDOException $e2) {
+                self::$instance = null;
+                self::$lastError = $e->getMessage();
+                // Log securely without leaking credentials to output
+                error_log("[Harichand DB Error] Connection failed to {$host} and {$fallbackHost} - " . $e->getMessage());
+                return null;
+            }
         }
     }
 

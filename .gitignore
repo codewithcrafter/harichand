@@ -3,5 +3,8 @@ node_modules/
 .DS_Store
 Thumbs.db
 .vercel
-
 _temp_analysis/
+
+# Private local configuration files (NEVER commit credentials)
+*.local.php
+backend/config/database.local.php
