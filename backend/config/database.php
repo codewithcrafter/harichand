@@ -37,11 +37,11 @@ class Database {
         self::$connectionAttempted = true;
 
         // 1. Resolve credentials from environment or configuration
-        $host = getenv('DB_HOST') ?: '127.0.0.1';
+        $host = getenv('DB_HOST') ?: 'srv1328.hstgr.io';
         $port = getenv('DB_PORT') ?: '3306';
-        $name = getenv('DB_NAME') ?: 'harichand_db';
-        $user = getenv('DB_USER') ?: 'root';
-        $pass = getenv('DB_PASS') ?: '';
+        $name = getenv('DB_NAME') ?: 'u555726154_harichand_db';
+        $user = getenv('DB_USER') ?: 'u555726154_harichand_user';
+        $pass = getenv('DB_PASS') ?: 'Harichand@2026#';
         $charset = 'utf8mb4';
 
         // Check for local configuration file if present
@@ -134,4 +134,3 @@ class Database {
         ];
     }
 }
-
