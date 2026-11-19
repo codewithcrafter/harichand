@@ -35,9 +35,13 @@
     RewriteRule ^backend/ - [F,L]
 
     # ------------------------------------------------------------------------
-    # 3. SEO & DISCOVERY DIRECTIVES
+    # 3. SEO & DISCOVERY DIRECTIVES (XML SITEMAP & ROBOTS)
     # ------------------------------------------------------------------------
-    # Dynamic XML Sitemap (served dynamically by sitemap.php)
+    # If physical sitemap.xml exists, serve it directly without rewriting
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^sitemap\.xml$ - [L]
+
+    # Fallback to dynamic sitemap.php generator if physical file is missing
     RewriteRule ^sitemap\.xml$ sitemap.php [L]
 
     # ------------------------------------------------------------------------

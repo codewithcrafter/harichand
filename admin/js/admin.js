@@ -551,7 +551,10 @@ document.addEventListener('DOMContentLoaded', function () {
   // ==========================================
   // 4. DASHBOARD RENDERER
   // ==========================================
-  function renderDashboard() {
+  function renderDashboard(triggerSync = true) {
+    if (triggerSync) {
+      syncProductsFromApi();
+    }
     const products = CMS.getProducts();
     const blogs = CMS.getBlogs();
     const inquiries = CMS.getInquiries();
@@ -639,9 +642,35 @@ document.addEventListener('DOMContentLoaded', function () {
   // ==========================================
   // 5. PRODUCTS MANAGER
   // ==========================================
-    function renderProducts(page = null) {
-    if (page !== null) {
+  let isFetchingProducts = false;
+  async function syncProductsFromApi() {
+    if (isFetchingProducts) return;
+    isFetchingProducts = true;
+    try {
+      const res = await fetch('/api/products');
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) {
+          localStorage.setItem('hs_cms_products', JSON.stringify(data));
+          if (typeof CMS !== 'undefined' && typeof CMS.setProducts === 'function') {
+            CMS.setProducts(data);
+          }
+          renderProducts(null, false);
+          renderDashboard(false);
+        }
+      }
+    } catch (_) {}
+    finally {
+      isFetchingProducts = false;
+    }
+  }
+
+  function renderProducts(page = null, triggerSync = true) {
+    if (page !== null && typeof page === 'number') {
       paginationState.products = page;
+    }
+    if (triggerSync) {
+      syncProductsFromApi();
     }
     const products = CMS.getProducts();
     const searchTerm = (productSearchInput ? productSearchInput.value : '').toLowerCase().trim();
@@ -1741,6 +1770,7 @@ document.addEventListener('DOMContentLoaded', function () {
     paginationState[initial.section] = initial.page;
   }
   switchTab(initial.section, false);
+  syncProductsFromApi();
   renderBlogs();
   checkDbStatus();
 });

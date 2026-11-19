@@ -4,6 +4,57 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
+  // 0. Authentication Guard & Session Verification
+  async function checkAdminAuth() {
+    try {
+      const sessionKey = localStorage.getItem('hs_admin_session') || localStorage.getItem('hs_admin_api_key');
+      const res = await fetch('/api/admin/check-auth', {
+        headers: sessionKey ? { 'Authorization': 'Bearer ' + sessionKey, 'x-admin-key': sessionKey } : {}
+      });
+      const data = await res.json();
+      if (!data.authenticated) {
+        localStorage.removeItem('hs_admin_session');
+        localStorage.removeItem('hs_admin_api_key');
+        const currentPath = window.location.pathname + window.location.search;
+        window.location.href = '/admin/login?redirect=' + encodeURIComponent(currentPath);
+        return false;
+      }
+      if (data.username) {
+        const nameElem = document.querySelector('.user-name');
+        if (nameElem) nameElem.textContent = data.username;
+      }
+      return true;
+    } catch (e) {
+      return true;
+    }
+  }
+  checkAdminAuth();
+
+  // Logout Handlers
+  async function handleAdminLogout(e) {
+    if (e) e.preventDefault();
+    if (confirm('Are you sure you want to log out of the admin panel?')) {
+      try {
+        await fetch('/api/admin/logout', { method: 'POST' });
+      } catch (_) {}
+      localStorage.removeItem('hs_admin_session');
+      localStorage.removeItem('hs_admin_api_key');
+      window.location.href = '/admin/login';
+    }
+  }
+
+  const btnLogoutSidebar = document.getElementById('btnAdminLogout');
+  if (btnLogoutSidebar) {
+    btnLogoutSidebar.addEventListener('click', handleAdminLogout);
+  }
+
+  const btnLogoutTopbar = document.getElementById('topbarLogoutBtn');
+  if (btnLogoutTopbar) {
+    btnLogoutTopbar.addEventListener('click', handleAdminLogout);
+  }
+
+  // --- End Auth Integration ---
+
   // Check CMS availability
   if (typeof CMS === 'undefined') {
     console.error('CMS module not found! Ensure js/cms-data.js is loaded before js/admin.js.');
@@ -500,7 +551,10 @@ document.addEventListener('DOMContentLoaded', function () {
   // ==========================================
   // 4. DASHBOARD RENDERER
   // ==========================================
-  function renderDashboard() {
+  function renderDashboard(triggerSync = true) {
+    if (triggerSync) {
+      syncProductsFromApi();
+    }
     const products = CMS.getProducts();
     const blogs = CMS.getBlogs();
     const inquiries = CMS.getInquiries();
@@ -534,7 +588,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <td><span class="pill-badge">${escapeHtml(prod.badge || 'Standard')}</span></td>
             <td>
               <div class="table-actions">
-                <a href="/product/${prod.slug || slugifyProd(prod.title, prod.id)}" target="_blank" class="admin-btn admin-btn-outline admin-btn-sm" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);" title="View Live Product Page">
+                <a href="/product/${prod.slug || slugifyProd(prod.title, prod.id)}/" target="_blank" class="admin-btn admin-btn-outline admin-btn-sm" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);" title="View Live Product Page">
                   <i class="fas fa-external-link-alt"></i>
                 </a>
                 <button type="button" class="admin-btn admin-btn-outline admin-btn-sm" onclick="window.adminCMS.editProduct('${prod.id}')" title="Edit">
@@ -588,9 +642,35 @@ document.addEventListener('DOMContentLoaded', function () {
   // ==========================================
   // 5. PRODUCTS MANAGER
   // ==========================================
-    function renderProducts(page = null) {
-    if (page !== null) {
+  let isFetchingProducts = false;
+  async function syncProductsFromApi() {
+    if (isFetchingProducts) return;
+    isFetchingProducts = true;
+    try {
+      const res = await fetch('/api/products');
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) {
+          localStorage.setItem('hs_cms_products', JSON.stringify(data));
+          if (typeof CMS !== 'undefined' && typeof CMS.setProducts === 'function') {
+            CMS.setProducts(data);
+          }
+          renderProducts(null, false);
+          renderDashboard(false);
+        }
+      }
+    } catch (_) {}
+    finally {
+      isFetchingProducts = false;
+    }
+  }
+
+  function renderProducts(page = null, triggerSync = true) {
+    if (page !== null && typeof page === 'number') {
       paginationState.products = page;
+    }
+    if (triggerSync) {
+      syncProductsFromApi();
     }
     const products = CMS.getProducts();
     const searchTerm = (productSearchInput ? productSearchInput.value : '').toLowerCase().trim();
@@ -660,7 +740,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <td><strong style="color: var(--admin-accent); font-size: 0.88rem;">${escapeHtml(prod.price || 'On Request')}</strong></td>
           <td style="text-align: right;">
             <div class="table-actions" style="justify-content: flex-end; gap: 6px;">
-              <a href="/product/${prod.slug || slugifyProd(prod.title, prod.id)}" target="_blank" class="admin-btn admin-btn-outline admin-btn-sm" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);" title="View Live Product Page">
+              <a href="/product/${prod.slug || slugifyProd(prod.title, prod.id)}/" target="_blank" class="admin-btn admin-btn-outline admin-btn-sm" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);" title="View Live Product Page">
                 <i class="fas fa-external-link-alt"></i> View
               </a>
               <button type="button" class="admin-btn admin-btn-outline admin-btn-sm" onclick="window.adminCMS.editProduct('${prod.id}')" title="Edit Product">
@@ -685,6 +765,169 @@ document.addEventListener('DOMContentLoaded', function () {
   if (productSearchInput) productSearchInput.addEventListener("input", () => { paginationState.products = 1; updateAdminUrl("products", 1, false); renderProducts(); });
   if (productCategoryFilter) productCategoryFilter.addEventListener("change", () => { paginationState.products = 1; updateAdminUrl("products", 1, false); renderProducts(); });
   if (productCategoryFilter) productCategoryFilter.addEventListener('change', renderProducts);
+
+  
+  // --- Google Product Schema Live Preview & Form Helpers ---
+  const prodSchemaEnabled = document.getElementById('prodSchemaEnabled');
+  const prodSchemaOfferEnabled = document.getElementById('prodSchemaOfferEnabled');
+  const prodSchemaReviewEnabled = document.getElementById('prodSchemaReviewEnabled');
+  const prodSchemaSku = document.getElementById('prodSchemaSku');
+  const prodSchemaMpn = document.getElementById('prodSchemaMpn');
+  const prodSchemaBrand = document.getElementById('prodSchemaBrand');
+  const prodSchemaGtin = document.getElementById('prodSchemaGtin');
+  const prodSchemaPrice = document.getElementById('prodSchemaPrice');
+  const prodSchemaCurrency = document.getElementById('prodSchemaCurrency');
+  const prodSchemaAvailability = document.getElementById('prodSchemaAvailability');
+  const prodSchemaCondition = document.getElementById('prodSchemaCondition');
+  const prodSchemaPriceValidUntil = document.getElementById('prodSchemaPriceValidUntil');
+  const schemaReviewFieldsContainer = document.getElementById('schemaReviewFieldsContainer');
+  const schemaControlsContainer = document.getElementById('schemaControlsContainer');
+  const prodSchemaRatingValue = document.getElementById('prodSchemaRatingValue');
+  const prodSchemaReviewCount = document.getElementById('prodSchemaReviewCount');
+  const prodReviewAuthor = document.getElementById('prodReviewAuthor');
+  const prodReviewRating = document.getElementById('prodReviewRating');
+  const prodReviewTitle = document.getElementById('prodReviewTitle');
+  const prodReviewDate = document.getElementById('prodReviewDate');
+  const prodReviewBody = document.getElementById('prodReviewBody');
+  const schemaValidationBadge = document.getElementById('schemaValidationBadge');
+  const schemaPreviewCode = document.getElementById('schemaPreviewCode');
+  const schemaMissingAlert = document.getElementById('schemaMissingAlert');
+  const btnCopySchemaPreview = document.getElementById('btnCopySchemaPreview');
+
+  function renderLiveSchemaPreview() {
+    if (!schemaPreviewCode) return;
+
+    if (prodSchemaEnabled && !prodSchemaEnabled.checked) {
+      if (schemaValidationBadge) {
+        schemaValidationBadge.innerHTML = '<span class="badge" style="background: #64748b; color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 600;"><i class="fas fa-ban"></i> Schema Disabled</span>';
+      }
+      schemaPreviewCode.textContent = '// Google Product Schema is disabled for this product.\n// No JSON-LD structured data will be rendered on the product page.';
+      if (schemaMissingAlert) schemaMissingAlert.style.display = 'none';
+      if (schemaControlsContainer) schemaControlsContainer.style.opacity = '0.4';
+      return;
+    }
+
+    if (schemaControlsContainer) schemaControlsContainer.style.opacity = '1';
+
+    // Construct preview product object
+    const tempProd = {
+      id: prodInputId ? prodInputId.value : '4',
+      title: prodInputTitle ? prodInputTitle.value.trim() : 'Custom Gate Product',
+      name: prodInputTitle ? prodInputTitle.value.trim() : 'Custom Gate Product',
+      category: prodInputCategory ? prodInputCategory.value : 'aluminum-profile-gate',
+      categoryName: prodInputCategoryName ? prodInputCategoryName.value.trim() : 'Aluminum Profile Gate',
+      price: prodInputPrice ? prodInputPrice.value.trim() : 'On Request',
+      image: prodInputImage ? prodInputImage.value.trim() : 'images/prod-1.png',
+      description: prodInputDescription ? prodInputDescription.value.trim() : '',
+      schemaEnabled: prodSchemaEnabled ? prodSchemaEnabled.checked : true,
+      schemaOfferEnabled: prodSchemaOfferEnabled ? prodSchemaOfferEnabled.checked : true,
+      schemaReviewEnabled: prodSchemaReviewEnabled ? prodSchemaReviewEnabled.checked : false,
+      schemaSku: prodSchemaSku ? prodSchemaSku.value.trim() : '',
+      schemaMpn: prodSchemaMpn ? prodSchemaMpn.value.trim() : '',
+      schemaBrand: prodSchemaBrand ? prodSchemaBrand.value.trim() : 'Harichand Steel',
+      schemaGtin: prodSchemaGtin ? prodSchemaGtin.value.trim() : '',
+      schemaPrice: prodSchemaPrice ? prodSchemaPrice.value : '',
+      schemaCurrency: prodSchemaCurrency ? prodSchemaCurrency.value : 'INR',
+      schemaAvailability: prodSchemaAvailability ? prodSchemaAvailability.value : 'https://schema.org/InStock',
+      schemaCondition: prodSchemaCondition ? prodSchemaCondition.value : 'https://schema.org/NewCondition',
+      schemaPriceValidUntil: prodSchemaPriceValidUntil ? prodSchemaPriceValidUntil.value : '2026-12-31'
+    };
+
+    if (tempProd.schemaReviewEnabled) {
+      tempProd.schemaRatingValue = prodSchemaRatingValue ? prodSchemaRatingValue.value : '';
+      tempProd.schemaReviewCount = prodSchemaReviewCount ? prodSchemaReviewCount.value : '';
+      if (prodReviewAuthor && prodReviewAuthor.value.trim() && prodReviewBody && prodReviewBody.value.trim()) {
+        tempProd.schemaReviews = [{
+          author: prodReviewAuthor.value.trim(),
+          rating: prodReviewRating ? parseInt(prodReviewRating.value, 10) : 5,
+          title: prodReviewTitle ? prodReviewTitle.value.trim() : 'Verified Review',
+          date: prodReviewDate ? prodReviewDate.value : new Date().toISOString().split('T')[0],
+          body: prodReviewBody.value.trim()
+        }];
+      }
+    }
+
+    const generator = (typeof ProductSchema !== 'undefined' && ProductSchema.generateProductSchema)
+      ? ProductSchema.generateProductSchema
+      : null;
+
+    if (!generator) {
+      schemaPreviewCode.textContent = '// Loading ProductSchema generator module...';
+      return;
+    }
+
+    const schema = generator(tempProd);
+    const validator = (typeof ProductSchema !== 'undefined' && ProductSchema.validateProductSchema)
+      ? ProductSchema.validateProductSchema
+      : null;
+
+    if (schema) {
+      schemaPreviewCode.textContent = JSON.stringify(schema, null, 2);
+
+      if (validator) {
+        const valRes = validator(schema);
+        if (valRes.valid) {
+          if (schemaValidationBadge) {
+            schemaValidationBadge.innerHTML = '<span class="badge" style="background: #22c55e; color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 600;"><i class="fas fa-check-circle"></i> Schema Valid</span>';
+          }
+          if (schemaMissingAlert) {
+            if (valRes.warnings && valRes.warnings.length > 0) {
+              schemaMissingAlert.style.display = 'block';
+              schemaMissingAlert.style.background = 'rgba(245, 158, 11, 0.15)';
+              schemaMissingAlert.style.color = '#fde68a';
+              schemaMissingAlert.innerHTML = '<i class="fas fa-info-circle"></i> ' + valRes.warnings.join(' | ');
+            } else {
+              schemaMissingAlert.style.display = 'none';
+            }
+          }
+        } else {
+          if (schemaValidationBadge) {
+            schemaValidationBadge.innerHTML = '<span class="badge" style="background: #ef4444; color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 600;"><i class="fas fa-exclamation-triangle"></i> Incomplete</span>';
+          }
+          if (schemaMissingAlert) {
+            schemaMissingAlert.style.display = 'block';
+            schemaMissingAlert.style.background = 'rgba(239, 68, 68, 0.15)';
+            schemaMissingAlert.style.color = '#fca5a5';
+            schemaMissingAlert.innerHTML = '<i class="fas fa-times-circle"></i> ' + valRes.errors.join(' | ');
+          }
+        }
+      }
+    }
+  }
+
+  // Schema UI event listeners
+  if (prodSchemaReviewEnabled) {
+    prodSchemaReviewEnabled.addEventListener('change', function () {
+      if (schemaReviewFieldsContainer) {
+        schemaReviewFieldsContainer.style.display = this.checked ? 'block' : 'none';
+      }
+      renderLiveSchemaPreview();
+    });
+  }
+
+  if (prodSchemaEnabled) {
+    prodSchemaEnabled.addEventListener('change', renderLiveSchemaPreview);
+  }
+
+  [prodSchemaOfferEnabled, prodSchemaAvailability, prodSchemaCondition, prodSchemaCurrency, prodReviewRating].forEach(el => {
+    if (el) el.addEventListener('change', renderLiveSchemaPreview);
+  });
+
+  [prodSchemaSku, prodSchemaMpn, prodSchemaBrand, prodSchemaGtin, prodSchemaPrice, prodSchemaPriceValidUntil, prodSchemaRatingValue, prodSchemaReviewCount, prodReviewAuthor, prodReviewTitle, prodReviewDate, prodReviewBody, prodInputTitle, prodInputPrice, prodInputImage, prodInputDescription].forEach(el => {
+    if (el) el.addEventListener('input', renderLiveSchemaPreview);
+  });
+
+  if (btnCopySchemaPreview) {
+    btnCopySchemaPreview.addEventListener('click', function () {
+      if (schemaPreviewCode && schemaPreviewCode.textContent) {
+        navigator.clipboard.writeText(schemaPreviewCode.textContent).then(() => {
+          showToast('JSON-LD Schema copied to clipboard!', 'success');
+        }).catch(() => {
+          showToast('Failed to copy schema', 'error');
+        });
+      }
+    });
+  }
 
   // Open Product Modal
   function openProductModal(prodOrId = null) {
@@ -712,6 +955,45 @@ document.addEventListener('DOMContentLoaded', function () {
       if (prodInputAutomation) prodInputAutomation.value = prod.automation || '';
       prodInputFeatured.checked = !!prod.featured;
       updateImagePreview(prodImagePreview, prod.image);
+
+      // Populate Google Product Schema fields
+      if (prodSchemaEnabled) prodSchemaEnabled.checked = prod.schemaEnabled !== false;
+      if (prodSchemaOfferEnabled) prodSchemaOfferEnabled.checked = prod.schemaOfferEnabled !== false;
+      if (prodSchemaReviewEnabled) {
+        prodSchemaReviewEnabled.checked = !!prod.schemaReviewEnabled;
+        if (schemaReviewFieldsContainer) schemaReviewFieldsContainer.style.display = prod.schemaReviewEnabled ? 'block' : 'none';
+      }
+      if (prodSchemaSku) prodSchemaSku.value = prod.schemaSku || '';
+      if (prodSchemaMpn) prodSchemaMpn.value = prod.schemaMpn || '';
+      if (prodSchemaBrand) prodSchemaBrand.value = prod.schemaBrand || 'Harichand Steel';
+      if (prodSchemaGtin) prodSchemaGtin.value = prod.schemaGtin || '';
+      if (prodSchemaPrice) prodSchemaPrice.value = (prod.schemaPrice !== undefined && prod.schemaPrice !== null) ? prod.schemaPrice : (prod.price ? (String(prod.price).replace(/[^0-9]/g, '') || '') : '35000');
+      if (prodSchemaCurrency) prodSchemaCurrency.value = prod.schemaCurrency || 'INR';
+      if (prodSchemaAvailability) prodSchemaAvailability.value = prod.schemaAvailability || 'https://schema.org/InStock';
+      if (prodSchemaCondition) prodSchemaCondition.value = prod.schemaCondition || 'https://schema.org/NewCondition';
+      if (prodSchemaPriceValidUntil) prodSchemaPriceValidUntil.value = prod.schemaPriceValidUntil || '2026-12-31';
+
+      if (prod.schemaReviewEnabled) {
+        if (prodSchemaRatingValue) prodSchemaRatingValue.value = prod.schemaRatingValue || '4.9';
+        if (prodSchemaReviewCount) prodSchemaReviewCount.value = prod.schemaReviewCount || '8';
+        if (Array.isArray(prod.schemaReviews) && prod.schemaReviews[0]) {
+          const r = prod.schemaReviews[0];
+          if (prodReviewAuthor) prodReviewAuthor.value = r.author || '';
+          if (prodReviewRating) prodReviewRating.value = r.rating || '5';
+          if (prodReviewTitle) prodReviewTitle.value = r.title || '';
+          if (prodReviewDate) prodReviewDate.value = r.date || '';
+          if (prodReviewBody) prodReviewBody.value = r.body || '';
+        }
+      } else {
+        if (prodSchemaRatingValue) prodSchemaRatingValue.value = '';
+        if (prodSchemaReviewCount) prodSchemaReviewCount.value = '';
+        if (prodReviewAuthor) prodReviewAuthor.value = '';
+        if (prodReviewTitle) prodReviewTitle.value = '';
+        if (prodReviewDate) prodReviewDate.value = '';
+        if (prodReviewBody) prodReviewBody.value = '';
+      }
+      renderLiveSchemaPreview();
+
     } else {
       productModalTitle.textContent = 'Add New Product';
       prodInputId.value = '';
@@ -730,6 +1012,31 @@ document.addEventListener('DOMContentLoaded', function () {
       if (prodInputAutomation) prodInputAutomation.value = '';
       prodInputFeatured.checked = false;
       updateImagePreview(prodImagePreview, '../images/prod-1.png');
+
+      // Reset Google Product Schema fields for new product
+      if (prodSchemaEnabled) prodSchemaEnabled.checked = true;
+      if (prodSchemaOfferEnabled) prodSchemaOfferEnabled.checked = true;
+      if (prodSchemaReviewEnabled) {
+        prodSchemaReviewEnabled.checked = false;
+        if (schemaReviewFieldsContainer) schemaReviewFieldsContainer.style.display = 'none';
+      }
+      if (prodSchemaSku) prodSchemaSku.value = '';
+      if (prodSchemaMpn) prodSchemaMpn.value = '';
+      if (prodSchemaBrand) prodSchemaBrand.value = 'Harichand Steel';
+      if (prodSchemaGtin) prodSchemaGtin.value = '';
+      if (prodSchemaPrice) prodSchemaPrice.value = '35000';
+      if (prodSchemaCurrency) prodSchemaCurrency.value = 'INR';
+      if (prodSchemaAvailability) prodSchemaAvailability.value = 'https://schema.org/InStock';
+      if (prodSchemaCondition) prodSchemaCondition.value = 'https://schema.org/NewCondition';
+      if (prodSchemaPriceValidUntil) prodSchemaPriceValidUntil.value = '2026-12-31';
+      if (prodSchemaRatingValue) prodSchemaRatingValue.value = '';
+      if (prodSchemaReviewCount) prodSchemaReviewCount.value = '';
+      if (prodReviewAuthor) prodReviewAuthor.value = '';
+      if (prodReviewTitle) prodReviewTitle.value = '';
+      if (prodReviewDate) prodReviewDate.value = '';
+      if (prodReviewBody) prodReviewBody.value = '';
+      renderLiveSchemaPreview();
+
     }
     productModalOverlay.classList.add('active');
   }
@@ -811,7 +1118,30 @@ document.addEventListener('DOMContentLoaded', function () {
         finish: prodInputFinish ? prodInputFinish.value.trim() : '',
         hardware: prodInputHardware ? prodInputHardware.value.trim() : '',
         automation: prodInputAutomation ? prodInputAutomation.value.trim() : '',
-        featured: prodInputFeatured.checked
+        featured: prodInputFeatured.checked,
+
+        schemaEnabled: prodSchemaEnabled ? prodSchemaEnabled.checked : true,
+        schemaOfferEnabled: prodSchemaOfferEnabled ? prodSchemaOfferEnabled.checked : true,
+        schemaReviewEnabled: prodSchemaReviewEnabled ? prodSchemaReviewEnabled.checked : false,
+        schemaSku: prodSchemaSku ? prodSchemaSku.value.trim() : '',
+        schemaMpn: prodSchemaMpn ? prodSchemaMpn.value.trim() : '',
+        schemaBrand: prodSchemaBrand ? (prodSchemaBrand.value.trim() || 'Harichand Steel') : 'Harichand Steel',
+        schemaGtin: prodSchemaGtin ? prodSchemaGtin.value.trim() : '',
+        schemaPrice: prodSchemaPrice && prodSchemaPrice.value ? (parseFloat(prodSchemaPrice.value) || 25000) : 25000,
+        schemaCurrency: prodSchemaCurrency ? prodSchemaCurrency.value : 'INR',
+        schemaAvailability: prodSchemaAvailability ? prodSchemaAvailability.value : 'https://schema.org/InStock',
+        schemaCondition: prodSchemaCondition ? prodSchemaCondition.value : 'https://schema.org/NewCondition',
+        schemaPriceValidUntil: prodSchemaPriceValidUntil ? prodSchemaPriceValidUntil.value : '2026-12-31',
+        schemaRatingValue: (prodSchemaReviewEnabled && prodSchemaReviewEnabled.checked && prodSchemaRatingValue && prodSchemaRatingValue.value) ? parseFloat(prodSchemaRatingValue.value) : undefined,
+        schemaReviewCount: (prodSchemaReviewEnabled && prodSchemaReviewEnabled.checked && prodSchemaReviewCount && prodSchemaReviewCount.value) ? parseInt(prodSchemaReviewCount.value, 10) : undefined,
+        schemaReviews: (prodSchemaReviewEnabled && prodSchemaReviewEnabled.checked && prodReviewAuthor && prodReviewAuthor.value.trim() && prodReviewBody && prodReviewBody.value.trim()) ? [{
+          author: prodReviewAuthor.value.trim(),
+          rating: prodReviewRating ? parseInt(prodReviewRating.value, 10) : 5,
+          title: prodReviewTitle ? prodReviewTitle.value.trim() : 'Verified Purchase Review',
+          date: prodReviewDate && prodReviewDate.value ? prodReviewDate.value : new Date().toISOString().split('T')[0],
+          body: prodReviewBody.value.trim()
+        }] : [],
+
       };
 
       CMS.saveProduct(productPayload);
@@ -1440,6 +1770,7 @@ document.addEventListener('DOMContentLoaded', function () {
     paginationState[initial.section] = initial.page;
   }
   switchTab(initial.section, false);
+  syncProductsFromApi();
   renderBlogs();
   checkDbStatus();
 });
