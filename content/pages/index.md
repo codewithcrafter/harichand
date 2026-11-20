@@ -4,7 +4,7 @@ description: "Harichand Steel is widely recognized for its quality craftsmanship
 url: "/"
 canonical: "https://harichandsteel.com/"
 layout: "page"
-updatedAt: "2026-11-05"
+updatedAt: "2026-11-20"
 ---
 
 # Aluminium Profile Gate Manufacturer | Harichand Steel

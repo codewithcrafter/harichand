@@ -8,8 +8,8 @@ badge: "DB Test"
 price: "₹5,000/sqft"
 image: "images/prod-1.png"
 featured: false
-createdAt: "2026-10-27"
-updatedAt: "2026-11-05"
+createdAt: "2026-11-14"
+updatedAt: "2026-11-20"
 specs:
 ---
 # Supabase Test Gate

@@ -7,13 +7,13 @@
   
   <title>Admin Dashboard | Harichand Steel CMS</title>
   <meta name="robots" content="noindex, nofollow">
-  <link rel="icon" type="image/x-icon" href="/images/favicon-32.jpeg">
+  <link rel="icon" type="image/x-icon" href="images/favicon-32.jpeg">
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/all.min.css">
-  <link rel="stylesheet" href="/admin/css/admin.css">
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css?v=2.2">
   <!-- Quill WYSIWYG Editor 2.x (with Table Module Support) -->
   <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
@@ -106,9 +106,9 @@
 
       <div class="topbar-actions">
         <!-- Database Engine Status Badge -->
-        <div class="db-engine-badge" id="topbarDbStatusBadge" style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; background: rgba(59, 130, 246, 0.12); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.25);">
-          <span class="db-badge-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #60a5fa; display: inline-block;"></span>
-          <span id="topbarDbStatusText">DATABASE ENGINE: Connecting...</span>
+        <div class="db-engine-badge" id="topbarDbStatusBadge" style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; background: rgba(34, 197, 94, 0.12); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.25);">
+          <span class="db-badge-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e; display: inline-block;"></span>
+          <span id="topbarDbStatusText">MySQL 8.x / Online</span>
         </div>
         <button type="button" class="admin-btn admin-btn-primary" id="btnOpenProductModalTop">
           <i class="fas fa-plus"></i>
@@ -743,7 +743,8 @@
   <div class="toast-container" id="toastContainer"></div>
 
   <!-- Scripts -->
-  <script src="/js/cms-data.js"></script>
-  <script src="/admin/js/admin.js"></script>
+  <script src="js/cms-data.js?v=2.2"></script>
+  <script src="js/product-schema.js?v=2.2"></script>
+  <script src="admin/js/admin.js?v=2.2"></script>
 </body>
 </html>

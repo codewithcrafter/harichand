@@ -6,10 +6,10 @@ category: "aluminum-profile-gate"
 categoryName: "Aluminum Profile Gate"
 badge: "Exclusive Build"
 price: "₹ 1,85,000"
-image: "images/prod-1.png"
+image: "/images/prod-1.png"
 featured: false
 createdAt: "2026-10-31"
-updatedAt: "2026-11-05"
+updatedAt: "2026-11-20"
 specs:
 ---
 # Automated Test Luxury Gate 2026
@@ -20,7 +20,7 @@ Ultra-modern automated gate created specifically to test automatic .md file gene
 - **Product Category:** [Aluminum Profile Gate](/product-category/aluminum-profile-gate/)
 - **Quality Grade Badge:** Exclusive Build
 - **Price Range:** ₹ 1,85,000
-- **Primary Image:** ![](images/prod-1.png)
+- **Primary Image:** ![](/images/prod-1.png)
 - **Catalogue URL:** [/product/automated-test-luxury-gate-2026](/product/automated-test-luxury-gate-2026)
 
 ## Key Specifications & Engineering

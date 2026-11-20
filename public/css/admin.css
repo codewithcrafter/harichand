@@ -789,6 +789,63 @@ body.admin-body {
   font-style: normal;
 }
 
+/* Quill Table Dark Theme Styling */
+.ql-editor table,
+.ql-editor .table-custom,
+.ql-editor .ql-table-custom {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 16px 0 !important;
+  background: #111722 !important;
+  table-layout: auto !important;
+}
+
+.ql-editor table td,
+.ql-editor table th,
+.ql-editor .table-custom td,
+.ql-editor .table-custom th {
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  padding: 10px 14px !important;
+  min-width: 80px !important;
+  color: #f1f5f9 !important;
+  vertical-align: top;
+  cursor: text;
+}
+
+.ql-editor table td:focus,
+.ql-editor table th:focus,
+.ql-editor table td:hover {
+  outline: 1px solid #38bdf8 !important;
+  background: rgba(56, 189, 248, 0.05);
+}
+
+.ql-editor table th,
+.ql-editor .table-custom th {
+  background: rgba(56, 189, 248, 0.12) !important;
+  font-weight: 600;
+  color: #38bdf8 !important;
+  text-align: left;
+}
+
+.ql-table-controls-bar {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: #111822;
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius);
+}
+
+.ql-table-controls-bar span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--admin-text-muted);
+  margin-right: 4px;
+}
+
 
 /* ==========================================
    ADMIN MOBILE DRAWER & TOUCH RESPONSIVENESS

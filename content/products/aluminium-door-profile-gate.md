@@ -9,7 +9,7 @@ price: "On Request"
 image: "images/prod-1.png"
 featured: true
 createdAt: "2026-02-24"
-updatedAt: "2026-11-05"
+updatedAt: "2026-11-20"
 specs:
   - "SS304 Grade Hardware"
   - "Custom Sizing Available"

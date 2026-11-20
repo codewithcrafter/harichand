@@ -9,7 +9,7 @@ price: "On Request"
 image: "images/WhatsApp-Image-2026-02-23-at-12.55.26-PM-300x300.jpeg"
 featured: false
 createdAt: "2026-02-15"
-updatedAt: "2026-11-05"
+updatedAt: "2026-11-20"
 specs:
   - "Italian Motor Compatible"
   - "Tough Alloy Frame"

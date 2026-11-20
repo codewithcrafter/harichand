@@ -9,7 +9,7 @@ price: "On Request"
 image: "images/prod-3.jpeg"
 featured: true
 createdAt: "2026-02-05"
-updatedAt: "2026-11-05"
+updatedAt: "2026-11-20"
 specs:
   - "Steel Reinforced Sub-frame"
   - "Lightweight Slat Cladding"

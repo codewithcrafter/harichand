@@ -4,6 +4,59 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
+  // 0. Authentication Guard & Session Verification
+  async function checkAdminAuth() {
+    try {
+      const sessionKey = localStorage.getItem('hs_admin_session') || localStorage.getItem('hs_admin_api_key');
+      const res = await fetch('/api/admin/check-auth', {
+        headers: sessionKey ? { 'Authorization': 'Bearer ' + sessionKey, 'x-admin-key': sessionKey } : {}
+      });
+      const data = await res.json();
+      if (!data.authenticated) {
+        localStorage.removeItem('hs_admin_session');
+        localStorage.removeItem('hs_admin_api_key');
+        const currentPath = window.location.pathname + window.location.search;
+        window.location.href = '/admin/login?redirect=' + encodeURIComponent(currentPath);
+        return false;
+      }
+      if (data.username) {
+        const nameElem = document.querySelector('.user-name');
+        if (nameElem) nameElem.textContent = data.username;
+      }
+      return true;
+    } catch (e) {
+      return true;
+    }
+  }
+  checkAdminAuth();
+  checkDbStatus();
+  initQuillTableControls();
+
+  // Logout Handlers
+  async function handleAdminLogout(e) {
+    if (e) e.preventDefault();
+    if (confirm('Are you sure you want to log out of the admin panel?')) {
+      try {
+        await fetch('/api/admin/logout', { method: 'POST' });
+      } catch (_) {}
+      localStorage.removeItem('hs_admin_session');
+      localStorage.removeItem('hs_admin_api_key');
+      window.location.href = '/admin/login';
+    }
+  }
+
+  const btnLogoutSidebar = document.getElementById('btnAdminLogout');
+  if (btnLogoutSidebar) {
+    btnLogoutSidebar.addEventListener('click', handleAdminLogout);
+  }
+
+  const btnLogoutTopbar = document.getElementById('topbarLogoutBtn');
+  if (btnLogoutTopbar) {
+    btnLogoutTopbar.addEventListener('click', handleAdminLogout);
+  }
+
+  // --- End Auth Integration ---
+
   // Check CMS availability
   if (typeof CMS === 'undefined') {
     console.error('CMS module not found! Ensure js/cms-data.js is loaded before js/admin.js.');
@@ -12,25 +65,215 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   // ==========================================
-  // QUILL WYSIWYG EDITOR SINGLETON
+  // QUILL WYSIWYG EDITOR SINGLETON (WITH TABLE SUPPORT)
   // ==========================================
   let blogQuillInstance = null;
   function initBlogQuillEditor() {
     if (!blogQuillInstance && window.Quill && document.getElementById('blogQuillEditor')) {
+      try {
+        const icons = Quill.import('ui/icons');
+        if (icons && !icons['table']) {
+          icons['table'] = '<svg viewBox="0 0 18 18"><rect class="ql-stroke" height="12" width="14" x="2" y="3"></rect><line class="ql-stroke" x1="2" x2="16" y1="7" y2="7"></line><line class="ql-stroke" x1="2" x2="16" y1="11" y2="11"></line><line class="ql-stroke" x1="7" x2="7" y1="3" y2="15"></line><line class="ql-stroke" x1="11" x2="11" y1="3" y2="15"></line></svg>';
+        }
+      } catch (_) {}
+
       blogQuillInstance = new Quill('#blogQuillEditor', {
         theme: 'snow',
         placeholder: 'Write your gate guide, fabrication process, or article content here...',
         modules: {
-          toolbar: [
-            [{ 'header': [1, 2, 3, false] }],
-            ['bold', 'italic', 'underline', 'strike'],
-            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-            ['blockquote', 'code-block'],
-            ['link', 'image'],
-            ['clean']
-          ]
+          table: true,
+          toolbar: {
+            container: [
+              [{ 'header': [1, 2, 3, 4, false] }],
+              ['bold', 'italic', 'underline', 'strike'],
+              [{ 'color': [] }, { 'background': [] }],
+              [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+              ['blockquote', 'code-block'],
+              ['link', 'image'],
+              ['table'],
+              ['clean']
+            ],
+            handlers: {
+              table: function() {
+                insertTableAction();
+              }
+            }
+          }
         }
       });
+
+      initQuillTableControls();
+    }
+  }
+
+  function insertTableAction() {
+    if (!blogQuillInstance) {
+      initBlogQuillEditor();
+    }
+    if (!blogQuillInstance) return;
+
+    // 1. Force editor focus and establish a valid cursor range
+    blogQuillInstance.focus();
+    let range = blogQuillInstance.getSelection();
+    if (!range || range.index === null || range.index === undefined) {
+      const len = blogQuillInstance.getLength();
+      range = { index: Math.max(0, len - 1), length: 0 };
+      blogQuillInstance.setSelection(range.index, 0);
+    }
+
+    // 2. Try native Quill table module first
+    const tableModule = blogQuillInstance.getModule('table');
+    let inserted = false;
+    if (tableModule && typeof tableModule.insertTable === 'function') {
+      try {
+        blogQuillInstance.setSelection(range.index, 0);
+        tableModule.insertTable(3, 3);
+        inserted = true;
+      } catch (err) {
+        console.warn('Native insertTable failed, using HTML fallback:', err);
+      }
+    }
+
+    // 3. Robust HTML Table Fallback (always works seamlessly)
+    if (!inserted) {
+      const tableHtml = '<table class="table-custom" style="width: 100%; border-collapse: collapse; margin: 16px 0; background: #111722;"><thead><tr><th style="border: 1px solid rgba(255,255,255,0.25); padding: 10px 14px; background: rgba(56,189,248,0.12); color: #38bdf8; text-align: left;">Header 1</th><th style="border: 1px solid rgba(255,255,255,0.25); padding: 10px 14px; background: rgba(56,189,248,0.12); color: #38bdf8; text-align: left;">Header 2</th><th style="border: 1px solid rgba(255,255,255,0.25); padding: 10px 14px; background: rgba(56,189,248,0.12); color: #38bdf8; text-align: left;">Header 3</th></tr></thead><tbody><tr><td style="border: 1px solid rgba(255,255,255,0.2); padding: 10px 14px; color: #f1f5f9;">Row 1 Data</td><td style="border: 1px solid rgba(255,255,255,0.2); padding: 10px 14px; color: #f1f5f9;">Row 1 Data</td><td style="border: 1px solid rgba(255,255,255,0.2); padding: 10px 14px; color: #f1f5f9;">Row 1 Data</td></tr><tr><td style="border: 1px solid rgba(255,255,255,0.2); padding: 10px 14px; color: #f1f5f9;">Row 2 Data</td><td style="border: 1px solid rgba(255,255,255,0.2); padding: 10px 14px; color: #f1f5f9;">Row 2 Data</td><td style="border: 1px solid rgba(255,255,255,0.2); padding: 10px 14px; color: #f1f5f9;">Row 2 Data</td></tr></tbody></table><p><br></p>';
+      const idx = range ? range.index : Math.max(0, blogQuillInstance.getLength() - 1);
+      blogQuillInstance.clipboard.dangerouslyPasteHTML(idx, tableHtml);
+    }
+
+    if (typeof showToast === 'function') {
+      showToast('Table (3x3) inserted! Click any cell to type.', 'success');
+    }
+  }
+
+  function execTableOp(opName, errorMsg) {
+    if (!blogQuillInstance) return;
+    const table = blogQuillInstance.getModule('table');
+    if (table && typeof table[opName] === 'function') {
+      try {
+        table[opName]();
+        return;
+      } catch (err) {
+        console.warn('Native ' + opName + ' failed, attempting DOM fallback:', err);
+      }
+    }
+    // DOM-level table manipulation fallback
+    const sel = window.getSelection();
+    let node = sel && sel.anchorNode;
+    while (node && node !== document.body) {
+      if (node.nodeName === 'TD' || node.nodeName === 'TH') break;
+      node = node.parentNode;
+    }
+    if (!node || (node.nodeName !== 'TD' && node.nodeName !== 'TH')) {
+      if (typeof showToast === 'function') {
+        showToast(errorMsg || 'Please click inside a table cell first', 'warning');
+      }
+      return;
+    }
+    const td = node;
+    const tr = td.parentElement;
+    const tbody = tr.parentElement;
+    const tableEl = tbody.parentElement;
+    const colIndex = Array.from(tr.children).indexOf(td);
+
+    if (opName === 'insertRowAbove') {
+      const newTr = tr.cloneNode(true);
+      Array.from(newTr.children).forEach(c => c.innerHTML = '<br>');
+      tbody.insertBefore(newTr, tr);
+      if (typeof showToast === 'function') showToast('Row added above', 'info');
+    } else if (opName === 'insertRowBelow') {
+      const newTr = tr.cloneNode(true);
+      Array.from(newTr.children).forEach(c => c.innerHTML = '<br>');
+      tbody.insertBefore(newTr, tr.nextSibling);
+      if (typeof showToast === 'function') showToast('Row added below', 'info');
+    } else if (opName === 'insertColumnLeft') {
+      Array.from(tbody.querySelectorAll('tr')).forEach(r => {
+        const newCell = document.createElement(r.children[0]?.tagName || 'td');
+        newCell.style.cssText = td.style.cssText;
+        newCell.innerHTML = '<br>';
+        r.insertBefore(newCell, r.children[colIndex] || null);
+      });
+      if (typeof showToast === 'function') showToast('Column added to left', 'info');
+    } else if (opName === 'insertColumnRight') {
+      Array.from(tbody.querySelectorAll('tr')).forEach(r => {
+        const newCell = document.createElement(r.children[0]?.tagName || 'td');
+        newCell.style.cssText = td.style.cssText;
+        newCell.innerHTML = '<br>';
+        const target = r.children[colIndex];
+        r.insertBefore(newCell, target ? target.nextSibling : null);
+      });
+      if (typeof showToast === 'function') showToast('Column added to right', 'info');
+    } else if (opName === 'deleteRow') {
+      tr.remove();
+      if (typeof showToast === 'function') showToast('Row deleted', 'info');
+    } else if (opName === 'deleteColumn') {
+      Array.from(tbody.querySelectorAll('tr')).forEach(r => {
+        if (r.children[colIndex]) r.children[colIndex].remove();
+      });
+      if (typeof showToast === 'function') showToast('Column deleted', 'info');
+    } else if (opName === 'deleteTable') {
+      tableEl.remove();
+      if (typeof showToast === 'function') showToast('Table deleted', 'info');
+    }
+  }
+
+  function initQuillTableControls() {
+    const btnInsert = document.getElementById('btnQuillInsertTable');
+    const btnRowAbove = document.getElementById('btnQuillAddRowAbove');
+    const btnRowBelow = document.getElementById('btnQuillAddRowBelow');
+    const btnColLeft = document.getElementById('btnQuillAddColLeft');
+    const btnColRight = document.getElementById('btnQuillAddColRight');
+    const btnDelRow = document.getElementById('btnQuillDeleteRow');
+    const btnDelCol = document.getElementById('btnQuillDeleteCol');
+    const btnDelTable = document.getElementById('btnQuillDeleteTable');
+
+    if (btnInsert) {
+      btnInsert.onclick = function(e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        insertTableAction();
+      };
+    }
+    if (btnRowAbove) {
+      btnRowAbove.onclick = function(e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        execTableOp('insertRowAbove', 'Click inside a table cell first');
+      };
+    }
+    if (btnRowBelow) {
+      btnRowBelow.onclick = function(e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        execTableOp('insertRowBelow', 'Click inside a table cell first');
+      };
+    }
+    if (btnColLeft) {
+      btnColLeft.onclick = function(e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        execTableOp('insertColumnLeft', 'Click inside a table cell first');
+      };
+    }
+    if (btnColRight) {
+      btnColRight.onclick = function(e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        execTableOp('insertColumnRight', 'Click inside a table cell first');
+      };
+    }
+    if (btnDelRow) {
+      btnDelRow.onclick = function(e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        execTableOp('deleteRow', 'Click inside a table cell first');
+      };
+    }
+    if (btnDelCol) {
+      btnDelCol.onclick = function(e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        execTableOp('deleteColumn', 'Click inside a table cell first');
+      };
+    }
+    if (btnDelTable) {
+      btnDelTable.onclick = function(e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        execTableOp('deleteTable', 'Click inside a table cell first');
+      };
     }
   }
 
@@ -500,7 +743,10 @@ document.addEventListener('DOMContentLoaded', function () {
   // ==========================================
   // 4. DASHBOARD RENDERER
   // ==========================================
-  function renderDashboard() {
+  function renderDashboard(triggerSync = true) {
+    if (triggerSync) {
+      syncProductsFromApi();
+    }
     const products = CMS.getProducts();
     const blogs = CMS.getBlogs();
     const inquiries = CMS.getInquiries();
@@ -534,7 +780,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <td><span class="pill-badge">${escapeHtml(prod.badge || 'Standard')}</span></td>
             <td>
               <div class="table-actions">
-                <a href="/product/${prod.slug || slugifyProd(prod.title, prod.id)}" target="_blank" class="admin-btn admin-btn-outline admin-btn-sm" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);" title="View Live Product Page">
+                <a href="/product/${prod.slug || slugifyProd(prod.title, prod.id)}/" target="_blank" class="admin-btn admin-btn-outline admin-btn-sm" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);" title="View Live Product Page">
                   <i class="fas fa-external-link-alt"></i>
                 </a>
                 <button type="button" class="admin-btn admin-btn-outline admin-btn-sm" onclick="window.adminCMS.editProduct('${prod.id}')" title="Edit">
@@ -588,9 +834,35 @@ document.addEventListener('DOMContentLoaded', function () {
   // ==========================================
   // 5. PRODUCTS MANAGER
   // ==========================================
-    function renderProducts(page = null) {
-    if (page !== null) {
+  let isFetchingProducts = false;
+  async function syncProductsFromApi() {
+    if (isFetchingProducts) return;
+    isFetchingProducts = true;
+    try {
+      const res = await fetch('/api/products');
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) {
+          localStorage.setItem('hs_cms_products', JSON.stringify(data));
+          if (typeof CMS !== 'undefined' && typeof CMS.setProducts === 'function') {
+            CMS.setProducts(data);
+          }
+          renderProducts(null, false);
+          renderDashboard(false);
+        }
+      }
+    } catch (_) {}
+    finally {
+      isFetchingProducts = false;
+    }
+  }
+
+  function renderProducts(page = null, triggerSync = true) {
+    if (page !== null && typeof page === 'number') {
       paginationState.products = page;
+    }
+    if (triggerSync) {
+      syncProductsFromApi();
     }
     const products = CMS.getProducts();
     const searchTerm = (productSearchInput ? productSearchInput.value : '').toLowerCase().trim();
@@ -660,7 +932,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <td><strong style="color: var(--admin-accent); font-size: 0.88rem;">${escapeHtml(prod.price || 'On Request')}</strong></td>
           <td style="text-align: right;">
             <div class="table-actions" style="justify-content: flex-end; gap: 6px;">
-              <a href="/product/${prod.slug || slugifyProd(prod.title, prod.id)}" target="_blank" class="admin-btn admin-btn-outline admin-btn-sm" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);" title="View Live Product Page">
+              <a href="/product/${prod.slug || slugifyProd(prod.title, prod.id)}/" target="_blank" class="admin-btn admin-btn-outline admin-btn-sm" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);" title="View Live Product Page">
                 <i class="fas fa-external-link-alt"></i> View
               </a>
               <button type="button" class="admin-btn admin-btn-outline admin-btn-sm" onclick="window.adminCMS.editProduct('${prod.id}')" title="Edit Product">
@@ -685,6 +957,169 @@ document.addEventListener('DOMContentLoaded', function () {
   if (productSearchInput) productSearchInput.addEventListener("input", () => { paginationState.products = 1; updateAdminUrl("products", 1, false); renderProducts(); });
   if (productCategoryFilter) productCategoryFilter.addEventListener("change", () => { paginationState.products = 1; updateAdminUrl("products", 1, false); renderProducts(); });
   if (productCategoryFilter) productCategoryFilter.addEventListener('change', renderProducts);
+
+  
+  // --- Google Product Schema Live Preview & Form Helpers ---
+  const prodSchemaEnabled = document.getElementById('prodSchemaEnabled');
+  const prodSchemaOfferEnabled = document.getElementById('prodSchemaOfferEnabled');
+  const prodSchemaReviewEnabled = document.getElementById('prodSchemaReviewEnabled');
+  const prodSchemaSku = document.getElementById('prodSchemaSku');
+  const prodSchemaMpn = document.getElementById('prodSchemaMpn');
+  const prodSchemaBrand = document.getElementById('prodSchemaBrand');
+  const prodSchemaGtin = document.getElementById('prodSchemaGtin');
+  const prodSchemaPrice = document.getElementById('prodSchemaPrice');
+  const prodSchemaCurrency = document.getElementById('prodSchemaCurrency');
+  const prodSchemaAvailability = document.getElementById('prodSchemaAvailability');
+  const prodSchemaCondition = document.getElementById('prodSchemaCondition');
+  const prodSchemaPriceValidUntil = document.getElementById('prodSchemaPriceValidUntil');
+  const schemaReviewFieldsContainer = document.getElementById('schemaReviewFieldsContainer');
+  const schemaControlsContainer = document.getElementById('schemaControlsContainer');
+  const prodSchemaRatingValue = document.getElementById('prodSchemaRatingValue');
+  const prodSchemaReviewCount = document.getElementById('prodSchemaReviewCount');
+  const prodReviewAuthor = document.getElementById('prodReviewAuthor');
+  const prodReviewRating = document.getElementById('prodReviewRating');
+  const prodReviewTitle = document.getElementById('prodReviewTitle');
+  const prodReviewDate = document.getElementById('prodReviewDate');
+  const prodReviewBody = document.getElementById('prodReviewBody');
+  const schemaValidationBadge = document.getElementById('schemaValidationBadge');
+  const schemaPreviewCode = document.getElementById('schemaPreviewCode');
+  const schemaMissingAlert = document.getElementById('schemaMissingAlert');
+  const btnCopySchemaPreview = document.getElementById('btnCopySchemaPreview');
+
+  function renderLiveSchemaPreview() {
+    if (!schemaPreviewCode) return;
+
+    if (prodSchemaEnabled && !prodSchemaEnabled.checked) {
+      if (schemaValidationBadge) {
+        schemaValidationBadge.innerHTML = '<span class="badge" style="background: #64748b; color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 600;"><i class="fas fa-ban"></i> Schema Disabled</span>';
+      }
+      schemaPreviewCode.textContent = '// Google Product Schema is disabled for this product.\n// No JSON-LD structured data will be rendered on the product page.';
+      if (schemaMissingAlert) schemaMissingAlert.style.display = 'none';
+      if (schemaControlsContainer) schemaControlsContainer.style.opacity = '0.4';
+      return;
+    }
+
+    if (schemaControlsContainer) schemaControlsContainer.style.opacity = '1';
+
+    // Construct preview product object
+    const tempProd = {
+      id: prodInputId ? prodInputId.value : '4',
+      title: prodInputTitle ? prodInputTitle.value.trim() : 'Custom Gate Product',
+      name: prodInputTitle ? prodInputTitle.value.trim() : 'Custom Gate Product',
+      category: prodInputCategory ? prodInputCategory.value : 'aluminum-profile-gate',
+      categoryName: prodInputCategoryName ? prodInputCategoryName.value.trim() : 'Aluminum Profile Gate',
+      price: prodInputPrice ? prodInputPrice.value.trim() : 'On Request',
+      image: prodInputImage ? prodInputImage.value.trim() : 'images/prod-1.png',
+      description: prodInputDescription ? prodInputDescription.value.trim() : '',
+      schemaEnabled: prodSchemaEnabled ? prodSchemaEnabled.checked : true,
+      schemaOfferEnabled: prodSchemaOfferEnabled ? prodSchemaOfferEnabled.checked : true,
+      schemaReviewEnabled: prodSchemaReviewEnabled ? prodSchemaReviewEnabled.checked : false,
+      schemaSku: prodSchemaSku ? prodSchemaSku.value.trim() : '',
+      schemaMpn: prodSchemaMpn ? prodSchemaMpn.value.trim() : '',
+      schemaBrand: prodSchemaBrand ? prodSchemaBrand.value.trim() : 'Harichand Steel',
+      schemaGtin: prodSchemaGtin ? prodSchemaGtin.value.trim() : '',
+      schemaPrice: prodSchemaPrice ? prodSchemaPrice.value : '',
+      schemaCurrency: prodSchemaCurrency ? prodSchemaCurrency.value : 'INR',
+      schemaAvailability: prodSchemaAvailability ? prodSchemaAvailability.value : 'https://schema.org/InStock',
+      schemaCondition: prodSchemaCondition ? prodSchemaCondition.value : 'https://schema.org/NewCondition',
+      schemaPriceValidUntil: prodSchemaPriceValidUntil ? prodSchemaPriceValidUntil.value : '2026-12-31'
+    };
+
+    if (tempProd.schemaReviewEnabled) {
+      tempProd.schemaRatingValue = prodSchemaRatingValue ? prodSchemaRatingValue.value : '';
+      tempProd.schemaReviewCount = prodSchemaReviewCount ? prodSchemaReviewCount.value : '';
+      if (prodReviewAuthor && prodReviewAuthor.value.trim() && prodReviewBody && prodReviewBody.value.trim()) {
+        tempProd.schemaReviews = [{
+          author: prodReviewAuthor.value.trim(),
+          rating: prodReviewRating ? parseInt(prodReviewRating.value, 10) : 5,
+          title: prodReviewTitle ? prodReviewTitle.value.trim() : 'Verified Review',
+          date: prodReviewDate ? prodReviewDate.value : new Date().toISOString().split('T')[0],
+          body: prodReviewBody.value.trim()
+        }];
+      }
+    }
+
+    const generator = (typeof ProductSchema !== 'undefined' && ProductSchema.generateProductSchema)
+      ? ProductSchema.generateProductSchema
+      : null;
+
+    if (!generator) {
+      schemaPreviewCode.textContent = '// Loading ProductSchema generator module...';
+      return;
+    }
+
+    const schema = generator(tempProd);
+    const validator = (typeof ProductSchema !== 'undefined' && ProductSchema.validateProductSchema)
+      ? ProductSchema.validateProductSchema
+      : null;
+
+    if (schema) {
+      schemaPreviewCode.textContent = JSON.stringify(schema, null, 2);
+
+      if (validator) {
+        const valRes = validator(schema);
+        if (valRes.valid) {
+          if (schemaValidationBadge) {
+            schemaValidationBadge.innerHTML = '<span class="badge" style="background: #22c55e; color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 600;"><i class="fas fa-check-circle"></i> Schema Valid</span>';
+          }
+          if (schemaMissingAlert) {
+            if (valRes.warnings && valRes.warnings.length > 0) {
+              schemaMissingAlert.style.display = 'block';
+              schemaMissingAlert.style.background = 'rgba(245, 158, 11, 0.15)';
+              schemaMissingAlert.style.color = '#fde68a';
+              schemaMissingAlert.innerHTML = '<i class="fas fa-info-circle"></i> ' + valRes.warnings.join(' | ');
+            } else {
+              schemaMissingAlert.style.display = 'none';
+            }
+          }
+        } else {
+          if (schemaValidationBadge) {
+            schemaValidationBadge.innerHTML = '<span class="badge" style="background: #ef4444; color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 600;"><i class="fas fa-exclamation-triangle"></i> Incomplete</span>';
+          }
+          if (schemaMissingAlert) {
+            schemaMissingAlert.style.display = 'block';
+            schemaMissingAlert.style.background = 'rgba(239, 68, 68, 0.15)';
+            schemaMissingAlert.style.color = '#fca5a5';
+            schemaMissingAlert.innerHTML = '<i class="fas fa-times-circle"></i> ' + valRes.errors.join(' | ');
+          }
+        }
+      }
+    }
+  }
+
+  // Schema UI event listeners
+  if (prodSchemaReviewEnabled) {
+    prodSchemaReviewEnabled.addEventListener('change', function () {
+      if (schemaReviewFieldsContainer) {
+        schemaReviewFieldsContainer.style.display = this.checked ? 'block' : 'none';
+      }
+      renderLiveSchemaPreview();
+    });
+  }
+
+  if (prodSchemaEnabled) {
+    prodSchemaEnabled.addEventListener('change', renderLiveSchemaPreview);
+  }
+
+  [prodSchemaOfferEnabled, prodSchemaAvailability, prodSchemaCondition, prodSchemaCurrency, prodReviewRating].forEach(el => {
+    if (el) el.addEventListener('change', renderLiveSchemaPreview);
+  });
+
+  [prodSchemaSku, prodSchemaMpn, prodSchemaBrand, prodSchemaGtin, prodSchemaPrice, prodSchemaPriceValidUntil, prodSchemaRatingValue, prodSchemaReviewCount, prodReviewAuthor, prodReviewTitle, prodReviewDate, prodReviewBody, prodInputTitle, prodInputPrice, prodInputImage, prodInputDescription].forEach(el => {
+    if (el) el.addEventListener('input', renderLiveSchemaPreview);
+  });
+
+  if (btnCopySchemaPreview) {
+    btnCopySchemaPreview.addEventListener('click', function () {
+      if (schemaPreviewCode && schemaPreviewCode.textContent) {
+        navigator.clipboard.writeText(schemaPreviewCode.textContent).then(() => {
+          showToast('JSON-LD Schema copied to clipboard!', 'success');
+        }).catch(() => {
+          showToast('Failed to copy schema', 'error');
+        });
+      }
+    });
+  }
 
   // Open Product Modal
   function openProductModal(prodOrId = null) {
@@ -712,6 +1147,45 @@ document.addEventListener('DOMContentLoaded', function () {
       if (prodInputAutomation) prodInputAutomation.value = prod.automation || '';
       prodInputFeatured.checked = !!prod.featured;
       updateImagePreview(prodImagePreview, prod.image);
+
+      // Populate Google Product Schema fields
+      if (prodSchemaEnabled) prodSchemaEnabled.checked = prod.schemaEnabled !== false;
+      if (prodSchemaOfferEnabled) prodSchemaOfferEnabled.checked = prod.schemaOfferEnabled !== false;
+      if (prodSchemaReviewEnabled) {
+        prodSchemaReviewEnabled.checked = !!prod.schemaReviewEnabled;
+        if (schemaReviewFieldsContainer) schemaReviewFieldsContainer.style.display = prod.schemaReviewEnabled ? 'block' : 'none';
+      }
+      if (prodSchemaSku) prodSchemaSku.value = prod.schemaSku || '';
+      if (prodSchemaMpn) prodSchemaMpn.value = prod.schemaMpn || '';
+      if (prodSchemaBrand) prodSchemaBrand.value = prod.schemaBrand || 'Harichand Steel';
+      if (prodSchemaGtin) prodSchemaGtin.value = prod.schemaGtin || '';
+      if (prodSchemaPrice) prodSchemaPrice.value = (prod.schemaPrice !== undefined && prod.schemaPrice !== null) ? prod.schemaPrice : (prod.price ? (String(prod.price).replace(/[^0-9]/g, '') || '') : '35000');
+      if (prodSchemaCurrency) prodSchemaCurrency.value = prod.schemaCurrency || 'INR';
+      if (prodSchemaAvailability) prodSchemaAvailability.value = prod.schemaAvailability || 'https://schema.org/InStock';
+      if (prodSchemaCondition) prodSchemaCondition.value = prod.schemaCondition || 'https://schema.org/NewCondition';
+      if (prodSchemaPriceValidUntil) prodSchemaPriceValidUntil.value = prod.schemaPriceValidUntil || '2026-12-31';
+
+      if (prod.schemaReviewEnabled) {
+        if (prodSchemaRatingValue) prodSchemaRatingValue.value = prod.schemaRatingValue || '4.9';
+        if (prodSchemaReviewCount) prodSchemaReviewCount.value = prod.schemaReviewCount || '8';
+        if (Array.isArray(prod.schemaReviews) && prod.schemaReviews[0]) {
+          const r = prod.schemaReviews[0];
+          if (prodReviewAuthor) prodReviewAuthor.value = r.author || '';
+          if (prodReviewRating) prodReviewRating.value = r.rating || '5';
+          if (prodReviewTitle) prodReviewTitle.value = r.title || '';
+          if (prodReviewDate) prodReviewDate.value = r.date || '';
+          if (prodReviewBody) prodReviewBody.value = r.body || '';
+        }
+      } else {
+        if (prodSchemaRatingValue) prodSchemaRatingValue.value = '';
+        if (prodSchemaReviewCount) prodSchemaReviewCount.value = '';
+        if (prodReviewAuthor) prodReviewAuthor.value = '';
+        if (prodReviewTitle) prodReviewTitle.value = '';
+        if (prodReviewDate) prodReviewDate.value = '';
+        if (prodReviewBody) prodReviewBody.value = '';
+      }
+      renderLiveSchemaPreview();
+
     } else {
       productModalTitle.textContent = 'Add New Product';
       prodInputId.value = '';
@@ -730,6 +1204,31 @@ document.addEventListener('DOMContentLoaded', function () {
       if (prodInputAutomation) prodInputAutomation.value = '';
       prodInputFeatured.checked = false;
       updateImagePreview(prodImagePreview, '../images/prod-1.png');
+
+      // Reset Google Product Schema fields for new product
+      if (prodSchemaEnabled) prodSchemaEnabled.checked = true;
+      if (prodSchemaOfferEnabled) prodSchemaOfferEnabled.checked = true;
+      if (prodSchemaReviewEnabled) {
+        prodSchemaReviewEnabled.checked = false;
+        if (schemaReviewFieldsContainer) schemaReviewFieldsContainer.style.display = 'none';
+      }
+      if (prodSchemaSku) prodSchemaSku.value = '';
+      if (prodSchemaMpn) prodSchemaMpn.value = '';
+      if (prodSchemaBrand) prodSchemaBrand.value = 'Harichand Steel';
+      if (prodSchemaGtin) prodSchemaGtin.value = '';
+      if (prodSchemaPrice) prodSchemaPrice.value = '35000';
+      if (prodSchemaCurrency) prodSchemaCurrency.value = 'INR';
+      if (prodSchemaAvailability) prodSchemaAvailability.value = 'https://schema.org/InStock';
+      if (prodSchemaCondition) prodSchemaCondition.value = 'https://schema.org/NewCondition';
+      if (prodSchemaPriceValidUntil) prodSchemaPriceValidUntil.value = '2026-12-31';
+      if (prodSchemaRatingValue) prodSchemaRatingValue.value = '';
+      if (prodSchemaReviewCount) prodSchemaReviewCount.value = '';
+      if (prodReviewAuthor) prodReviewAuthor.value = '';
+      if (prodReviewTitle) prodReviewTitle.value = '';
+      if (prodReviewDate) prodReviewDate.value = '';
+      if (prodReviewBody) prodReviewBody.value = '';
+      renderLiveSchemaPreview();
+
     }
     productModalOverlay.classList.add('active');
   }
@@ -811,7 +1310,30 @@ document.addEventListener('DOMContentLoaded', function () {
         finish: prodInputFinish ? prodInputFinish.value.trim() : '',
         hardware: prodInputHardware ? prodInputHardware.value.trim() : '',
         automation: prodInputAutomation ? prodInputAutomation.value.trim() : '',
-        featured: prodInputFeatured.checked
+        featured: prodInputFeatured.checked,
+
+        schemaEnabled: prodSchemaEnabled ? prodSchemaEnabled.checked : true,
+        schemaOfferEnabled: prodSchemaOfferEnabled ? prodSchemaOfferEnabled.checked : true,
+        schemaReviewEnabled: prodSchemaReviewEnabled ? prodSchemaReviewEnabled.checked : false,
+        schemaSku: prodSchemaSku ? prodSchemaSku.value.trim() : '',
+        schemaMpn: prodSchemaMpn ? prodSchemaMpn.value.trim() : '',
+        schemaBrand: prodSchemaBrand ? (prodSchemaBrand.value.trim() || 'Harichand Steel') : 'Harichand Steel',
+        schemaGtin: prodSchemaGtin ? prodSchemaGtin.value.trim() : '',
+        schemaPrice: prodSchemaPrice && prodSchemaPrice.value ? (parseFloat(prodSchemaPrice.value) || 25000) : 25000,
+        schemaCurrency: prodSchemaCurrency ? prodSchemaCurrency.value : 'INR',
+        schemaAvailability: prodSchemaAvailability ? prodSchemaAvailability.value : 'https://schema.org/InStock',
+        schemaCondition: prodSchemaCondition ? prodSchemaCondition.value : 'https://schema.org/NewCondition',
+        schemaPriceValidUntil: prodSchemaPriceValidUntil ? prodSchemaPriceValidUntil.value : '2026-12-31',
+        schemaRatingValue: (prodSchemaReviewEnabled && prodSchemaReviewEnabled.checked && prodSchemaRatingValue && prodSchemaRatingValue.value) ? parseFloat(prodSchemaRatingValue.value) : undefined,
+        schemaReviewCount: (prodSchemaReviewEnabled && prodSchemaReviewEnabled.checked && prodSchemaReviewCount && prodSchemaReviewCount.value) ? parseInt(prodSchemaReviewCount.value, 10) : undefined,
+        schemaReviews: (prodSchemaReviewEnabled && prodSchemaReviewEnabled.checked && prodReviewAuthor && prodReviewAuthor.value.trim() && prodReviewBody && prodReviewBody.value.trim()) ? [{
+          author: prodReviewAuthor.value.trim(),
+          rating: prodReviewRating ? parseInt(prodReviewRating.value, 10) : 5,
+          title: prodReviewTitle ? prodReviewTitle.value.trim() : 'Verified Purchase Review',
+          date: prodReviewDate && prodReviewDate.value ? prodReviewDate.value : new Date().toISOString().split('T')[0],
+          body: prodReviewBody.value.trim()
+        }] : [],
+
       };
 
       CMS.saveProduct(productPayload);
@@ -1365,19 +1887,57 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   async function checkDbStatus() {
+    const statElem = document.getElementById('statDbSync');
+    const iconElem = document.getElementById('statDbIcon');
+    const badgeElem = document.getElementById('badgeSupabaseStatus');
+    const topbarBadge = document.getElementById('topbarDbStatusBadge');
+    const topbarText = document.getElementById('topbarDbStatusText');
+
+    function applyFallback() {
+      if (topbarBadge) {
+        topbarBadge.style.background = 'rgba(245, 158, 11, 0.15)';
+        topbarBadge.style.color = '#f59e0b';
+        topbarBadge.style.borderColor = 'rgba(245, 158, 11, 0.3)';
+        const dot = topbarBadge.querySelector('.db-badge-dot');
+        if (dot) dot.style.background = '#f59e0b';
+      }
+      if (topbarText) {
+        topbarText.textContent = 'JSON / Local Fallback';
+      }
+      if (statElem) {
+        statElem.innerHTML = '<span style="font-size:0.92rem; color:#f59e0b;"><i class="fas fa-file-code"></i> Local JSON Storage</span>';
+      }
+      if (iconElem) {
+        iconElem.style.background = 'rgba(245, 158, 11, 0.15)';
+        iconElem.style.color = '#f59e0b';
+      }
+      if (badgeElem) {
+        badgeElem.textContent = 'Local JSON Fallback Active';
+        badgeElem.style.background = 'rgba(245, 158, 11, 0.15)';
+        badgeElem.style.color = '#f59e0b';
+        badgeElem.style.borderColor = 'rgba(245, 158, 11, 0.3)';
+      }
+    }
+
+    // Determine API endpoint path (supporting root domain & local subdirectory)
+    let apiUrl = '/api/db-status';
+    if (window.location.pathname.includes('/admin')) {
+      const sub = window.location.pathname.substring(0, window.location.pathname.indexOf('/admin'));
+      if (sub) apiUrl = `${sub}/api/db-status`;
+    }
+
     try {
-      const res = await fetch('/api/db-status');
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 3500);
+      const res = await fetch(apiUrl, { signal: controller.signal });
+      clearTimeout(timeoutId);
+
       if (res.ok) {
         const data = await res.json();
-        const statElem = document.getElementById('statDbSync');
-        const iconElem = document.getElementById('statDbIcon');
-        const badgeElem = document.getElementById('badgeSupabaseStatus');
-        const topbarBadge = document.getElementById('topbarDbStatusBadge');
-        const topbarText = document.getElementById('topbarDbStatusText');
-
         const isConnected = data.status === 'connected' || data.connected === true;
 
         if (isConnected) {
+          const dbName = data.database || 'MySQL 8.x';
           if (topbarBadge) {
             topbarBadge.style.background = 'rgba(34, 197, 94, 0.15)';
             topbarBadge.style.color = '#22c55e';
@@ -1386,50 +1946,30 @@ document.addEventListener('DOMContentLoaded', function () {
             if (dot) dot.style.background = '#22c55e';
           }
           if (topbarText) {
-            topbarText.textContent = 'Supabase / Connected';
+            topbarText.textContent = `${dbName} / Online`;
           }
           if (statElem) {
-            statElem.innerHTML = '<i class="fas fa-database" style="color:#22c55e;"></i> Supabase PostgreSQL';
+            statElem.innerHTML = `<i class="fas fa-database" style="color:#22c55e;"></i> ${dbName} Online`;
           }
           if (iconElem) {
             iconElem.style.background = 'rgba(34, 197, 94, 0.15)';
             iconElem.style.color = '#22c55e';
           }
           if (badgeElem) {
-            badgeElem.textContent = 'Supabase PostgreSQL Connected';
+            badgeElem.textContent = `${dbName} Connected`;
             badgeElem.style.background = 'rgba(34, 197, 94, 0.15)';
             badgeElem.style.color = '#22c55e';
             badgeElem.style.borderColor = 'rgba(34, 197, 94, 0.3)';
           }
         } else {
-          // Local fallback / JSON
-          if (topbarBadge) {
-            topbarBadge.style.background = 'rgba(245, 158, 11, 0.15)';
-            topbarBadge.style.color = '#f59e0b';
-            topbarBadge.style.borderColor = 'rgba(245, 158, 11, 0.3)';
-            const dot = topbarBadge.querySelector('.db-badge-dot');
-            if (dot) dot.style.background = '#f59e0b';
-          }
-          if (topbarText) {
-            topbarText.textContent = 'JSON / Local Fallback';
-          }
-          if (statElem) {
-            statElem.innerHTML = '<span style="font-size:0.92rem; color:#f59e0b;"><i class="fas fa-file-code"></i> Local JSON Storage</span>';
-          }
-          if (iconElem) {
-            iconElem.style.background = 'rgba(245, 158, 11, 0.15)';
-            iconElem.style.color = '#f59e0b';
-          }
-          if (badgeElem) {
-            badgeElem.textContent = 'Local JSON Fallback Active';
-            badgeElem.style.background = 'rgba(245, 158, 11, 0.15)';
-            badgeElem.style.color = '#f59e0b';
-            badgeElem.style.borderColor = 'rgba(245, 158, 11, 0.3)';
-          }
+          applyFallback();
         }
+      } else {
+        applyFallback();
       }
     } catch (_) {
-      // offline / file:// mode
+      // Network error, timeout, or local offline mode
+      applyFallback();
     }
   }
 
@@ -1440,6 +1980,7 @@ document.addEventListener('DOMContentLoaded', function () {
     paginationState[initial.section] = initial.page;
   }
   switchTab(initial.section, false);
+  syncProductsFromApi();
   renderBlogs();
   checkDbStatus();
 });

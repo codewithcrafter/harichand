@@ -29,6 +29,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
   checkAdminAuth();
+  checkDbStatus();
+  initQuillTableControls();
 
   // Logout Handlers
   async function handleAdminLogout(e) {
@@ -63,25 +65,215 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   // ==========================================
-  // QUILL WYSIWYG EDITOR SINGLETON
+  // QUILL WYSIWYG EDITOR SINGLETON (WITH TABLE SUPPORT)
   // ==========================================
   let blogQuillInstance = null;
   function initBlogQuillEditor() {
     if (!blogQuillInstance && window.Quill && document.getElementById('blogQuillEditor')) {
+      try {
+        const icons = Quill.import('ui/icons');
+        if (icons && !icons['table']) {
+          icons['table'] = '<svg viewBox="0 0 18 18"><rect class="ql-stroke" height="12" width="14" x="2" y="3"></rect><line class="ql-stroke" x1="2" x2="16" y1="7" y2="7"></line><line class="ql-stroke" x1="2" x2="16" y1="11" y2="11"></line><line class="ql-stroke" x1="7" x2="7" y1="3" y2="15"></line><line class="ql-stroke" x1="11" x2="11" y1="3" y2="15"></line></svg>';
+        }
+      } catch (_) {}
+
       blogQuillInstance = new Quill('#blogQuillEditor', {
         theme: 'snow',
         placeholder: 'Write your gate guide, fabrication process, or article content here...',
         modules: {
-          toolbar: [
-            [{ 'header': [1, 2, 3, false] }],
-            ['bold', 'italic', 'underline', 'strike'],
-            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-            ['blockquote', 'code-block'],
-            ['link', 'image'],
-            ['clean']
-          ]
+          table: true,
+          toolbar: {
+            container: [
+              [{ 'header': [1, 2, 3, 4, false] }],
+              ['bold', 'italic', 'underline', 'strike'],
+              [{ 'color': [] }, { 'background': [] }],
+              [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+              ['blockquote', 'code-block'],
+              ['link', 'image'],
+              ['table'],
+              ['clean']
+            ],
+            handlers: {
+              table: function() {
+                insertTableAction();
+              }
+            }
+          }
         }
       });
+
+      initQuillTableControls();
+    }
+  }
+
+  function insertTableAction() {
+    if (!blogQuillInstance) {
+      initBlogQuillEditor();
+    }
+    if (!blogQuillInstance) return;
+
+    // 1. Force editor focus and establish a valid cursor range
+    blogQuillInstance.focus();
+    let range = blogQuillInstance.getSelection();
+    if (!range || range.index === null || range.index === undefined) {
+      const len = blogQuillInstance.getLength();
+      range = { index: Math.max(0, len - 1), length: 0 };
+      blogQuillInstance.setSelection(range.index, 0);
+    }
+
+    // 2. Try native Quill table module first
+    const tableModule = blogQuillInstance.getModule('table');
+    let inserted = false;
+    if (tableModule && typeof tableModule.insertTable === 'function') {
+      try {
+        blogQuillInstance.setSelection(range.index, 0);
+        tableModule.insertTable(3, 3);
+        inserted = true;
+      } catch (err) {
+        console.warn('Native insertTable failed, using HTML fallback:', err);
+      }
+    }
+
+    // 3. Robust HTML Table Fallback (always works seamlessly)
+    if (!inserted) {
+      const tableHtml = '<table class="table-custom" style="width: 100%; border-collapse: collapse; margin: 16px 0; background: #111722;"><thead><tr><th style="border: 1px solid rgba(255,255,255,0.25); padding: 10px 14px; background: rgba(56,189,248,0.12); color: #38bdf8; text-align: left;">Header 1</th><th style="border: 1px solid rgba(255,255,255,0.25); padding: 10px 14px; background: rgba(56,189,248,0.12); color: #38bdf8; text-align: left;">Header 2</th><th style="border: 1px solid rgba(255,255,255,0.25); padding: 10px 14px; background: rgba(56,189,248,0.12); color: #38bdf8; text-align: left;">Header 3</th></tr></thead><tbody><tr><td style="border: 1px solid rgba(255,255,255,0.2); padding: 10px 14px; color: #f1f5f9;">Row 1 Data</td><td style="border: 1px solid rgba(255,255,255,0.2); padding: 10px 14px; color: #f1f5f9;">Row 1 Data</td><td style="border: 1px solid rgba(255,255,255,0.2); padding: 10px 14px; color: #f1f5f9;">Row 1 Data</td></tr><tr><td style="border: 1px solid rgba(255,255,255,0.2); padding: 10px 14px; color: #f1f5f9;">Row 2 Data</td><td style="border: 1px solid rgba(255,255,255,0.2); padding: 10px 14px; color: #f1f5f9;">Row 2 Data</td><td style="border: 1px solid rgba(255,255,255,0.2); padding: 10px 14px; color: #f1f5f9;">Row 2 Data</td></tr></tbody></table><p><br></p>';
+      const idx = range ? range.index : Math.max(0, blogQuillInstance.getLength() - 1);
+      blogQuillInstance.clipboard.dangerouslyPasteHTML(idx, tableHtml);
+    }
+
+    if (typeof showToast === 'function') {
+      showToast('Table (3x3) inserted! Click any cell to type.', 'success');
+    }
+  }
+
+  function execTableOp(opName, errorMsg) {
+    if (!blogQuillInstance) return;
+    const table = blogQuillInstance.getModule('table');
+    if (table && typeof table[opName] === 'function') {
+      try {
+        table[opName]();
+        return;
+      } catch (err) {
+        console.warn('Native ' + opName + ' failed, attempting DOM fallback:', err);
+      }
+    }
+    // DOM-level table manipulation fallback
+    const sel = window.getSelection();
+    let node = sel && sel.anchorNode;
+    while (node && node !== document.body) {
+      if (node.nodeName === 'TD' || node.nodeName === 'TH') break;
+      node = node.parentNode;
+    }
+    if (!node || (node.nodeName !== 'TD' && node.nodeName !== 'TH')) {
+      if (typeof showToast === 'function') {
+        showToast(errorMsg || 'Please click inside a table cell first', 'warning');
+      }
+      return;
+    }
+    const td = node;
+    const tr = td.parentElement;
+    const tbody = tr.parentElement;
+    const tableEl = tbody.parentElement;
+    const colIndex = Array.from(tr.children).indexOf(td);
+
+    if (opName === 'insertRowAbove') {
+      const newTr = tr.cloneNode(true);
+      Array.from(newTr.children).forEach(c => c.innerHTML = '<br>');
+      tbody.insertBefore(newTr, tr);
+      if (typeof showToast === 'function') showToast('Row added above', 'info');
+    } else if (opName === 'insertRowBelow') {
+      const newTr = tr.cloneNode(true);
+      Array.from(newTr.children).forEach(c => c.innerHTML = '<br>');
+      tbody.insertBefore(newTr, tr.nextSibling);
+      if (typeof showToast === 'function') showToast('Row added below', 'info');
+    } else if (opName === 'insertColumnLeft') {
+      Array.from(tbody.querySelectorAll('tr')).forEach(r => {
+        const newCell = document.createElement(r.children[0]?.tagName || 'td');
+        newCell.style.cssText = td.style.cssText;
+        newCell.innerHTML = '<br>';
+        r.insertBefore(newCell, r.children[colIndex] || null);
+      });
+      if (typeof showToast === 'function') showToast('Column added to left', 'info');
+    } else if (opName === 'insertColumnRight') {
+      Array.from(tbody.querySelectorAll('tr')).forEach(r => {
+        const newCell = document.createElement(r.children[0]?.tagName || 'td');
+        newCell.style.cssText = td.style.cssText;
+        newCell.innerHTML = '<br>';
+        const target = r.children[colIndex];
+        r.insertBefore(newCell, target ? target.nextSibling : null);
+      });
+      if (typeof showToast === 'function') showToast('Column added to right', 'info');
+    } else if (opName === 'deleteRow') {
+      tr.remove();
+      if (typeof showToast === 'function') showToast('Row deleted', 'info');
+    } else if (opName === 'deleteColumn') {
+      Array.from(tbody.querySelectorAll('tr')).forEach(r => {
+        if (r.children[colIndex]) r.children[colIndex].remove();
+      });
+      if (typeof showToast === 'function') showToast('Column deleted', 'info');
+    } else if (opName === 'deleteTable') {
+      tableEl.remove();
+      if (typeof showToast === 'function') showToast('Table deleted', 'info');
+    }
+  }
+
+  function initQuillTableControls() {
+    const btnInsert = document.getElementById('btnQuillInsertTable');
+    const btnRowAbove = document.getElementById('btnQuillAddRowAbove');
+    const btnRowBelow = document.getElementById('btnQuillAddRowBelow');
+    const btnColLeft = document.getElementById('btnQuillAddColLeft');
+    const btnColRight = document.getElementById('btnQuillAddColRight');
+    const btnDelRow = document.getElementById('btnQuillDeleteRow');
+    const btnDelCol = document.getElementById('btnQuillDeleteCol');
+    const btnDelTable = document.getElementById('btnQuillDeleteTable');
+
+    if (btnInsert) {
+      btnInsert.onclick = function(e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        insertTableAction();
+      };
+    }
+    if (btnRowAbove) {
+      btnRowAbove.onclick = function(e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        execTableOp('insertRowAbove', 'Click inside a table cell first');
+      };
+    }
+    if (btnRowBelow) {
+      btnRowBelow.onclick = function(e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        execTableOp('insertRowBelow', 'Click inside a table cell first');
+      };
+    }
+    if (btnColLeft) {
+      btnColLeft.onclick = function(e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        execTableOp('insertColumnLeft', 'Click inside a table cell first');
+      };
+    }
+    if (btnColRight) {
+      btnColRight.onclick = function(e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        execTableOp('insertColumnRight', 'Click inside a table cell first');
+      };
+    }
+    if (btnDelRow) {
+      btnDelRow.onclick = function(e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        execTableOp('deleteRow', 'Click inside a table cell first');
+      };
+    }
+    if (btnDelCol) {
+      btnDelCol.onclick = function(e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        execTableOp('deleteColumn', 'Click inside a table cell first');
+      };
+    }
+    if (btnDelTable) {
+      btnDelTable.onclick = function(e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        execTableOp('deleteTable', 'Click inside a table cell first');
+      };
     }
   }
 
@@ -551,7 +743,10 @@ document.addEventListener('DOMContentLoaded', function () {
   // ==========================================
   // 4. DASHBOARD RENDERER
   // ==========================================
-  function renderDashboard() {
+  function renderDashboard(triggerSync = true) {
+    if (triggerSync) {
+      syncProductsFromApi();
+    }
     const products = CMS.getProducts();
     const blogs = CMS.getBlogs();
     const inquiries = CMS.getInquiries();
@@ -585,7 +780,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <td><span class="pill-badge">${escapeHtml(prod.badge || 'Standard')}</span></td>
             <td>
               <div class="table-actions">
-                <a href="/product/${prod.slug || slugifyProd(prod.title, prod.id)}" target="_blank" class="admin-btn admin-btn-outline admin-btn-sm" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);" title="View Live Product Page">
+                <a href="/product/${prod.slug || slugifyProd(prod.title, prod.id)}/" target="_blank" class="admin-btn admin-btn-outline admin-btn-sm" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);" title="View Live Product Page">
                   <i class="fas fa-external-link-alt"></i>
                 </a>
                 <button type="button" class="admin-btn admin-btn-outline admin-btn-sm" onclick="window.adminCMS.editProduct('${prod.id}')" title="Edit">
@@ -639,9 +834,35 @@ document.addEventListener('DOMContentLoaded', function () {
   // ==========================================
   // 5. PRODUCTS MANAGER
   // ==========================================
-    function renderProducts(page = null) {
-    if (page !== null) {
+  let isFetchingProducts = false;
+  async function syncProductsFromApi() {
+    if (isFetchingProducts) return;
+    isFetchingProducts = true;
+    try {
+      const res = await fetch('/api/products');
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) {
+          localStorage.setItem('hs_cms_products', JSON.stringify(data));
+          if (typeof CMS !== 'undefined' && typeof CMS.setProducts === 'function') {
+            CMS.setProducts(data);
+          }
+          renderProducts(null, false);
+          renderDashboard(false);
+        }
+      }
+    } catch (_) {}
+    finally {
+      isFetchingProducts = false;
+    }
+  }
+
+  function renderProducts(page = null, triggerSync = true) {
+    if (page !== null && typeof page === 'number') {
       paginationState.products = page;
+    }
+    if (triggerSync) {
+      syncProductsFromApi();
     }
     const products = CMS.getProducts();
     const searchTerm = (productSearchInput ? productSearchInput.value : '').toLowerCase().trim();
@@ -711,7 +932,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <td><strong style="color: var(--admin-accent); font-size: 0.88rem;">${escapeHtml(prod.price || 'On Request')}</strong></td>
           <td style="text-align: right;">
             <div class="table-actions" style="justify-content: flex-end; gap: 6px;">
-              <a href="/product/${prod.slug || slugifyProd(prod.title, prod.id)}" target="_blank" class="admin-btn admin-btn-outline admin-btn-sm" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);" title="View Live Product Page">
+              <a href="/product/${prod.slug || slugifyProd(prod.title, prod.id)}/" target="_blank" class="admin-btn admin-btn-outline admin-btn-sm" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);" title="View Live Product Page">
                 <i class="fas fa-external-link-alt"></i> View
               </a>
               <button type="button" class="admin-btn admin-btn-outline admin-btn-sm" onclick="window.adminCMS.editProduct('${prod.id}')" title="Edit Product">
@@ -1666,19 +1887,57 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   async function checkDbStatus() {
+    const statElem = document.getElementById('statDbSync');
+    const iconElem = document.getElementById('statDbIcon');
+    const badgeElem = document.getElementById('badgeSupabaseStatus');
+    const topbarBadge = document.getElementById('topbarDbStatusBadge');
+    const topbarText = document.getElementById('topbarDbStatusText');
+
+    function applyFallback() {
+      if (topbarBadge) {
+        topbarBadge.style.background = 'rgba(245, 158, 11, 0.15)';
+        topbarBadge.style.color = '#f59e0b';
+        topbarBadge.style.borderColor = 'rgba(245, 158, 11, 0.3)';
+        const dot = topbarBadge.querySelector('.db-badge-dot');
+        if (dot) dot.style.background = '#f59e0b';
+      }
+      if (topbarText) {
+        topbarText.textContent = 'JSON / Local Fallback';
+      }
+      if (statElem) {
+        statElem.innerHTML = '<span style="font-size:0.92rem; color:#f59e0b;"><i class="fas fa-file-code"></i> Local JSON Storage</span>';
+      }
+      if (iconElem) {
+        iconElem.style.background = 'rgba(245, 158, 11, 0.15)';
+        iconElem.style.color = '#f59e0b';
+      }
+      if (badgeElem) {
+        badgeElem.textContent = 'Local JSON Fallback Active';
+        badgeElem.style.background = 'rgba(245, 158, 11, 0.15)';
+        badgeElem.style.color = '#f59e0b';
+        badgeElem.style.borderColor = 'rgba(245, 158, 11, 0.3)';
+      }
+    }
+
+    // Determine API endpoint path (supporting root domain & local subdirectory)
+    let apiUrl = '/api/db-status';
+    if (window.location.pathname.includes('/admin')) {
+      const sub = window.location.pathname.substring(0, window.location.pathname.indexOf('/admin'));
+      if (sub) apiUrl = `${sub}/api/db-status`;
+    }
+
     try {
-      const res = await fetch('/api/db-status');
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 3500);
+      const res = await fetch(apiUrl, { signal: controller.signal });
+      clearTimeout(timeoutId);
+
       if (res.ok) {
         const data = await res.json();
-        const statElem = document.getElementById('statDbSync');
-        const iconElem = document.getElementById('statDbIcon');
-        const badgeElem = document.getElementById('badgeSupabaseStatus');
-        const topbarBadge = document.getElementById('topbarDbStatusBadge');
-        const topbarText = document.getElementById('topbarDbStatusText');
-
         const isConnected = data.status === 'connected' || data.connected === true;
 
         if (isConnected) {
+          const dbName = data.database || 'MySQL 8.x';
           if (topbarBadge) {
             topbarBadge.style.background = 'rgba(34, 197, 94, 0.15)';
             topbarBadge.style.color = '#22c55e';
@@ -1687,50 +1946,30 @@ document.addEventListener('DOMContentLoaded', function () {
             if (dot) dot.style.background = '#22c55e';
           }
           if (topbarText) {
-            topbarText.textContent = 'Supabase / Connected';
+            topbarText.textContent = `${dbName} / Online`;
           }
           if (statElem) {
-            statElem.innerHTML = '<i class="fas fa-database" style="color:#22c55e;"></i> Supabase PostgreSQL';
+            statElem.innerHTML = `<i class="fas fa-database" style="color:#22c55e;"></i> ${dbName} Online`;
           }
           if (iconElem) {
             iconElem.style.background = 'rgba(34, 197, 94, 0.15)';
             iconElem.style.color = '#22c55e';
           }
           if (badgeElem) {
-            badgeElem.textContent = 'Supabase PostgreSQL Connected';
+            badgeElem.textContent = `${dbName} Connected`;
             badgeElem.style.background = 'rgba(34, 197, 94, 0.15)';
             badgeElem.style.color = '#22c55e';
             badgeElem.style.borderColor = 'rgba(34, 197, 94, 0.3)';
           }
         } else {
-          // Local fallback / JSON
-          if (topbarBadge) {
-            topbarBadge.style.background = 'rgba(245, 158, 11, 0.15)';
-            topbarBadge.style.color = '#f59e0b';
-            topbarBadge.style.borderColor = 'rgba(245, 158, 11, 0.3)';
-            const dot = topbarBadge.querySelector('.db-badge-dot');
-            if (dot) dot.style.background = '#f59e0b';
-          }
-          if (topbarText) {
-            topbarText.textContent = 'JSON / Local Fallback';
-          }
-          if (statElem) {
-            statElem.innerHTML = '<span style="font-size:0.92rem; color:#f59e0b;"><i class="fas fa-file-code"></i> Local JSON Storage</span>';
-          }
-          if (iconElem) {
-            iconElem.style.background = 'rgba(245, 158, 11, 0.15)';
-            iconElem.style.color = '#f59e0b';
-          }
-          if (badgeElem) {
-            badgeElem.textContent = 'Local JSON Fallback Active';
-            badgeElem.style.background = 'rgba(245, 158, 11, 0.15)';
-            badgeElem.style.color = '#f59e0b';
-            badgeElem.style.borderColor = 'rgba(245, 158, 11, 0.3)';
-          }
+          applyFallback();
         }
+      } else {
+        applyFallback();
       }
     } catch (_) {
-      // offline / file:// mode
+      // Network error, timeout, or local offline mode
+      applyFallback();
     }
   }
 
@@ -1741,6 +1980,7 @@ document.addEventListener('DOMContentLoaded', function () {
     paginationState[initial.section] = initial.page;
   }
   switchTab(initial.section, false);
+  syncProductsFromApi();
   renderBlogs();
   checkDbStatus();
 });
