@@ -13,6 +13,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/all.min.css">
   <link rel="stylesheet" href="/admin/css/admin.css">
+  <!-- Quill WYSIWYG Editor 2.x (with Table Module Support) -->
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
 </head>
 <body class="admin-body">
 
@@ -781,8 +784,20 @@
         </div>
 
         <div class="form-group-admin">
-          <label for="blogInputContent">Full Article Content</label>
-          <textarea class="admin-textarea" id="blogInputContent" rows="6" placeholder="Write full article content or notes here..."></textarea>
+          <label>FULL ARTICLE CONTENT (VISUAL WRITING TOOL)</label>
+          <div id="blogQuillEditor" style="min-height: 250px; background: #161b22; color: #fff; border-radius: 6px;"></div>
+          <div class="ql-table-controls-bar" id="blogTableControls">
+            <span><i class="fas fa-table"></i> Table Tools:</span>
+            <button type="button" class="admin-btn admin-btn-outline admin-btn-sm" id="btnQuillInsertTable" title="Insert New Table"><i class="fas fa-plus"></i> Table</button>
+            <button type="button" class="admin-btn admin-btn-outline admin-btn-sm" id="btnQuillAddRowAbove" title="Add Row Above"><i class="fas fa-arrow-up"></i> +Row Above</button>
+            <button type="button" class="admin-btn admin-btn-outline admin-btn-sm" id="btnQuillAddRowBelow" title="Add Row Below"><i class="fas fa-arrow-down"></i> +Row Below</button>
+            <button type="button" class="admin-btn admin-btn-outline admin-btn-sm" id="btnQuillAddColLeft" title="Add Column Left"><i class="fas fa-arrow-left"></i> +Col Left</button>
+            <button type="button" class="admin-btn admin-btn-outline admin-btn-sm" id="btnQuillAddColRight" title="Add Column Right"><i class="fas fa-arrow-right"></i> +Col Right</button>
+            <button type="button" class="admin-btn admin-btn-outline admin-btn-sm" id="btnQuillDeleteRow" style="color: #f87171;" title="Delete Current Row"><i class="fas fa-times"></i> Row</button>
+            <button type="button" class="admin-btn admin-btn-outline admin-btn-sm" id="btnQuillDeleteCol" style="color: #f87171;" title="Delete Current Column"><i class="fas fa-times"></i> Col</button>
+            <button type="button" class="admin-btn admin-btn-outline admin-btn-sm" id="btnQuillDeleteTable" style="color: #ef4444;" title="Delete Entire Table"><i class="fas fa-trash-alt"></i> Del Table</button>
+          </div>
+          <input type="hidden" id="blogInputContent">
         </div>
 
         <div style="display: flex; align-items: center; gap: 8px; margin: 16px 0;">

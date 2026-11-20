@@ -63,25 +63,138 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   // ==========================================
-  // QUILL WYSIWYG EDITOR SINGLETON
+  // QUILL WYSIWYG EDITOR SINGLETON (WITH TABLE SUPPORT)
   // ==========================================
   let blogQuillInstance = null;
   function initBlogQuillEditor() {
     if (!blogQuillInstance && window.Quill && document.getElementById('blogQuillEditor')) {
+      try {
+        const icons = Quill.import('ui/icons');
+        if (icons && !icons['table']) {
+          icons['table'] = '<svg viewBox="0 0 18 18"><rect class="ql-stroke" height="12" width="14" x="2" y="3"></rect><line class="ql-stroke" x1="2" x2="16" y1="7" y2="7"></line><line class="ql-stroke" x1="2" x2="16" y1="11" y2="11"></line><line class="ql-stroke" x1="7" x2="7" y1="3" y2="15"></line><line class="ql-stroke" x1="11" x2="11" y1="3" y2="15"></line></svg>';
+        }
+      } catch (_) {}
+
       blogQuillInstance = new Quill('#blogQuillEditor', {
         theme: 'snow',
         placeholder: 'Write your gate guide, fabrication process, or article content here...',
         modules: {
-          toolbar: [
-            [{ 'header': [1, 2, 3, false] }],
-            ['bold', 'italic', 'underline', 'strike'],
-            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-            ['blockquote', 'code-block'],
-            ['link', 'image'],
-            ['clean']
-          ]
+          table: true,
+          toolbar: {
+            container: [
+              [{ 'header': [1, 2, 3, 4, false] }],
+              ['bold', 'italic', 'underline', 'strike'],
+              [{ 'color': [] }, { 'background': [] }],
+              [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+              ['blockquote', 'code-block'],
+              ['link', 'image'],
+              ['table'],
+              ['clean']
+            ],
+            handlers: {
+              table: function() {
+                const tableModule = blogQuillInstance ? blogQuillInstance.getModule('table') : null;
+                if (!tableModule) return;
+                const rowsStr = prompt('Enter number of table rows (e.g. 3):', '3');
+                if (!rowsStr) return;
+                const colsStr = prompt('Enter number of table columns (e.g. 3):', '3');
+                if (!colsStr) return;
+                const rows = parseInt(rowsStr, 10);
+                const cols = parseInt(colsStr, 10);
+                if (rows > 0 && cols > 0) {
+                  tableModule.insertTable(rows, cols);
+                }
+              }
+            }
+          }
         }
       });
+
+      initQuillTableControls();
+    }
+  }
+
+  function initQuillTableControls() {
+    function getTable() {
+      return blogQuillInstance ? blogQuillInstance.getModule('table') : null;
+    }
+    const btnInsert = document.getElementById('btnQuillInsertTable');
+    const btnRowAbove = document.getElementById('btnQuillAddRowAbove');
+    const btnRowBelow = document.getElementById('btnQuillAddRowBelow');
+    const btnColLeft = document.getElementById('btnQuillAddColLeft');
+    const btnColRight = document.getElementById('btnQuillAddColRight');
+    const btnDelRow = document.getElementById('btnQuillDeleteRow');
+    const btnDelCol = document.getElementById('btnQuillDeleteCol');
+    const btnDelTable = document.getElementById('btnQuillDeleteTable');
+
+    if (btnInsert) {
+      btnInsert.onclick = function() {
+        const table = getTable();
+        if (!table) return;
+        const r = prompt('Enter number of table rows:', '3');
+        if (!r) return;
+        const c = prompt('Enter number of table columns:', '3');
+        if (!c) return;
+        const rows = parseInt(r, 10);
+        const cols = parseInt(c, 10);
+        if (rows > 0 && cols > 0) table.insertTable(rows, cols);
+      };
+    }
+    if (btnRowAbove) {
+      btnRowAbove.onclick = function() {
+        const table = getTable();
+        if (table) {
+          try { table.insertRowAbove(); } catch (_) { showToast('Click inside a table cell first', 'warning'); }
+        }
+      };
+    }
+    if (btnRowBelow) {
+      btnRowBelow.onclick = function() {
+        const table = getTable();
+        if (table) {
+          try { table.insertRowBelow(); } catch (_) { showToast('Click inside a table cell first', 'warning'); }
+        }
+      };
+    }
+    if (btnColLeft) {
+      btnColLeft.onclick = function() {
+        const table = getTable();
+        if (table) {
+          try { table.insertColumnLeft(); } catch (_) { showToast('Click inside a table cell first', 'warning'); }
+        }
+      };
+    }
+    if (btnColRight) {
+      btnColRight.onclick = function() {
+        const table = getTable();
+        if (table) {
+          try { table.insertColumnRight(); } catch (_) { showToast('Click inside a table cell first', 'warning'); }
+        }
+      };
+    }
+    if (btnDelRow) {
+      btnDelRow.onclick = function() {
+        const table = getTable();
+        if (table) {
+          try { table.deleteRow(); } catch (_) { showToast('Click inside a table cell first', 'warning'); }
+        }
+      };
+    }
+    if (btnDelCol) {
+      btnDelCol.onclick = function() {
+        const table = getTable();
+        if (table) {
+          try { table.deleteColumn(); } catch (_) { showToast('Click inside a table cell first', 'warning'); }
+        }
+      };
+    }
+    if (btnDelTable) {
+      btnDelTable.onclick = function() {
+        const table = getTable();
+        if (table) {
+          try { table.deleteTable(); } catch (_) { showToast('Click inside a table cell first', 'warning'); }
+        }
+      };
     }
   }
 
