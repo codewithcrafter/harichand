@@ -591,7 +591,9 @@ document.addEventListener('DOMContentLoaded', function () {
     'steel-door': 'Steel Door',
     'powder-coated-gates': 'Powder Coated Gates',
     'modern-railings': 'Modern Railings',
-    'custom-fabrication': 'Custom Fabrication'
+    'custom-fabrication': 'Custom Fabrication',
+    'window': 'Window',
+    'staircase': 'Staircase'
   };
 
   // ==========================================

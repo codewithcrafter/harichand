@@ -203,6 +203,18 @@ if ($route === 'category') {
             'lead'       => 'Superior rust-resistant powder-coated gate systems offering vibrant long-lasting exterior colors, UV protection, and minimal maintenance.',
             'breadcrumb' => 'Powder Coated Gates',
             'docTitle'   => 'Powder Coated Gates - HARICHAND STEEL'
+        ],
+        'window' => [
+            'title'      => 'Window & Grills',
+            'lead'       => 'Precision engineered steel and aluminum window frames, security grills, and modern architectural window designs built for durability and elegance.',
+            'breadcrumb' => 'Window',
+            'docTitle'   => 'Window - HARICHAND STEEL'
+        ],
+        'staircase' => [
+            'title'      => 'Staircase & Railings',
+            'lead'       => 'Architectural steel, spiral, and modern fabrication staircases designed for safety, structural integrity, and contemporary interior or exterior aesthetics.',
+            'breadcrumb' => 'Staircase',
+            'docTitle'   => 'Staircase - HARICHAND STEEL'
         ]
     ];
 
