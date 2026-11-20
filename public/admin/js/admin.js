@@ -57,10 +57,40 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // --- End Auth Integration ---
 
-  // Check CMS availability
+  // Check CMS availability with safe fallback
   if (typeof CMS === 'undefined') {
-    console.error('CMS module not found! Ensure js/cms-data.js is loaded before js/admin.js.');
-    return;
+    console.warn('CMS module not found on window, initializing safe fallback.');
+    window.CMS = {
+      getProducts: function() {
+        try {
+          const p = localStorage.getItem('hs_cms_products');
+          return p ? JSON.parse(p) : [];
+        } catch (_) { return []; }
+      },
+      setProducts: function(data) {
+        try { localStorage.setItem('hs_cms_products', JSON.stringify(data)); } catch (_) {}
+      },
+      getBlogs: function() {
+        try {
+          const b = localStorage.getItem('hs_cms_blogs');
+          return b ? JSON.parse(b) : [];
+        } catch (_) { return []; }
+      },
+      saveBlog: function(blog) {
+        try {
+          const list = this.getBlogs();
+          const idx = list.findIndex(x => x.id === blog.id);
+          if (idx >= 0) list[idx] = blog; else list.unshift(blog);
+          localStorage.setItem('hs_cms_blogs', JSON.stringify(list));
+        } catch (_) {}
+      },
+      getInquiries: function() {
+        try {
+          const inq = localStorage.getItem('hs_cms_inquiries');
+          return inq ? JSON.parse(inq) : [];
+        } catch (_) { return []; }
+      }
+    };
   }
 
 

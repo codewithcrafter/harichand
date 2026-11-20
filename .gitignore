@@ -8,3 +8,5 @@ _temp_analysis/
 # Private local configuration files (NEVER commit credentials)
 *.local.php
 backend/config/database.local.php
+
+harichand_live_update.zip
